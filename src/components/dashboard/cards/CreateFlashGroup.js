@@ -28,6 +28,8 @@ class CreateFlashGroup extends Component {
         {
           this.state.edit ?
             <input
+              autoFocus={true}
+              style={{display: "block"}}
               type="text"
               value={this.state.title}
               onChange={this.handleTitleChange}
