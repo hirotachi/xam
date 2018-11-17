@@ -5,7 +5,8 @@ import { Login } from "../../actions/auth";
 class LoginPage extends Component{
   state = {
     userName: "",
-    password: ""
+    password: "",
+    remember: false
   };
   handleLogin = (e) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ class LoginPage extends Component{
             type="password"
             placeholder="password"/>
           <button>Login</button>
+          <label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>
         </form>
       </div>
     );
