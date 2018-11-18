@@ -13,11 +13,11 @@ export default (state = QuizzSettingsDefaultState, action) => {
     case "RANDOM_OFF":
       return {...state, random: false};
     case "TURN_ON_TIMER":
-      return {...state, timer: {...timer, enabled: true}};
+      return {...state, timer: {...state.timer, enabled: true}};
     case "TURN_OFF_TIMER":
-      return {...state, timer: {...timer, enabled: false}};
+      return {...state, timer: {...state.timer, enabled: false}};
     case "SET_TIMER":
-      return {...state, timer: {...timer, time: action.time}};
+      return {...state, timer: {...state.timer, time: action.time}};
     default:
       return state;
   }
