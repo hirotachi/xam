@@ -14,7 +14,8 @@ export const addCard = (question = "", answer = undefined) => {
     card: {
       id: shortid(),
       question,
-      answer
+      answer,
+      withAnswer: false
     }
   }
 };
@@ -23,6 +24,15 @@ export const removeCard = (id) => {
   return {
     type: "REMOVE_CARD",
     id,
+  }
+};
+
+
+export const updateCard = (id, updates) => {
+  return {
+    type: "UPDATE_CARD",
+    id,
+    updates
   }
 };
 

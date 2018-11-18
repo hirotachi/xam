@@ -7,7 +7,7 @@ import { addCard, setCards } from "../../../../actions/cards";
 
 class Cards extends Component {
   state = {
-    question: "test",
+    question: "Add question",
   };
 
   componentWillMount(){
@@ -21,6 +21,7 @@ class Cards extends Component {
   render() {
     return (
       <div>
+        <button onClick={this.handleAddCard}>add</button>
         {this.props.currentCards.map((card, index) =>
           <Card
             key={card.id}
@@ -28,7 +29,6 @@ class Cards extends Component {
             add={this.handleAddCard}
             last={index === this.props.currentCards.length - 1} />)
         }
-        <button onClick={this.handleAddCard}>add</button>
       </div>
     );
   }
