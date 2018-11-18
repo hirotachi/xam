@@ -14,6 +14,7 @@ class CardsGroupList extends Component {
               {...group}
               edit={this.props.startEdit}
               view={this.props.viewGroup}
+              redirect={this.props.redirect}
             />)
         }
       </div>

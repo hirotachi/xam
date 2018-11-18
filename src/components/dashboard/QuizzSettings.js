@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { setTimer, turnOffRandom, turnOffTimer, turnOnRandom, turnOnTimer } from "../../actions/quizzSettings";
+import { setCurrentGroup } from "../../actions/currentGroup";
 
 
 class QuizzSettings extends Component {
@@ -63,7 +65,11 @@ class QuizzSettings extends Component {
   };
 
   //============================================================
-
+  handleStartQuizz = () => {
+    this.props.dispatch(setCurrentGroup(this.props.id));
+    this.props.redirect("/quizz")
+  };
+  //============================================================
   render() {
     return (
       <div>
@@ -102,7 +108,7 @@ class QuizzSettings extends Component {
         </div>
         }
         <button onClick={this.handleCancelQuizz}>cancel</button>
-        <button>start</button>
+        <button onClick={this.handleStartQuizz}>start</button>
       </div>
     );
   }

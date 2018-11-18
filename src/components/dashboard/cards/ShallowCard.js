@@ -43,7 +43,9 @@ class ShallowCard extends Component{
         <button onClick={this.handleRemoveGroup}>remove</button>
         <button onClick={this.handleViewGroup}>View </button>
           <button onClick={this.handlestartQuizzSetup}>start</button>
-        { this.state.quizzSetting && <QuizzSettings end={this.handleEndQuizzSetup}/> }
+        { this.state.quizzSetting &&
+        <QuizzSettings end={this.handleEndQuizzSetup} id={this.state.id} redirect={this.props.redirect}/>
+        }
       </div>
     );
 
