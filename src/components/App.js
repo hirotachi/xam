@@ -5,11 +5,12 @@ import "../styles/styles.scss";
 import AppRouter from "../routers/AppRouter";
 import configureStore from "../store/ConfigureStore";
 import { addGroup } from "../actions/cards";
+import shortid from "shortid";
 
 
 const store = configureStore();
 
-store.dispatch(addGroup());
+store.dispatch(addGroup(shortid()));
 const App = () => (
   <React.Fragment>
     <Provider store={store}>

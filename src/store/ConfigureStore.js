@@ -1,11 +1,13 @@
 import { createStore, combineReducers } from "redux";
 import authReducer from "../reducers/auth";
-import cardsReducer from"../reducers/cards";
+import groupsReducer from"../reducers/cards";
+import currentGroupReducer from "../reducers/currentGroup";
 
 export default () => {
   const store = createStore(combineReducers({
     auth: authReducer,
-    cards: cardsReducer
+    groups: groupsReducer,
+    currentGroup: currentGroupReducer
   }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );

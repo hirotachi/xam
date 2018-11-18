@@ -8,7 +8,7 @@ class Cards extends Component {
   render() {
     return (
       <div>
-
+          this is the cards list
       </div>
     );
   }

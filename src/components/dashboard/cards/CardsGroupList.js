@@ -7,8 +7,14 @@ class CardsGroupList extends Component {
     return (
       <div>
         {
-          this.props.cards.length === 0 ? <p>no cards</p> :
-          this.props.cards.map(group => <ShallowCard key={group.id} title={group.title}/>)
+          this.props.groups.length === 0 ? <p>no cards</p> :
+          this.props.groups.map(group =>
+            <ShallowCard
+              key={group.id}
+              {...group}
+              edit={this.props.startEdit}
+              view={this.props.viewGroup}
+            />)
         }
       </div>
     );
@@ -17,7 +23,7 @@ class CardsGroupList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cards: state.cards
+    groups: state.groups
   }
 };
 export default connect(mapStateToProps)(CardsGroupList);
