@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addGroup } from "../../actions/cards";
+import { addGroup } from "../../actions/cardGroups";
 import shortid from "shortid";
 import { setCurrentGroup } from "../../actions/currentGroup";
 

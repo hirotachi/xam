@@ -12,20 +12,20 @@ class Dashboard extends Component{
     view: false,
     creation: false
   };
-  handleAwayFromHome = () => {
-    this.setState(() => ({home: false, creation: true}));
+  handleEditOrCreate = () => {
+    this.setState(() => ({home: false, creation: true, view: false}));
   };
   handleBackHome = () => {
     this.setState(() => ({home: true, creation: false, view: false}));
   };
 
   handleViewGroup = () => {
-    this.setState(() => ({view: true, home: false}))
+    this.setState(() => ({view: true, home: false, creation: false}))
   };
   render(){
     return (
       <div>
-          <Controls startCreation={this.handleAwayFromHome} back={this.handleBackHome}/>
+          <Controls startCreation={this.handleEditOrCreate} back={this.handleBackHome}/>
         <div>
           {!this.state.view &&
             <React.Fragment>
@@ -33,14 +33,14 @@ class Dashboard extends Component{
                 <CreateFlashGroup backHome={this.handleBackHome}/> :
                 <CardsGroupList
                   cancelEdit={this.handleBackHome}
-                  startEdit={this.handleAwayFromHome}
+                  startEdit={this.handleEditOrCreate}
                   viewGroup={this.handleViewGroup}
                 />
               }
             </React.Fragment>
           }
           {
-            this.state.view && <ViewGroup back={this.handleBackHome}/>
+            this.state.view && <ViewGroup back={this.handleBackHome} edit={this.handleEditOrCreate}/>
           }
         </div>
       </div>

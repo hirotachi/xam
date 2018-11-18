@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setCurrentGroup, startEdit } from "../../../actions/currentGroup";
-import { removeGroup } from "../../../actions/cards";
+import { removeGroup } from "../../../actions/cardGroups";
 
 class ShallowCard extends Component{
   state = {

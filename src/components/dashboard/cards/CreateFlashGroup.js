@@ -2,14 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import groupSelector from "../../../selectors/groupSelector";
 import { cancelEdit, clearCurrentGroup } from "../../../actions/currentGroup";
-import { cancelGroupCreation, saveGroup, updateGroup } from "../../../actions/cards";
+import { cancelGroupCreation, saveGroup, updateGroup } from "../../../actions/cardGroups";
 import Cards from "./cardCreation/Cards";
+import { clearCurrentCards } from "../../../actions/cards";
 
 class CreateFlashGroup extends Component {
   state = {
     title: this.props.group.title,
     id: this.props.group.id,
     edit: false
+  };
+
+  componentWillUnmount(){
+    this.props.dispatch(clearCurrentCards());
   };
 
 
@@ -25,10 +30,11 @@ class CreateFlashGroup extends Component {
   };
   handleSave = () => {
     const {title, id} = this.state;
+    const cards = this.props.currentCards;
     if(this.props.edit){
-      this.props.dispatch(updateGroup(id, {title}))
+      this.props.dispatch(updateGroup(id, {title, cards}))
     }else {
-      this.props.dispatch(saveGroup(id, {title}));
+      this.props.dispatch(saveGroup(id, {title, cards}));
     }
     this.props.dispatch(clearCurrentGroup());
     this.props.backHome();
@@ -68,7 +74,7 @@ class CreateFlashGroup extends Component {
               <button onClick={this.startTitleEdit}>Edit</button>
             </div>
         }
-        <Cards/>
+        <Cards id={this.state.id}/>
       </div>
     );
   }
@@ -76,6 +82,7 @@ class CreateFlashGroup extends Component {
 const mapStateToProps = (state) => {
   return {
     group: groupSelector(state.groups, state.currentGroup.currentId),
+    currentCards: state.currentCards,
     edit: state.currentGroup.edit
   }
 };
