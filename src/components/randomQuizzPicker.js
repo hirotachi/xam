@@ -1,8 +1,7 @@
-let tests = [1,2,3,4,5,6,7,8,9];
-
-const popRandom = (array) => {
+export default (array) => {
   const randomIndex = Math.floor(Math.random() * array.length);
   const selection = array.slice(randomIndex, randomIndex + 1).shift();
-  tests = array.filter(item => item !== selection);
-  console.log(selection, tests)
+  const filterd = array.filter(item => item !== selection);
+  this.setState(() => ({array: filterd}));
+  console.log(selection, filterd)
 };

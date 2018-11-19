@@ -35,10 +35,12 @@ export const increaseCount = () => {
   }
 };
 
-export const increaseCountAndPercent = (count, defaultPercent) => {
+export const increaseCountAndPercent = (count, defaultPercent, cards) => {
   return (dispatch) => {
     dispatch(increaseCount());
-    const percent = count * defaultPercent;
+    const calculatedPercent = count * defaultPercent;
+    const percent = count === cards.length ? 100 : calculatedPercent;
+    console.log(count , cards.length);
     dispatch(increaseCurrentPercent(percent))
   }
 };
