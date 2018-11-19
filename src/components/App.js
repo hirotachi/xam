@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import "normalize.css/normalize.css";
 import "../styles/styles.scss";
 import AppRouter from "../routers/AppRouter";
-import configureStore from "../store/ConfigureStore";
+import configureStore from "../store/configureStore";
 import { addGroup } from "../actions/cardGroups";
 import shortid from "shortid";
 

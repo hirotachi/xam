@@ -18,6 +18,8 @@ export default (state = QuizzSettingsDefaultState, action) => {
       return {...state, timer: {...state.timer, enabled: false}};
     case "SET_TIMER":
       return {...state, timer: {...state.timer, time: action.time}};
+    case "RESET_SETTINGS":
+      return QuizzSettingsDefaultState;
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import Homepage from "../components/Homepage";
 import Navigation from "../components/Navigation/Navigation";
 import Dashboard from "../components/dashboard/Dashboard";
 import NotFoundPage from "../components/NotFoundPage";
-import Quizz from "../components/dashboard/Quizz";
+import Quizz from "../components/quizz/Quizz";
 
 
 

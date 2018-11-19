@@ -29,4 +29,10 @@ export const setTimer = (time = 10000) => {
     time
   }
 };
+//==============================================
+export const resetSettings = () => {
+  return {
+    type:"RESET_SETTINGS"
+  }
+};
 

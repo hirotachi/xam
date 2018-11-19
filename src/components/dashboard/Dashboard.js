@@ -4,7 +4,7 @@ import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
 import Controls from "./Controls";
 import ViewGroup from "./cards/ViewGroup";
-import Quizz from "./Quizz";
+import Quizz from "../quizz/Quizz";
 
 
 class Dashboard extends Component{

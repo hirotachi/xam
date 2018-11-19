@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { setTimer, turnOffRandom, turnOffTimer, turnOnRandom, turnOnTimer } from "../../actions/quizzSettings";
+import {
+  resetSettings,
+  setTimer,
+  turnOffRandom,
+  turnOffTimer,
+  turnOnRandom,
+  turnOnTimer
+} from "../../actions/quizzSettings";
 import { setCurrentGroup } from "../../actions/currentGroup";
 
 
@@ -14,6 +21,7 @@ class QuizzSettings extends Component {
   };
 
   handleCancelQuizz = () => {
+    this.props.dispatch(resetSettings());
     this.props.end();
   };
 
