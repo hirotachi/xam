@@ -10,7 +10,9 @@ import { increaseCountAndPercent } from "../../actions/quizz";
 class Quizz extends Component {
   state = {
     cards: this.props.group.cards,
-    currentCard: ""
+    currentCard: "",
+    answer: "",
+    skip: true
   };
 
   //===========================================
@@ -20,7 +22,7 @@ class Quizz extends Component {
     // }
     if ( this.props.quizzSettings.random ) {
       this.randomPicker(this.state.cards)
-    }else {
+    } else {
       this.normalPicker(this.state.cards)
     }
   }
@@ -32,9 +34,7 @@ class Quizz extends Component {
   //   // }
   // }
   //==========================================
-  handleCountUp = () => {
-    console.log("count up")
-  };
+
   //==========================================
   handleExit = () => {
     this.props.dispatch(clearCurrentGroup());
@@ -50,7 +50,7 @@ class Quizz extends Component {
   };
   //Normal
   normalPicker = (array) => {
-    const selection = array[0];
+    const selection = array[ 0 ];
     const newCollection = array.filter(item => item !== selection);
     console.log(selection, newCollection);
   };
@@ -59,15 +59,19 @@ class Quizz extends Component {
     if ( this.props.quizzSettings.random ) {
       this.randomPicker(this.state.cards);
       this.props.dispatch(
-        increaseCountAndPercent(this.props.count + 1,this.props.percent, this.props.group.cards)
+        increaseCountAndPercent(this.props.count + 1, this.props.percent, this.props.group.cards)
       );
-    }else {
+    } else {
       this.normalPicker(this.state.cards);
       this.props.dispatch(
         increaseCountAndPercent(this.props.count + 1, this.props.percent, this.props.group.cards)
       );
     }
   };
+  handleShow = () => {
+    this.setState(() => ({ answer: this.state.currentCard.answer }));
+  };
+
   //=============================================================
 
   render() {
@@ -80,11 +84,20 @@ class Quizz extends Component {
             <h2>{this.props.group.title}</h2>
             <button onClick={this.handleExit}>exit</button>
             <QuestionCount cards={this.props.group.cards}/>
+            <div>
+              <p>question</p>
+              <p>answer</p>
+            </div>
             {this.props.quizzSettings.timer.enabled && <QuestionTimer/>}
-            <button onClick={this.handleCountUp}>count Up</button>
             {this.state.currentCard.withAnswer && <button>show answer</button>}
-            {this.state.cards.length !== 0 && <button onClick={this.handlePickNext}>next</button>}
-            {this.state.cards.length === 0 && <button >done</button>}
+            { this.state.cards.length !== 0 &&
+              <div>
+                {this.state.skip ?
+                  <button onClick={this.handlePickNext}>Skip</button> :
+                  <button onClick={this.handlePickNext}>Next</button>}
+              </div>
+            }
+            {this.state.cards.length === 0 && <button onClick={this.handleExit}>done</button>}
 
           </div>
         }

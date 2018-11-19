@@ -3,28 +3,31 @@ import { connect } from "react-redux";
 
 class QuestionTimer extends Component {
   state = {
-    time: this.props.quizzSettings.timer.time / 1000
+    time: this.props.quizzSettings.timer.time / 1000,
+    clock: ""
   };
 
   componentDidMount(){
-    const clock =  setInterval(() => {
-      if(this.state.time === 0){
-          clearInterval(clock)
-      }else {
-        this.setState(() => ({time : this.state.time - 1}));
-      }
-    }, 1000);
+    this.setState(() => ({
+      clock : setInterval(() => {
+        if(this.state.time === 0){
+          clearInterval(this.state.clock)
+        }else {
+          this.setState(() => ({time : this.state.time - 1}));
+        }
+      }, 1000)
+    }))
   };
 
   componentWillUnmount(){
     clearTimeout();
+    clearInterval(this.state.clock);
   }
 
   render() {
     return (
       <div>
-        timer
-        time : {this.state.time}
+        <p>time : {this.state.time}</p>
       </div>
     );
   }
