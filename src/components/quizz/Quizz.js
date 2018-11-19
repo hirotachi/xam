@@ -46,18 +46,18 @@ class Quizz extends Component {
     const randomIndex = Math.floor(Math.random() * array.length);
     const selection = array.slice(randomIndex, randomIndex + 1).shift();
     const newCollection = array.filter(item => item !== selection);
-    this.setState(() => ({ cards: newCollection, currentCard: selection }));
+    this.setState(() => ({ cards: newCollection, currentCard: selection, answer: "" }));
   };
   //Normal
   normalPicker = (array) => {
     const selection = array[ 0 ];
     const newCollection = array.filter(item => item !== selection);
-    this.setState(() => ({ cards: newCollection, currentCard: selection }));
+    this.setState(() => ({ cards: newCollection, currentCard: selection, answer: "" }));
   };
   //=============================================================
   handlePickNext = () => { // next upon show answer clicked
     this.nextCard();
-    this.setState(() => ({skip: true}));
+    this.setState(() => ({ skip: true }));
   };
   handleSkip = () => { // skip to next card
     this.nextCard()

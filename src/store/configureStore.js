@@ -6,6 +6,7 @@ import currentGroupReducer from "../reducers/currentGroup";
 import currentCardsReducer from "../reducers/cards";
 import quizzSettingsReducer from "../reducers/quizzSettings";
 import quizzReducer from "../reducers/quizz";
+import filtersReducer from "../reducers/filters";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,7 +17,8 @@ export default () => {
     currentGroup: currentGroupReducer,
     currentCards: currentCardsReducer,
     quizzSettings: quizzSettingsReducer,
-    quizz: quizzReducer
+    quizz: quizzReducer,
+    filters: filtersReducer
   }),
     composeEnhancers(applyMiddleware(thunk))
   );
