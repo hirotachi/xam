@@ -7,7 +7,8 @@ import {
   turnOffRandom,
   turnOffTimer,
   turnOnRandom,
-  turnOnTimer
+  turnOnTimer,
+  startSetTimer
 } from "../../actions/quizzSettings";
 import { setCurrentGroup } from "../../actions/currentGroup";
 
@@ -16,7 +17,7 @@ class QuizzSettings extends Component {
   state = {
     random: this.props.settings.random,
     timerEnabled: this.props.settings.timer.enabled,
-    time: this.props.settings.timer.time / 1000,
+    time: this.props.settings.timer.time.seconds,
     timeMetrics: "seconds"
   };
 
@@ -47,15 +48,15 @@ class QuizzSettings extends Component {
   };
   handleChangeTime = (e) => {
     const time = e.target.value.toString();
-    if ( !time || time.match(/[0-9]+$/g) ) {
+    if ( !time || time.match(/^\d{1,3}?$/g) ) {
       this.setState(() => ({ time }));
     }
     if ( !isNaN(parseInt(time)) && this.state.timeMetrics === "seconds" ) {
-      this.props.dispatch(setTimer(parseInt(time * 1000)));
+      this.props.dispatch(startSetTimer({seconds: parseInt(time)}));
     }else if (!isNaN(parseInt(time)) && this.state.timeMetrics === "minutes") {
-      this.props.dispatch(setTimer(parseInt(time * 60000)));
+      this.props.dispatch(startSetTimer({minutes: parseInt(time)}));
     } else {
-      this.props.dispatch(setTimer(10000));
+      this.props.dispatch(startSetTimer({seconds: 10}));
     }
 
   };
@@ -64,18 +65,18 @@ class QuizzSettings extends Component {
     const timeMetrics = e.target.value;
     this.setState(() => ({ timeMetrics }));
     if(timeMetrics === "seconds"){
-      this.props.dispatch(setTimer(parseInt(this.state.time * 1000)));
+      this.props.dispatch(startSetTimer({seconds: parseInt(this.state.time)}));
     }else if (timeMetrics === "minutes") {
-      this.props.dispatch(setTimer(parseInt(this.state.time * 60000)));
+      this.props.dispatch(startSetTimer({minutes: parseInt(this.state.time)}));
     } else {
-      this.props.dispatch(setTimer(10000));
+      this.props.dispatch(startSetTimer({seconds: 10}));
     }
   };
 
   //============================================================
   handleStartQuizz = () => {
     this.props.dispatch(setCurrentGroup(this.props.id));
-    this.props.redirect("/quizz")
+    this.props.redirect("/quizz");
   };
   //============================================================
   render() {

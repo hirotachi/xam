@@ -2,7 +2,10 @@ const QuizzSettingsDefaultState = {
   random: true,
   timer: {
     enabled: false,
-    time: 10000
+    time: {
+      minutes: 0,
+      seconds: 10
+    }
   }
 };
 

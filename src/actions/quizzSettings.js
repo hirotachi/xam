@@ -23,16 +23,32 @@ export const turnOffTimer = () => {
   }
 };
 
-export const setTimer = (time = 10000) => {
-  return {
-    type: "SET_TIMER",
-    time
+export const setTimer = (minutes, seconds) => {
+    return {
+      type: "SET_TIMER",
+      time: {
+        minutes: seconds > 59 ? 1 : minutes,
+        seconds: seconds > 59 ? seconds - 59 : seconds
+      }
+    }
+};
+
+export const startSetTimer = (time) => {
+  return (dispatch) => {
+    let {seconds = 0, minutes= 0} = time;
+    if(seconds > 59){
+      minutes = Math.floor(seconds / 60);
+      seconds = 0;
+    dispatch(setTimer(minutes, seconds));
+    }else {
+      dispatch(setTimer(minutes, seconds));
+    }
   }
 };
 //==============================================
 export const resetSettings = () => {
   return {
-    type:"RESET_SETTINGS"
+    type: "RESET_SETTINGS"
   }
 };
 
