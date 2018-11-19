@@ -12,38 +12,12 @@ class QuestionTimer extends Component {
   componentDidMount() {
     this.setState(() => ({
       clock: setInterval(() => {
-        // if(this.state.time === 0){
-        //   clearInterval(this.state.clock)
-        // }else {
-        //   this.setState(() => ({time : this.state.time - 1}));
-        // }
-        console.log(`minutes: ${this.state.minutes}, seconds: ${this.state.seconds}`)
-        // if ( !!this.state.minutes ) {
-        //   this.setState(() => (
-        //     {
-        //
-        //       minutes: this.state.minutes - 1,
-        //       seconds: 59
-        //
-        //     }
-        //   ))
-        // } else if ( this.state.seconds === 0 && this.state.minutes !== 0 ) {
-        //   this.setState(() => (
-        //     {
-        //       minutes: this.state.minutes - 1,
-        //       seconds: 59
-        //     }
-        //   ))
-        // } else if ( this.state.seconds === 0 && this.state.minutes === 0 ) {
-        //   clearInterval(this.state.clock)
-        // } else {
-        //   this.setState(() => ({ seconds: this.state.seconds - 1 }))
-        // }
+        console.log(`minutes: ${this.state.minutes}, seconds: ${this.state.seconds}`);
         if(this.state.seconds !== 0){
           this.setState(() => ({ seconds: this.state.seconds - 1 }))
         } else if (this.state.seconds === 0 && this.state.minutes !== 0 ){
           this.setState(() => ({ minutes: this.state.minutes - 1, seconds : 59 }));
-        }else if (this.state.seconds === 0 && this.state.minutes === 0 ){
+        }else if ((this.state.seconds === 0 && this.state.minutes === 0)){
           clearInterval(this.state.clock)
         }
       }, 1000)
@@ -67,7 +41,8 @@ class QuestionTimer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    quizzSettings: state.quizzSettings
+    quizzSettings: state.quizzSettings,
+    quizz: state.quizz
   }
 };
 export default connect(mapStateToProps)(QuestionTimer);

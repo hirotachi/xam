@@ -52,10 +52,18 @@ class Quizz extends Component {
   normalPicker = (array) => {
     const selection = array[ 0 ];
     const newCollection = array.filter(item => item !== selection);
-    console.log(selection, newCollection);
+    this.setState(() => ({ cards: newCollection, currentCard: selection }));
   };
   //=============================================================
-  handlePickNext = () => {
+  handlePickNext = () => { // next upon show answer clicked
+    this.nextCard();
+    this.setState(() => ({skip: true}));
+  };
+  handleSkip = () => { // skip to next card
+    this.nextCard()
+  };
+
+  nextCard = () => { // pass to next card on deck
     if ( this.props.quizzSettings.random ) {
       this.randomPicker(this.state.cards);
       this.props.dispatch(
@@ -68,8 +76,8 @@ class Quizz extends Component {
       );
     }
   };
-  handleShow = () => {
-    this.setState(() => ({ answer: this.state.currentCard.answer }));
+  handleShow = () => { // sets answer from card to be shown if there is any
+    this.setState(() => ({ answer: this.state.currentCard.answer, skip: false }));
   };
 
   //=============================================================
@@ -86,16 +94,17 @@ class Quizz extends Component {
             <QuestionCount cards={this.props.group.cards}/>
             <div>
               <p>question</p>
-              <p>answer</p>
+              {this.state.answer && <p>{this.state.answer}</p>}
+
             </div>
             {this.props.quizzSettings.timer.enabled && <QuestionTimer/>}
-            {this.state.currentCard.withAnswer && <button>show answer</button>}
-            { this.state.cards.length !== 0 &&
-              <div>
-                {this.state.skip ?
-                  <button onClick={this.handlePickNext}>Skip</button> :
-                  <button onClick={this.handlePickNext}>Next</button>}
-              </div>
+            {this.state.currentCard.withAnswer && <button onClick={this.handleShow}>show answer</button>}
+            {this.state.cards.length !== 0 &&
+            <div>
+              {this.state.skip ?
+                <button onClick={this.handleSkip}>Skip</button> :
+                <button onClick={this.handlePickNext}>Next</button>}
+            </div>
             }
             {this.state.cards.length === 0 && <button onClick={this.handleExit}>done</button>}
 
