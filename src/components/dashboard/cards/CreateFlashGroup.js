@@ -8,8 +8,8 @@ import { clearCurrentCards } from "../../../actions/cards";
 
 class CreateFlashGroup extends Component {
   state = {
-    title: this.props.group.title,
-    id: this.props.group.id,
+    title: "",
+    id: "",
     edit: false
   };
 
@@ -29,7 +29,7 @@ class CreateFlashGroup extends Component {
     this.props.backHome();
   };
   handleSave = () => {
-    const {title, id} = this.state;
+    const {title, id} = this.props.group;
     const cards = this.props.currentCards;
     if(this.props.edit){
       this.props.dispatch(updateGroup(id, {title, cards}))
@@ -65,16 +65,16 @@ class CreateFlashGroup extends Component {
               autoFocus={true}
               style={{display: "block"}}
               type="text"
-              value={this.state.title}
+              value={this.props.group.title}
               onChange={this.handleTitleChange}
               onBlur={this.endTitleEdit}
             /> :
             <div>
-              <h2>{this.state.title}</h2>
+              <h2>{this.props.group.title}</h2>
               <button onClick={this.startTitleEdit}>Edit</button>
             </div>
         }
-        <Cards id={this.state.id}/>
+        <Cards id={this.props.group.id}/>
       </div>
     );
   }
@@ -83,7 +83,8 @@ const mapStateToProps = (state) => {
   return {
     group: groupSelector(state.groups, state.currentGroup.currentId),
     currentCards: state.currentCards,
-    edit: state.currentGroup.edit
+    edit: state.currentGroup.edit,
+    currentGroup: state.currentGroup
   }
 };
 export default connect(mapStateToProps)(CreateFlashGroup);

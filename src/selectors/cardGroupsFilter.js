@@ -6,7 +6,7 @@ export default (groups, {sortBy, search}) => {
     if(sortBy === "date"){
       return a.createdAt < b.createdAt ? 1 : -1;
     }else if(sortBy === "name"){
-      return a.title[0] < b.title[0] ? 1 : -1;
+      return a.title[0] < b.title[0] ? -1 : 1;
     }
   });
 
