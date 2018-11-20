@@ -1,6 +1,5 @@
 import shortid from "shortid";
 import moment from "moment";
-import shortId from "shortid";
 
 
 //Card groups actions========================================================
@@ -10,7 +9,7 @@ export const addGroup = (id) => {
     cardGroup: {
       id,
       createdAt: moment().valueOf(),
-      title: shortId(),
+      title: "Title",
       cards: [ {
         id: shortid(),
         question: "",

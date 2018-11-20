@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import { filterBySearch } from "../../actions/cardGroupsFilter";
+import Responsive from "../../Responsive/Responsive";
 
 
 class Navigation extends Component {
@@ -22,12 +23,15 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <input
-          onChange={this.handleSearchChange}
-          value={this.state.search}
-          type="text"
-          placeholder="Search"
-        />
+        <Responsive query={{orientation: "landscape"}}>
+          <input
+            onChange={this.handleSearchChange}
+            value={this.state.search}
+            type="text"
+            placeholder="Search"
+          />
+        </Responsive>
+
         {
           this.props.auth && <button onClick={this.handleAuth}>Logout</button>
         }
