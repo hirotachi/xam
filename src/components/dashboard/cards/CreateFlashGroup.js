@@ -13,15 +13,15 @@ class CreateFlashGroup extends Component {
     edit: false
   };
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.dispatch(clearCurrentCards());
   };
 
 
   handleCancel = () => {
-    if(this.props.edit){
+    if ( this.props.edit ) {
       this.props.dispatch(cancelEdit());
-    }else {
+    } else {
       this.props.dispatch(cancelGroupCreation(this.state.id));
       this.props.dispatch(clearCurrentGroup());
     }
@@ -29,12 +29,12 @@ class CreateFlashGroup extends Component {
     this.props.backHome();
   };
   handleSave = () => {
-    const {title, id} = this.props.group;
+    const { title, id } = this.props.group;
     const cards = this.props.currentCards;
-    if(this.props.edit){
-      this.props.dispatch(updateGroup(id, {title, cards}))
-    }else {
-      this.props.dispatch(saveGroup(id, {title, cards}));
+    if ( this.props.edit ) {
+      this.props.dispatch(updateGroup(id, { title, cards }))
+    } else {
+      this.props.dispatch(saveGroup(id, { title, cards }));
     }
     this.props.dispatch(clearCurrentGroup());
     this.props.backHome();
@@ -42,15 +42,20 @@ class CreateFlashGroup extends Component {
   // Title ===============================================
   handleTitleChange = (e) => {
     const title = e.target.value;
-    this.setState(() => ({ title }));
+    this.setState(() => ({ title }))
   };
 
   startTitleEdit = () => {
-    this.setState(() => ({ edit: true }));
+    this.setState(() => ({ edit: true, title: this.props.group.title }));
   };
   endTitleEdit = () => {
+    const { id } = this.props.group;
+    const { title } = this.state;
+    const cards = this.props.currentCards;
     this.setState(() => ({ edit: false }));
+    this.props.dispatch(updateGroup(id, { title, cards }))
   };
+
   //===============================================
 
 
@@ -63,9 +68,9 @@ class CreateFlashGroup extends Component {
           this.state.edit ?
             <input
               autoFocus={true}
-              style={{display: "block"}}
+              style={{ display: "block" }}
               type="text"
-              value={this.props.group.title}
+              value={this.state.title}
               onChange={this.handleTitleChange}
               onBlur={this.endTitleEdit}
             /> :
@@ -79,6 +84,7 @@ class CreateFlashGroup extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     group: groupSelector(state.groups, state.currentGroup.currentId),
