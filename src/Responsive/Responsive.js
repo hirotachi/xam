@@ -38,10 +38,8 @@ class Responsive extends Component {
   showChecker = (property) => { // shows children if property is defined and true
     if(property !== null && property === true){
       this.setState(() => ({show: true}));
-      console.log("show")
     }else {
       this.setState(() => ({show: false}));
-      console.log("not show")
     }
   };
 

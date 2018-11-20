@@ -4,7 +4,6 @@ import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
 import Controls from "./Controls";
 import ViewGroup from "./cards/ViewGroup";
-import Quizz from "../quizz/Quizz";
 
 
 class Dashboard extends Component{
@@ -28,7 +27,11 @@ class Dashboard extends Component{
   render(){
     return (
       <div>
-          <Controls startCreation={this.handleEditOrCreate} back={this.handleBackHome}/>
+          <Controls
+            startCreation={this.handleEditOrCreate}
+            back={this.handleBackHome}
+            redirect={this.props.history.push}
+          />
         <div>
           {!this.state.view &&
             <React.Fragment>

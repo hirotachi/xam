@@ -15,6 +15,10 @@ class Controls extends Component {
     this.props.startCreation();
   };
 
+  handleRequestSupport = () => {
+    this.props.redirect("/support");
+  };
+
   handleShowList = () => {
     this.props.back();
   };
@@ -23,7 +27,7 @@ class Controls extends Component {
       <div>
         <button onClick={this.handleAddGroup}>add</button>
         <button onClick={this.handleShowList}>list</button>
-        <button>support</button>
+        <button onClick={this.handleRequestSupport}>support</button>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { resetRef } from "../../actions/support";
 
 
 class SignupPage extends Component {
@@ -15,6 +16,10 @@ class SignupPage extends Component {
     const logo = document.getElementsByTagName("h1")[0];
     logo.style.backgroundColor = "red";
   };
+
+  componentDidMount() {
+    this.props.dispatch(resetRef());
+  }
 
   //================================================
   handleUserNameChange = (e) => {
@@ -75,4 +80,4 @@ class SignupPage extends Component {
     );
   }
 }
-export default SignupPage;
+export default connect()(SignupPage);

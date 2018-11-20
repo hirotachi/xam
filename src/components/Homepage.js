@@ -16,6 +16,9 @@ class Homepage extends Component{
     if(this.props.auth){
       this.props.history.push("/dashboard");
     }
+    if(this.props.isRef){
+      this.handleSignUp();
+    }
   };
   componentDidUpdate(){
     if(this.props.auth){
@@ -58,7 +61,8 @@ class Homepage extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    isRef: state.support.isRef
   }
 };
 export default connect(mapStateToProps)(Homepage);
