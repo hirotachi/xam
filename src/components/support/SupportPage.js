@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { enterSupport, leaveSupport, setRef } from "../../actions/support";
 
 
-class Supportpage extends Component {
+class SupportPage extends Component {
   state = {
     mainSubject: "",
     fullName: "",
@@ -156,4 +156,4 @@ const mapStatToProps = (state) => {
     auth: state.auth
   }
 };
-export default connect(mapStatToProps)(Supportpage);
+export default connect(mapStatToProps)(SupportPage);

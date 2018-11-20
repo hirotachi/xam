@@ -5,7 +5,7 @@ import Navigation from "../components/Navigation/Navigation";
 import Dashboard from "../components/dashboard/Dashboard";
 import NotFoundPage from "../components/NotFoundPage";
 import Quizz from "../components/quizz/Quizz";
-import Supportpage from "../components/support/Supportpage";
+import SupportPage from "../components/support/SupportPage";
 
 
 
@@ -24,7 +24,7 @@ class AppRouter extends Component {
               <Route exact={true} path="/" component={Homepage}/>
               <Route path="/dashboard" component={Dashboard}/>
               <Route path="/quizz" component={Quizz}/>
-              <Route path="/support" component={Supportpage}/>
+              <Route path="/support" component={SupportPage}/>
               <Route component={NotFoundPage}/>
             </Switch>
         </React.Fragment>
