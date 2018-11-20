@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import { resetRef } from "../actions/support";
 
 export default (ChildComponent) => {
   class ComposedComponent extends Component{
     componentDidMount() {
+      this.props.dispatch(resetRef());
       if(!this.props.auth){
         this.props.history.push("/");
       }

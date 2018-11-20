@@ -5,7 +5,7 @@ import Navigation from "../components/Navigation/Navigation";
 import Dashboard from "../components/dashboard/Dashboard";
 import NotFoundPage from "../components/NotFoundPage";
 import Quizz from "../components/quizz/Quizz";
-import Supportpage from "../components/Supportpage";
+import Supportpage from "../components/support/Supportpage";
 
 
 

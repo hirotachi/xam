@@ -13,6 +13,7 @@ class Dashboard extends Component{
     creation: false,
     startQuizz: false
   };
+
   handleEditOrCreate = () => {
     this.setState(() => ({home: false, creation: true, view: false, startQuizz: false}));
   };
