@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { addGroup } from "../../actions/cardGroups";
 import shortid from "shortid";
 import { setCurrentGroup } from "../../actions/currentGroup";
+import { resetRef } from "../../actions/support";
 
 
 
@@ -13,6 +14,13 @@ class Controls extends Component {
     this.props.dispatch(addGroup(id));
     this.props.dispatch(setCurrentGroup(id));
     this.props.startCreation();
+  };
+
+  componentWillMount(){
+    if(this.props.refrence){
+      this.handleAddGroup();
+      this.props.dispatch(resetRef());
+    }
   };
 
   handleRequestSupport = () => {
@@ -33,4 +41,9 @@ class Controls extends Component {
   }
 }
 
-export default connect()(Controls);
+const mapStateToProps = (state) => {
+  return {
+    refrence: state.support.isRef
+  }
+};
+export default connect(mapStateToProps)(Controls);
