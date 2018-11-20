@@ -12,7 +12,6 @@ class QuestionTimer extends Component {
   componentDidMount() {
     this.setState(() => ({
       clock: setInterval(() => {
-        console.log(`minutes: ${this.state.minutes}, seconds: ${this.state.seconds}`);
         if(this.state.seconds !== 0){
           this.setState(() => ({ seconds: this.state.seconds - 1 }))
         } else if (this.state.seconds === 0 && this.state.minutes !== 0 ){
@@ -30,10 +29,15 @@ class QuestionTimer extends Component {
     this.props.dispatch(resetSettings())
   }
 
+
   render() {
     return (
       <div>
-        <p>time : {this.state.time}</p>
+        <p>
+          time : {this.state.minutes.toString().length !== 2 && <span>0</span>}{this.state.minutes}:
+          {this.state.seconds.toString().length !== 2 && <span>0</span>}{this.state.seconds}
+
+        </p>
       </div>
     );
   }
