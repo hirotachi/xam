@@ -11,6 +11,7 @@ import {
   startSetTimer
 } from "../../actions/quizzSettings";
 import { setCurrentGroup } from "../../actions/currentGroup";
+import { setCards } from "../../actions/cards";
 
 
 class QuizzSettings extends Component {
@@ -76,6 +77,7 @@ class QuizzSettings extends Component {
   //============================================================
   handleStartQuizz = () => {
     this.props.dispatch(setCurrentGroup(this.props.id));
+    this.props.dispatch(setCards(this.props.cards));
     this.props.redirect("/quizz");
   };
   //============================================================

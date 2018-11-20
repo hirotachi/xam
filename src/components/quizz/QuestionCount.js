@@ -25,7 +25,6 @@ class QuestionCount extends Component {
     return (
       <div>
         Questions count is : {`${this.props.count}/${this.props.cards.length}`}
-        {/*{this.props.cards.length > 1 && <button onClick={this.handleIncreasePercent}>Next</button>}*/}
 
         <p>bar: {this.props.currentPercent}% </p>
       </div>

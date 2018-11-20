@@ -13,7 +13,8 @@ export const addGroup = (id) => {
       cards: [ {
         id: shortid(),
         question: "",
-        answer: undefined
+        answer: undefined,
+        withAnswer: false
       } ]
     }
   }

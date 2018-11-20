@@ -16,23 +16,22 @@ class Quizz extends Component {
   };
 
   //===========================================
-  componentDidMount() {
-    // if(!this.props.group || !this.props.auth){
-    //   this.props.history.push("/dashboard");
-    // }
+  componentWillMount() {
+    if(!this.props.currentGroup.currentId || !this.props.auth){
+      this.props.history.push("/dashboard");
+    }
     if ( this.props.quizzSettings.random ) {
       this.randomPicker(this.state.cards)
     } else {
       this.normalPicker(this.state.cards)
     }
-  }
+  };
+  componentDidUpdate(){
+    if(!this.props.currentGroup.currentId || !this.props.auth){
+      this.props.history.push("/dashboard");
+    }
+  };
 
-  //
-  // componentDidUpdate(){
-  //   // if(!this.props.group || !this.props.auth){
-  //   //   this.props.history.push("/dashboard");
-  //   // }
-  // }
   //==========================================
 
   //==========================================
@@ -118,8 +117,10 @@ class Quizz extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    group: groupSelector(state.groups, state.groups[ 0 ].id),
+    groups: state.groups,
+    group: groupSelector(state.groups, state.currentGroup.currentId || state.groups[0].id),
     currentGroup: state.currentGroup,
+    currentCards: state.currentCards,
     auth: state.auth,
     quizzSettings: state.quizzSettings,
     percent: state.quizz.defaultPercent,
