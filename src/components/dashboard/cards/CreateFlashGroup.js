@@ -22,7 +22,7 @@ class CreateFlashGroup extends Component {
     if ( this.props.edit ) {
       this.props.dispatch(cancelEdit());
     } else {
-      this.props.dispatch(cancelGroupCreation(this.state.id));
+      this.props.dispatch(cancelGroupCreation(this.props.group.id));
       this.props.dispatch(clearCurrentGroup());
     }
 

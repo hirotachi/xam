@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
-import { filterBySearch } from "../../actions/cardGroupsFilter";
 import Search from "./Search";
 
 
@@ -11,7 +10,6 @@ class Navigation extends Component {
   handleAuth = () => {
     this.props.dispatch(logout());
   };
-
 
 
   render() {
