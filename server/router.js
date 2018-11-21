@@ -1,5 +1,3 @@
-
-
-module.exports = (app, path ) => {
+module.exports = (app) => {
 
 };

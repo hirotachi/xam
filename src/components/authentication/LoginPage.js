@@ -1,32 +1,40 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Login } from "../../actions/auth";
 
 
-class LoginPage extends Component{
+class LoginPage extends Component {
   state = {
     userName: "",
     password: "",
-    remember: false
+    remember: false,
+    fail: false
   };
   handleLogin = (e) => {
     e.preventDefault();
-    this.props.login();
+    if ( !this.state.userName || !this.state.password ){
+      this.setState(() => ({fail: true}))
+    }else {
+      this.setState(() => ({fail: false}));
+      this.props.login();
+    }
   };
 
   //=========================================
   handleUserNameChange = (e) => {
     const userName = e.target.value;
-    this.setState(() => ({userName}))
+    this.setState(() => ({ userName }))
   };
   handlePasswordChange = (e) => {
     const password = e.target.value;
-    this.setState(() => ({password}))
+    this.setState(() => ({ password }))
   };
+
   //=========================================
   render() {
     return (
       <div>
         LoginPage
+        {this.state.fail && <p>enter username or password</p>}
         <form onSubmit={this.handleLogin}>
           <input
             onChange={this.handleUserNameChange}
