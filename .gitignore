@@ -6,6 +6,7 @@ public/bundle.js.map
 public/styles.css
 public/styles.css.map
 .idea/
+config.js
 
 # dependencies
 /node_modules

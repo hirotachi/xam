@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from"react-redux";
 import LoginPage from "./authentication/LoginPage";
-import { login } from "../actions/auth";
+import { login, requestAuth } from "../actions/auth";
 import SignupPage from "./authentication/SignupPage";
 
 
@@ -36,8 +36,8 @@ class Homepage extends Component{
   //===============================================================
 
   //===============================================================
-  requestLogin = () => {
-    this.props.dispatch(login());
+  requestLogin = (info) => {
+    this.props.dispatch(requestAuth(info));
   };
   //===============================================================
 

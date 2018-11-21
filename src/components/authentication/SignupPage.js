@@ -7,20 +7,21 @@ class SignupPage extends Component {
   state = {
     userName: "",
     email: "",
-    passOne: "",
+    password: "",
     passTwo: "",
     terms: false,
     success: false
   };
 
-  componentWillMount(){
-    const logo = document.getElementsByTagName("h1")[0];
-    logo.style.backgroundColor = "red";
-  };
+  // componentWillMount(){
+  //   const logo = document.getElementsByTagName("h1")[0];
+  //   logo.style.backgroundColor = "red";
+  // };
 
   componentDidUpdate(){
     if(this.state.success){
-      this.props.signUp();
+      console.log(...this.state);
+      this.props.signUp(this.state);
     }
   };
 
@@ -36,9 +37,9 @@ class SignupPage extends Component {
     const email = e.target.value;
     this.setState(() => ({email}));
   };
-  handlePassOneChange = (e) => {
-    const passOne = e.target.value;
-    this.setState(() => ({passOne}));
+  handlePasswordChange = (e) => {
+    const password = e.target.value;
+    this.setState(() => ({password}));
   };
   handlePassTwoChange = (e) => {
     const passTwo = e.target.value;
@@ -50,21 +51,20 @@ class SignupPage extends Component {
   //================================================
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const {userName, email, passOne, passTwo, terms} = this.state;
+    const {userName, email, password, passTwo, terms} = this.state;
     const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.submitCheck({userName, email, passOne, passTwo}, emailReg);
-    if(!!userName && (!!email && emailReg.test(email)) && !!passOne && !!passTwo && (passOne === passTwo)){
-      this.handleSignUp({userName, email, passOne, passTwo});
-      this.setState(() => ({userName: "", email: "", passOne: "", passTwo: "", terms: false}))
+    this.submitCheck({userName, email, password, passTwo}, emailReg);
+    if(!!userName && (!!email && emailReg.test(email)) && !!password && !!passTwo && (password === passTwo) && terms){
+      this.handleSignUp({userName, email, password, passTwo});
+      this.setState(() => ({userName: "", email: "", password: "", passTwo: "", terms: false}))
     }
   };
   handleSignUp = (data) => {
-      console.log(data)
     this.setState(() => ({success: true}))
   };
   handleCheckSecondPass = () => {
     const passTwo = document.getElementsByClassName("passTwo")[0];
-    if(!!this.state.passOne && !!this.state.passTwo && this.state.passOne !== this.state.passTwo){
+    if(!!this.state.password && !!this.state.passTwo && this.state.password !== this.state.passTwo){
         passTwo.style.borderColor = "red";
     }else {
       passTwo.style.borderColor = "";
@@ -77,7 +77,7 @@ class SignupPage extends Component {
   singleFieldCheck = (field, name, reg) => { // check each field and give style according to condition
     if ( (name === "email" && !reg.test(field)) ) {
       document.getElementsByClassName(name)[ 0 ].style.borderColor = "red";
-    }else if(name === "passTwo" && !!this.state.passOne && this.state.passOne !== field){
+    }else if(name === "passTwo" && !!this.state.password && this.state.password !== field){
       document.getElementsByClassName(name)[ 0 ].style.borderColor = "red";
     } else if ( !field ) {
       document.getElementsByClassName(name)[ 0 ].style.borderColor = "red";
@@ -103,11 +103,11 @@ class SignupPage extends Component {
             placeholder="Email"
           className="email"/>
           <input
-            onChange={this.handlePassOneChange}
-            value={this.state.passOne}
+            onChange={this.handlePasswordChange}
+            value={this.state.password}
             type="password"
             placeholder="Password"
-          className="passOne"/>
+          className="password"/>
           <input
             onChange={this.handlePassTwoChange}
             value={this.state.passTwo}

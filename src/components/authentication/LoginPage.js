@@ -11,7 +11,8 @@ class LoginPage extends Component {
   };
   handleLogin = (e) => {
     e.preventDefault();
-    if ( !this.state.userName || !this.state.password ){
+    const {userName, password} = this.state;
+    if ( !userName || !password ){
       this.setState(() => ({fail: true}))
     }else {
       this.setState(() => ({fail: false}));
