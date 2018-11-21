@@ -92,7 +92,7 @@ class Quizz extends Component {
             <button onClick={this.handleExit}>exit</button>
             <QuestionCount cards={this.props.group.cards}/>
             <div>
-              <p>question</p>
+              <p>{!!this.state.currentCard && this.state.currentCard.question}</p>
               {this.state.answer && <p>{this.state.answer}</p>}
 
             </div>

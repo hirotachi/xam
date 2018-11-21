@@ -12,9 +12,9 @@ export const addGroup = (id) => {
       title: "Title",
       cards: [ {
         id: shortid(),
-        question: "",
-        answer: undefined,
-        withAnswer: false
+        question: "add Question",
+        answer: "nothing",
+        withAnswer: true
       } ]
     }
   }

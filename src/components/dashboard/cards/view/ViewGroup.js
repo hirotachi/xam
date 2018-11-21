@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import groupSelector from "../../../selectors/groupSelector";
-import { startEdit } from "../../../actions/currentGroup";
+import groupSelector from "../../../../selectors/groupSelector";
+import { startEdit } from "../../../../actions/currentGroup";
+import ViewCard from "./ViewCard";
 
 class ViewGroup extends Component{
 
@@ -20,6 +21,14 @@ class ViewGroup extends Component{
         <h2>{this.props.group.title}</h2>
         <button onClick={this.handleBack}>Back</button>
         <button onClick={this.handleEditGroup}>Edit</button>
+        <div>
+          {this.props.group.cards.length === 0 ?
+          <p>No Cards in this group yet</p>:
+            <React.Fragment>
+              {this.props.group.cards.map(card => <ViewCard key={card.id} {...card} edit={this.handleEditGroup}/>)}
+            </React.Fragment>
+          }
+        </div>
       </div>
     );
   }

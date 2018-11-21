@@ -3,7 +3,7 @@ import requireAuth from "../RequireAuth";
 import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
 import Controls from "./Controls";
-import ViewGroup from "./cards/ViewGroup";
+import ViewGroup from "./cards/view/ViewGroup";
 
 
 class Dashboard extends Component{

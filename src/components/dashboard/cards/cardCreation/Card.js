@@ -41,6 +41,9 @@ class Card extends Component {
     this.props.dispatch(updateCard(this.props.id, { question, answer }));
     this.setState(() => ({ editAnswer: false }));
   };
+  handleFocusAnswer = () => {
+    this.setState(() => ({editAnswer: true}));
+  };
 
   handleAddAnswer = (e) => {
     const withAnswer = e.target.checked;
@@ -53,6 +56,7 @@ class Card extends Component {
       this.props.dispatch(updateCard(this.props.id, {question, answer: "", withAnswer}));
     }
   };
+
 
   //===========================================
   handleAddCard = () => {
@@ -80,12 +84,13 @@ class Card extends Component {
         <React.Fragment>
           {this.state.editAnswer ?
             <textarea
+              autoFocus={true}
               placeholder="Answer"
               value={this.state.answer}
               onChange={this.handleAnswerChange}
               onBlur={this.handleAnswerBlur}
             /> :
-            <p>{this.state.answer}</p>
+            <p onClick={this.handleFocusAnswer}>{this.state.answer}</p>
           }
 
         </React.Fragment>
