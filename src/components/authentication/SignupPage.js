@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { resetRef } from "../../actions/support";
+import {
+  approveEmail,
+  approveUserName,
+  requestEmailCheck,
+  requestSignup,
+  requestUserNameCheck
+} from "../../actions/auth";
 
 
 class SignupPage extends Component {
@@ -18,12 +25,6 @@ class SignupPage extends Component {
   //   logo.style.backgroundColor = "red";
   // };
 
-  componentDidUpdate(){
-    if(this.state.success){
-      console.log(...this.state);
-      this.props.signUp(this.state);
-    }
-  };
 
   componentDidMount() {
     this.props.dispatch(resetRef());
@@ -32,10 +33,12 @@ class SignupPage extends Component {
   handleUserNameChange = (e) => {
     const userName = e.target.value;
     this.setState(() => ({userName}));
+    this.props.dispatch(approveUserName())
   };
   handleEmailChange = (e) => {
     const email = e.target.value;
     this.setState(() => ({email}));
+    this.props.dispatch(approveEmail())
   };
   handlePasswordChange = (e) => {
     const password = e.target.value;
@@ -55,12 +58,11 @@ class SignupPage extends Component {
     const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.submitCheck({userName, email, password, passTwo}, emailReg);
     if(!!userName && (!!email && emailReg.test(email)) && !!password && !!passTwo && (password === passTwo) && terms){
-      this.handleSignUp({userName, email, password, passTwo});
-      this.setState(() => ({userName: "", email: "", password: "", passTwo: "", terms: false}))
+      this.props.dispatch(requestSignup({userName, email, password}));
+      if(!this.props.emailUsed && !this.props.userNameUsed){
+        this.setState(() => ({userName: "", email: "", password: "", passTwo: "", terms: false}))
+      }
     }
-  };
-  handleSignUp = (data) => {
-    this.setState(() => ({success: true}))
   };
   handleCheckSecondPass = () => {
     const passTwo = document.getElementsByClassName("passTwo")[0];
@@ -69,6 +71,14 @@ class SignupPage extends Component {
     }else {
       passTwo.style.borderColor = "";
     }
+  };
+  //=================================================
+  // check username and email if they exist
+  handleUserNameCheck = () => {
+    this.props.dispatch(requestUserNameCheck(this.state.userName))
+  };
+  handleEmailCheck = () => {
+    this.props.dispatch(requestEmailCheck(this.state.email))
   };
   //=================================================
   submitCheck = (object, reg) => { // pass every object as a string and value to single checker
@@ -90,18 +100,28 @@ class SignupPage extends Component {
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
-          <input
-            onChange={this.handleUserNameChange}
-            value={this.state.userName}
-            type="text"
-            placeholder="Username"
-          className="userName"/>
-          <input
-            onChange={this.handleEmailChange}
-            value={this.state.email}
-            type="text"
-            placeholder="Email"
-          className="email"/>
+          <div>
+            {this.props.userNameUsed && <p>This username is already used</p>}
+            <input
+              onChange={this.handleUserNameChange}
+              value={this.state.userName}
+              type="text"
+              placeholder="Username"
+              className="userName"
+              onBlur={this.handleUserNameCheck}
+            />
+          </div>
+          <div>
+            {this.props.emailUsed && <p>this email is already used</p>}
+            <input
+              onChange={this.handleEmailChange}
+              value={this.state.email}
+              type="text"
+              placeholder="Email"
+              className="email"
+              onBlur={this.handleEmailCheck}
+            />
+          </div>
           <input
             onChange={this.handlePasswordChange}
             value={this.state.password}
@@ -126,4 +146,11 @@ class SignupPage extends Component {
     );
   }
 }
-export default connect()(SignupPage);
+
+const mapStateToProps = (state) => {
+  return {
+   userNameUsed: state.auth.userNameUsed,
+   emailUsed: state.auth.emailUsed
+  }
+};
+export default connect(mapStateToProps)(SignupPage);

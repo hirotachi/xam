@@ -153,7 +153,7 @@ class SupportPage extends Component {
 
 const mapStatToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth.auth
   }
 };
 export default connect(mapStatToProps)(SupportPage);

@@ -53,7 +53,7 @@ class Homepage extends Component{
         }
 
         {this.state.login && <LoginPage login={this.requestLogin}/>}
-        {this.state.signUp && <SignupPage signUp={this.requestLogin}/>}
+        {this.state.signUp && <SignupPage/>}
       </div>
     );
   }
@@ -61,7 +61,7 @@ class Homepage extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
+    auth: state.auth.auth,
     isRef: state.support.isRef
   }
 };

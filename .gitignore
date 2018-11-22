@@ -7,9 +7,13 @@ public/styles.css
 public/styles.css.map
 .idea/
 config.js
+existEncrypt.js
+/server/data/*
 
 # dependencies
 /node_modules
+
+
 
 # testing
 /coverage
