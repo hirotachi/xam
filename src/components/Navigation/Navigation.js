@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { logout } from "../../actions/auth";
+import { requestLogout } from "../../actions/auth";
 import Search from "./Search";
 import Responsive from "../../Responsive/Responsive";
 import { setRef } from "../../actions/support";
@@ -9,8 +9,8 @@ import { setRef } from "../../actions/support";
 class Navigation extends Component {
 
 
-  handleAuth = () => {
-    this.props.dispatch(logout());
+  handleLogout = () => {
+    this.props.dispatch(requestLogout());
   };
 
   handleSignUp = () => {
@@ -34,7 +34,7 @@ class Navigation extends Component {
         <Responsive query={{ minWidth: 480 }}>
           {
             this.props.auth ?
-              <button onClick={this.handleAuth}>Logout</button> :
+              <button onClick={this.handleLogout}>Logout</button> :
               <React.Fragment>
                 {
                   this.props.redirect.location.pathname !== "/" &&

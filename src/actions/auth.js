@@ -15,6 +15,13 @@ export const logout = () => {
   }
 };
 
+export const requestLogout = () => {
+  return (dispatch) => {
+    localStorage.removeItem("xamUser");
+    dispatch(logout())
+  }
+};
+
 export const requestSignup = (info) => {
   return (dispatch) => {
     axios.post("/signup", info)
@@ -26,6 +33,7 @@ export const requestSignup = (info) => {
             dispatch(requestEmailCheck(info.email));
           }
         }else {
+          localStorage.xamUser = JSON.stringify({auth: true, token: data.token});
           dispatch(login(data.token))
         }
 
@@ -96,9 +104,11 @@ export const rejectEmail = () => {
 export const requestLogin = (info) => {
   return (dispatch) => {
     axios.post("/login", info)
-      .then(({data}) => dispatch(login(data.token)))
+      .then(({data}) => {
+        localStorage.xamUser = JSON.stringify({auth: true, token: data.token});
+        dispatch(login(data.token))
+      })
     .catch((err) => {
-      console.log(err);
       dispatch(rejectCred())
     })
   }
@@ -115,4 +125,22 @@ export const approveCred = () => {
   }
 };
 
+//===========================================================
+//Remember user
+export const requestAuth = () => {
+  return (dispatch) => {
+    const {token} = JSON.parse(localStorage.xamUser);
+    axios("/auth", {
+      headers: {
+        authorization: token
+      }
+    })
+      .then(({data}) => {
+        if(data.success){
+          dispatch(login(token))
+        }
+      })
+      .catch(err => console.log(err))
+  }
+};
 

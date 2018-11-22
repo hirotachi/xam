@@ -4,6 +4,7 @@ import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
 import Controls from "./Controls";
 import ViewGroup from "./cards/view/ViewGroup";
+import { requestLogout } from "../../actions/auth";
 
 
 class Dashboard extends Component{
@@ -14,6 +15,16 @@ class Dashboard extends Component{
     startQuizz: false
   };
 
+  componentWillMount(){
+    if(!localStorage.xamUser){
+      this.props.dispatch(requestLogout());
+    }else if (!localStorage.xamUser
+      && !JSON.parse(localStorage.xamUser).auth
+      && !JSON.parse(localStorage.xamUser).token
+    ) {
+      this.props.dispatch(requestLogout());
+    }
+  }
   handleEditOrCreate = () => {
     this.setState(() => ({home: false, creation: true, view: false, startQuizz: false}));
   };

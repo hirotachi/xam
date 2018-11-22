@@ -1,47 +1,56 @@
-import React, {Component} from "react";
-import {connect} from"react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import LoginPage from "./authentication/LoginPage";
 import { login, requestAuth } from "../actions/auth";
 import SignupPage from "./authentication/SignupPage";
 
 
-class Homepage extends Component{
+class Homepage extends Component {
   state = {
     login: false,
     signUp: false,
     guestLogin: false,
     buttons: true
   };
-  componentDidMount(){
-    if(this.props.auth){
+
+  componentWillMount() {
+    if(localStorage.xamUser){
+      const { token } = JSON.parse(localStorage.xamUser);
+      this.props.dispatch(login(token))
+    }
+  }
+
+  componentDidMount() {
+    if ( this.props.auth ) {
       this.props.history.push("/dashboard");
     }
-    if(this.props.isRef){
+    if ( this.props.isRef ) {
       this.handleSignUp();
     }
   };
-  componentDidUpdate(){
-    if(this.props.auth){
+
+  componentDidUpdate() {
+    if ( localStorage.xamUser ) {
+      const xamUser = JSON.parse(localStorage.xamUser);
+      this.props.dispatch(login(xamUser.token))
+    }
+    if ( this.props.auth ) {
       this.props.history.push("/dashboard");
     }
   };
 
   //===============================================================
   handleLogin = () => {
-    this.setState(() => ({login: true, signUp: false, guestLogin: false, buttons: false}));
+    this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }));
   };
   handleSignUp = () => {
-    this.setState(() => ({login: false, signUp: true, guestLogin: false, buttons: false}));
+    this.setState(() => ({ login: false, signUp: true, guestLogin: false, buttons: false }));
   };
   //===============================================================
 
   //===============================================================
-  requestLogin = (info) => {
-    this.props.dispatch(requestAuth(info));
-  };
-  //===============================================================
 
-  render(){
+  render() {
     return (
       <div>
         <h1>XAM</h1>

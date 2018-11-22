@@ -12,7 +12,6 @@ mongoose.connect("mongodb://localhost:27017/xam", {useNewUrlParser: true, useCre
 const publicPath = path.join(__dirname, "..", "public");
 const port = process.env.PORT || 3000;
 
-app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(express.static(publicPath));
 app.use(bodyParser.urlencoded({

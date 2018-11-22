@@ -53,7 +53,7 @@ class LoginPage extends Component {
             type="password"
             placeholder="password"/>
           <button>Login</button>
-          <label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>
+          {/*<label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>*/}
         </form>
       </div>
     );
