@@ -45,3 +45,7 @@ exports.signUp = (req, res, next) => {
     }
   })
 };
+//=======================================================================
+exports.login = (req, res, next) => {
+  res.send({token: tokenForUser(req.user)})
+};

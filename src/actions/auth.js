@@ -92,4 +92,27 @@ export const rejectEmail = () => {
 };
 //==========================================================
 
+//requestLogin
+export const requestLogin = (info) => {
+  return (dispatch) => {
+    axios.post("/login", info)
+      .then(({data}) => dispatch(login(data.token)))
+    .catch((err) => {
+      console.log(err);
+      dispatch(rejectCred())
+    })
+  }
+};
+
+export const rejectCred = () => {
+  return {
+    type: "REJECT_CREDENTIALS"
+  }
+};
+export const approveCred = () => {
+  return {
+    type: "APPROVE_CREDENTIALS"
+  }
+};
+
 

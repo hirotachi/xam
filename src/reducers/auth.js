@@ -2,7 +2,8 @@ const authDefaultState = {
   auth: false,
   userNameUsed: false,
   emailUsed: false,
-  token: false
+  token: false,
+  wrongCred: false
 };
 
 export default (state = authDefaultState, action) => {
@@ -19,6 +20,10 @@ export default (state = authDefaultState, action) => {
       return {...state, emailUsed: false};
     case "REJECT_EMAIL":
       return {...state, emailUsed: true};
+    case "REJECT_CREDENTIALS":
+      return {...state, wrongCred: true};
+    case "APPROVE_CREDENTIALS":
+      return {...state, wrongCred: false};
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Login } from "../../actions/auth";
+import { approveCred, Login, requestLogin } from "../../actions/auth";
+import { connect } from "react-redux";
 
 
 class LoginPage extends Component {
@@ -9,6 +10,7 @@ class LoginPage extends Component {
     remember: false,
     fail: false
   };
+
   handleLogin = (e) => {
     e.preventDefault();
     const {userName, password} = this.state;
@@ -16,18 +18,20 @@ class LoginPage extends Component {
       this.setState(() => ({fail: true}))
     }else {
       this.setState(() => ({fail: false}));
-      this.props.login();
+      this.props.dispatch(requestLogin({userName, password}));
     }
   };
 
   //=========================================
   handleUserNameChange = (e) => {
     const userName = e.target.value;
-    this.setState(() => ({ userName }))
+    this.setState(() => ({ userName }));
+    this.props.dispatch(approveCred());
   };
   handlePasswordChange = (e) => {
     const password = e.target.value;
-    this.setState(() => ({ password }))
+    this.setState(() => ({ password }));
+    this.props.dispatch(approveCred());
   };
 
   //=========================================
@@ -35,7 +39,8 @@ class LoginPage extends Component {
     return (
       <div>
         LoginPage
-        {this.state.fail && <p>enter username or password</p>}
+        {this.state.fail && <p>Enter username and password</p>}
+        {this.props.wrongCred && <p>Wrong password or Username</p>}
         <form onSubmit={this.handleLogin}>
           <input
             onChange={this.handleUserNameChange}
@@ -55,4 +60,10 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  return {
+    wrongCred: state.auth.wrongCred
+  }
+};
+
+export default connect(mapStateToProps)(LoginPage);
