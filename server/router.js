@@ -1,4 +1,5 @@
 const Authentication = require("./controllers/authentication");
+const Dashboard = require("./controllers/dashboard");
 const checker = require("./controllers/checker");
 const passportService= require("./services/passport");
 const passport = require("passport");
@@ -12,5 +13,6 @@ module.exports = (app) => {
   });
   app.post("/signup", Authentication.signUp);
   app.post("/login", requireLogin, Authentication.login);
+  app.post("/dashboard/update", requireAuth, Dashboard.update);
   app.post("/check", checker.check)
 };

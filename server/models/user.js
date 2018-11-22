@@ -6,6 +6,15 @@ const bcrypt = require("bcrypt");
 const userSchema = new Schema ({
   userName: {type: String, unique: true, lowercase: true},
   email: {type: String, unique: true, lowercase: true},
+  groups: [new Schema ({
+    createdAt: Number,
+    title: String,
+    cards: [new Schema({
+      question: String,
+      answer: String,
+      withAnswer: Boolean
+    })]
+  })],
   password: String
 });
 

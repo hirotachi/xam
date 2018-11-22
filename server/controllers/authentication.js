@@ -34,7 +34,7 @@ exports.signUp = (req, res, next) => {
         if ( existingUser ) {
           return res.send({status: statusEncrypt("409")})
         } else {
-          User.create({ userName, email, password }, (err, user) => {
+          User.create({ userName, email, password,  groups: []}, (err, user) => {
             if ( err ) {
               return next(err)
             }

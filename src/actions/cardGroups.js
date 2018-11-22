@@ -1,24 +1,26 @@
 import shortid from "shortid";
 import moment from "moment";
+import axios from "axios";
 
 
 //Card groups actions========================================================
 export const addGroup = (id) => {
   return {
     type: "ADD_GROUP",
-    cardGroup: {
+    group: {
       id,
       createdAt: moment().valueOf(),
       title: "Title",
-      cards: [ {
+      cards: [{
         id: shortid(),
         question: "add Question",
         answer: "nothing",
         withAnswer: true
-      } ]
+      }]
     }
   }
 };
+//=============================================================================
 
 
 export const cancelGroupCreation = (id) => {
@@ -28,6 +30,7 @@ export const cancelGroupCreation = (id) => {
   }
 };
 
+//=========================================================================
 export const saveGroup = (id, group) => {
   return {
     type: "SAVE_GROUP",
@@ -35,6 +38,12 @@ export const saveGroup = (id, group) => {
     group
   }
 };
+
+export const startSaveGroup = (group) => {
+
+};
+//=========================================================================
+
 
 export const removeGroup = (id) => {
   return {

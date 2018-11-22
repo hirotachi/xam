@@ -3,7 +3,7 @@ const cardsDefaultState = [];
 export default (state = cardsDefaultState, action) => {
   switch(action.type){
     case "ADD_GROUP":
-      return [...state, action.cardGroup];
+      return [...state, action.group];
     case "CANCEL_GROUP_CREATION":
       return state.filter(group => group.id !== action.id);
     case "SAVE_GROUP":
