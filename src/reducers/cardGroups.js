@@ -15,7 +15,7 @@ export default (state = cardsDefaultState, action) => {
         }
       });
     case "REMOVE_GROUP":
-      return state.filter(group => group.id !== action.id);
+      return state.filter(group => group._id !== action.id);
     case "UPDATE_GROUP":
       return state.map(group => {
         if(group.id === action.id){
@@ -24,6 +24,8 @@ export default (state = cardsDefaultState, action) => {
           return group;
         }
       });
+    case "SET_GROUPS":
+      return action.groups;
     default :
       return state;
   }

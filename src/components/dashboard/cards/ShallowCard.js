@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setCurrentGroup, startEdit } from "../../../actions/currentGroup";
-import { removeGroup } from "../../../actions/cardGroups";
+import { startRemoveGroup } from "../../../actions/cardGroups";
 import QuizzSettings from "../QuizzSettings";
+import { startEditControls } from "../../../actions/controls";
 
 class ShallowCard extends Component {
   state = {
-    id: this.props.id,
+    id: this.props._id,
     title: this.props.title,
     cards: this.props.cards,
     quizzSetting: false
   };
   handleStartEdit = () => {
     this.props.dispatch(startEdit(this.state.id));
+    this.props.dispatch(startEditControls());
     this.props.edit();
   };
 
@@ -27,7 +29,7 @@ class ShallowCard extends Component {
 
 
   handleRemoveGroup = () => {
-    this.props.dispatch(removeGroup(this.state.id));
+    this.props.dispatch(startRemoveGroup(this.state.id, this.props.token, this.props.groups));
   };
 
   handleViewGroup = () => {
@@ -58,4 +60,11 @@ class ShallowCard extends Component {
   }
 }
 
-export default connect()(ShallowCard);
+const mapStateToProps = (state) => {
+  return {
+    groups: state.groups,
+    token: state.auth.token
+  }
+};
+
+export default connect(mapStateToProps)(ShallowCard);

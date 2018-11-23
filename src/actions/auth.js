@@ -24,7 +24,7 @@ export const requestLogout = () => {
 
 export const requestSignup = (info) => {
   return (dispatch) => {
-    axios.post("/signup", info)
+    axios.post("http://localhost:3000/signup", info)
       .then(({data}) => {
         if(!!data.status){
           const status = jwt.decode(data.status, existEncrypt.secret);
@@ -50,7 +50,7 @@ export const requestUserNameCheck = (userName) => {
     if(!userName){
       dispatch(approveUserName())
     }
-    axios.post("/check", {userName, currentCheck: "userName"})
+    axios.post("http://localhost:3000/check", {userName, currentCheck: "userName"})
       .then(({data}) => {
         if(data.userNameUsed){
           dispatch(rejectUsername())
@@ -77,7 +77,7 @@ export const requestEmailCheck = (email) => {
     if(!email){
       dispatch(approveEmail())
     }
-    axios.post("/check", {email, currentCheck: "email"})
+    axios.post("http://localhost:3000/check", {email, currentCheck: "email"})
       .then(({data}) => {
         if(data.emailUsed){
           dispatch(rejectEmail())
@@ -103,7 +103,7 @@ export const rejectEmail = () => {
 //requestLogin
 export const requestLogin = (info) => {
   return (dispatch) => {
-    axios.post("/login", info)
+    axios.post("http://localhost:3000/login", info)
       .then(({data}) => {
         localStorage.xamUser = JSON.stringify({auth: true, token: data.token});
         dispatch(login(data.token))
@@ -130,7 +130,7 @@ export const approveCred = () => {
 export const requestAuth = () => {
   return (dispatch) => {
     const {token} = JSON.parse(localStorage.xamUser);
-    axios("/auth", {
+    axios("http://localhost:3000/auth", {
       headers: {
         authorization: token
       }

@@ -29,12 +29,12 @@ class CreateFlashGroup extends Component {
     this.props.backHome();
   };
   handleSave = () => {
-    const { title, id } = this.props.group;
+    const { title, _id } = this.props.group;
     const cards = this.props.currentCards;
     if ( this.props.edit ) {
-      this.props.dispatch(updateGroup(id, { title, cards }))
+      this.props.dispatch(updateGroup(_id, { title, cards }))
     } else {
-      this.props.dispatch(saveGroup(id, { title, cards }));
+      this.props.dispatch(saveGroup(_id, { title, cards }));
     }
     this.props.dispatch(clearCurrentGroup());
     this.props.backHome();
@@ -49,7 +49,7 @@ class CreateFlashGroup extends Component {
     this.setState(() => ({ edit: true, title: this.props.group.title }));
   };
   endTitleEdit = () => {
-    const { id } = this.props.group;
+    const { _id } = this.props.group;
     const { title } = this.state;
     const cards = this.props.currentCards;
     this.setState(() => ({ edit: false }));
@@ -79,7 +79,7 @@ class CreateFlashGroup extends Component {
               <button onClick={this.startTitleEdit}>Edit</button>
             </div>
         }
-        <Cards id={this.props.group.id}/>
+        <Cards id={this.props.group._id}/>
       </div>
     );
   }

@@ -1,31 +1,80 @@
 import shortid from "shortid";
 import moment from "moment";
 import axios from "axios";
+import { setCurrentGroup } from "./currentGroup";
+import { setCards } from "./cards";
+import { startCreationControls } from "./controls";
 
-
-//Card groups actions========================================================
-export const addGroup = (id) => {
-  return {
-    type: "ADD_GROUP",
-    group: {
-      id,
-      createdAt: moment().valueOf(),
-      title: "Title",
-      cards: [{
-        id: shortid(),
-        question: "add Question",
-        answer: "nothing",
-        withAnswer: true
-      }]
-    }
+//add initial group for new users ===========================================
+export const setInitialGroups = (token) => {
+  return (dispatch) => {
+    axios("http://localhost:3000/dashboard/create", {
+      method: "POST",
+      data: {
+        group: {
+          createdAt: moment().valueOf(),
+          title: "love it now",
+          cards: [ {
+            question: "add Question",
+            answer: "nothing",
+            withAnswer: true
+          } ]
+        }
+      },
+      headers: {
+        authorization: token
+      }
+    })
+      .then(({data}) => {
+        const {_id, title, createdAt, cards} = data;
+        dispatch(addGroup({_id, title, createdAt, cards}));
+      })
+      .catch(err => console.log(err))
   }
 };
-//=============================================================================
+//add Group========================================================
+export const addGroup = (group) => {
+  return {
+    type: "ADD_GROUP",
+    group
+  }
+};
+
+export const startAddGroup = (token) => {
+  return (dispatch) => {
+    axios("http://localhost:3000/dashboard/create", {
+      method: "POST",
+      data: {
+        group: {
+          createdAt: moment().valueOf(),
+          title: "Title",
+          cards: [ {
+            question: "add Question",
+            answer: "nothing",
+            withAnswer: true
+          } ]
+        }
+      },
+      headers: {
+        authorization: token
+      }
+    })
+      .then(({data}) => {
+        const {_id, title, createdAt, cards} = data;
+        dispatch(addGroup({_id, title, createdAt, cards}));
+        dispatch(setCurrentGroup(_id));
+        dispatch(setCards(cards));
+        dispatch(startCreationControls());
+      })
+      .catch(err => console.log(err))
+  }
+};
+// cancelGroup creation=============================================================================
 
 
 export const cancelGroupCreation = (id) => {
   return {
-    type:"CANCEL_GROUP_CREATION",
+    type: "CANCEL_GROUP_CREATION",
     id
   }
 };
@@ -51,6 +100,20 @@ export const removeGroup = (id) => {
     id
   }
 };
+export const startRemoveGroup = (groupId, token, groups) => {
+  return (dispatch) => {
+    axios("http://localhost:3000/dashboard/remove", {
+      method: "POST",
+      data: {groupId, groups},
+      headers :{
+        authorization: token
+      }
+    })
+      .then(() => dispatch(removeGroup(groupId)))
+      .catch(err => console.log(err));
+  }
+};
+//=========================================================================
 
 export const updateGroup = (id, group) => {
   return {
@@ -60,3 +123,28 @@ export const updateGroup = (id, group) => {
   }
 };
 //========================================================
+
+export const viewGroups = (token) => {
+  return (dispatch) => {
+    axios("http://localhost:3000/dashboard/view", {
+      method: "GET",
+      headers: {
+        authorization: token
+      }
+    })
+      .then(({data}) => {
+        const groups = [];
+        Object.entries(data).forEach(([key, value]) => !!value && groups.push(value));
+        dispatch(setGroups(groups))
+      })
+
+      .catch(err => console.log(err))
+  }
+};
+
+const setGroups = (groups) => {
+  return {
+    type: "SET_GROUPS",
+    groups
+  }
+};

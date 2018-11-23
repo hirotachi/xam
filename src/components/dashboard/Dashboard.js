@@ -5,6 +5,8 @@ import CreateFlashGroup from "./cards/CreateFlashGroup";
 import Controls from "./Controls";
 import ViewGroup from "./cards/view/ViewGroup";
 import { requestLogout } from "../../actions/auth";
+import { viewGroups } from "../../actions/cardGroups";
+import { endCreationControls, endEditControls } from "../../actions/controls";
 
 
 class Dashboard extends Component{
@@ -25,10 +27,30 @@ class Dashboard extends Component{
       this.props.dispatch(requestLogout());
     }
   }
+
+  componentDidMount(){
+    if(this.props.token){
+      this.props.dispatch(viewGroups(this.props.token));
+    }
+  }
+  componentDidUpdate() {
+    const {startView, startCreate, startEdit} = this.props.controls;
+    if((!this.state.creation ) && (startCreate || startEdit)){
+      this.handleEditOrCreate();
+    }else if(!this.state.view && startView){
+      this.handleViewGroup();
+    }
+  }
+
   handleEditOrCreate = () => {
-    this.setState(() => ({home: false, creation: true, view: false, startQuizz: false}));
+    const { startCreate, startEdit} = this.props.controls;
+    if(startCreate || startEdit){
+      this.setState(() => ({home: false, creation: true, view: false, startQuizz: false}));
+    }
   };
   handleBackHome = () => {
+    this.props.dispatch(endCreationControls());
+    this.props.dispatch(endEditControls());
     this.setState(() => ({home: true, creation: false, view: false, startQuizz: false}));
   };
 

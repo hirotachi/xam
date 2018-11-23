@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addGroup } from "../../actions/cardGroups";
+import { addGroup, setInitialGroups, startAddGroup } from "../../actions/cardGroups";
 import shortid from "shortid";
 import { setCurrentGroup } from "../../actions/currentGroup";
 import { resetRef } from "../../actions/support";
@@ -10,10 +10,10 @@ import { resetRef } from "../../actions/support";
 class Controls extends Component {
 
   handleAddGroup = () => {
-    const id = shortid();
-    this.props.dispatch(addGroup(id));
-    this.props.dispatch(setCurrentGroup(id));
+    // this.props.dispatch(addGroup(id));
+    // this.props.dispatch(setInitialGroups(this.props.token))
     this.props.startCreation();
+    this.props.dispatch(startAddGroup(this.props.token))
   };
 
   componentWillMount(){
@@ -22,7 +22,6 @@ class Controls extends Component {
       this.props.dispatch(resetRef());
     }
   };
-
   handleRequestSupport = () => {
     this.props.redirect("/support");
   };
@@ -43,7 +42,8 @@ class Controls extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    refrence: state.support.isRef
+    refrence: state.support.isRef,
+    token: state.auth.token
   }
 };
 export default connect(mapStateToProps)(Controls);

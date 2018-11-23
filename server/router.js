@@ -13,6 +13,8 @@ module.exports = (app) => {
   });
   app.post("/signup", Authentication.signUp);
   app.post("/login", requireLogin, Authentication.login);
-  app.post("/dashboard/update", requireAuth, Dashboard.update);
+  app.post("/dashboard/create", requireAuth, Dashboard.create);
+  app.get("/dashboard/view", requireAuth, Dashboard.view);
+  app.post("/dashboard/remove", requireAuth, Dashboard.remove);
   app.post("/check", checker.check)
 };

@@ -13,7 +13,7 @@ class CardsGroupList extends Component {
           this.props.groups.length === 0 ? <p>no cards</p> :
           this.props.groups.map(group =>
             <ShallowCard
-              key={group.id}
+              key={group._id}
               {...group}
               edit={this.props.startEdit}
               view={this.props.viewGroup}

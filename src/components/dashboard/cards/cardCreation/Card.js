@@ -32,13 +32,13 @@ class Card extends Component {
   };
   handleQuestionBlur = () => {
     const { question, answer } = this.state;
-    this.props.dispatch(updateCard(this.props.id, { question, answer }));
+    this.props.dispatch(updateCard(this.props._id, { question, answer }));
     this.setState(() => ({ edit: false }));
   };
 
   handleAnswerBlur = () => {
     const { question, answer } = this.state;
-    this.props.dispatch(updateCard(this.props.id, { question, answer }));
+    this.props.dispatch(updateCard(this.props._id, { question, answer }));
     this.setState(() => ({ editAnswer: false }));
   };
   handleFocusAnswer = () => {
@@ -49,11 +49,11 @@ class Card extends Component {
     const withAnswer = e.target.checked;
     const { question, answer } = this.state;
     if(withAnswer){
-      this.props.dispatch(updateCard(this.props.id, {question, answer, withAnswer}));
+      this.props.dispatch(updateCard(this.props._id, {question, answer, withAnswer}));
       this.setState(() => ({ withAnswer: true, editAnswer: true }));
     }else {
       this.setState(() => ({editAnswer: false, withAnswer: false}));
-      this.props.dispatch(updateCard(this.props.id, {question, answer: "", withAnswer}));
+      this.props.dispatch(updateCard(this.props._id, {question, answer: "", withAnswer}));
     }
   };
 
@@ -96,8 +96,8 @@ class Card extends Component {
         </React.Fragment>
 
         }
-        <label htmlFor={this.props.id}>
-          <input checked={this.state.withAnswer} id={this.props.id} type="checkbox" onChange={this.handleAddAnswer}/>
+        <label htmlFor={this.props._id}>
+          <input checked={this.state.withAnswer} id={this.props._id} type="checkbox" onChange={this.handleAddAnswer}/>
           with answer
         </label>
         <button onClick={this.handleRemoveCard}>remove</button>

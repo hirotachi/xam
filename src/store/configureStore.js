@@ -8,6 +8,7 @@ import quizzSettingsReducer from "../reducers/quizzSettings";
 import quizzReducer from "../reducers/quizz";
 import filtersReducer from "../reducers/filters";
 import supportReducer from "../reducers/support";
+import controlsReducer from "../reducers/controls";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -20,7 +21,8 @@ export default () => {
     quizzSettings: quizzSettingsReducer,
     quizz: quizzReducer,
     filters: filtersReducer,
-    support: supportReducer
+    support: supportReducer,
+    controls: controlsReducer
   }),
     composeEnhancers(applyMiddleware(thunk))
   );

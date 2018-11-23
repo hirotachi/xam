@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import groupSelector from "../../../../selectors/groupSelector";
-import { startEdit } from "../../../../actions/currentGroup";
+import { clearCurrentGroup, startEdit } from "../../../../actions/currentGroup";
 import ViewCard from "./ViewCard";
+import { startEditControls } from "../../../../actions/controls";
 
 class ViewGroup extends Component{
 
   handleBack = () => {
+    this.props.dispatch(clearCurrentGroup());
     this.props.back();
   };
 
   handleEditGroup = () => {
-    this.props.dispatch(startEdit(this.props.group.id));
+    this.props.dispatch(startEdit(this.props.group._id));
+    this.props.dispatch(startEditControls());
     this.props.edit();
   };
   render() {
@@ -25,7 +28,7 @@ class ViewGroup extends Component{
           {this.props.group.cards.length === 0 ?
           <p>No Cards in this group yet</p>:
             <React.Fragment>
-              {this.props.group.cards.map(card => <ViewCard key={card.id} {...card} edit={this.handleEditGroup}/>)}
+              {this.props.group.cards.map(card => <ViewCard key={card._id} {...card} edit={this.handleEditGroup}/>)}
             </React.Fragment>
           }
         </div>

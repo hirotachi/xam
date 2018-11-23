@@ -6,6 +6,7 @@ const http = require("http");
 const morgan = require("morgan");
 const path = require("path");
 const router = require("./router");
+const cors = require("cors");
 
 mongoose.connect("mongodb://localhost:27017/xam", {useNewUrlParser: true, useCreateIndex: true});
 
@@ -13,6 +14,7 @@ const publicPath = path.join(__dirname, "..", "public");
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.urlencoded({
   extended: false

@@ -118,7 +118,7 @@ class Quizz extends Component {
 const mapStateToProps = (state) => {
   return {
     groups: state.groups,
-    group: groupSelector(state.groups, state.currentGroup.currentId || state.groups[0].id),
+    group: groupSelector(state.groups, state.currentGroup.currentId || state.groups[0]._id),
     currentGroup: state.currentGroup,
     currentCards: state.currentCards,
     auth: state.auth,

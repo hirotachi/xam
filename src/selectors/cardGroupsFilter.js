@@ -9,5 +9,4 @@ export default (groups, {sortBy, search}) => {
       return a.title[0] < b.title[0] ? -1 : 1;
     }
   });
-
 }
