@@ -16,5 +16,6 @@ module.exports = (app) => {
   app.post("/dashboard/create", requireAuth, Dashboard.create);
   app.get("/dashboard/view", requireAuth, Dashboard.view);
   app.post("/dashboard/remove", requireAuth, Dashboard.remove);
+  app.post("/dashboard/save", requireAuth, Dashboard.save);
   app.post("/check", checker.check)
 };

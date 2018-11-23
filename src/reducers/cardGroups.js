@@ -18,7 +18,7 @@ export default (state = cardsDefaultState, action) => {
       return state.filter(group => group._id !== action.id);
     case "UPDATE_GROUP":
       return state.map(group => {
-        if(group.id === action.id){
+        if(group._id === action.id){
           return {...group, ...action.group}
         }else {
           return group;

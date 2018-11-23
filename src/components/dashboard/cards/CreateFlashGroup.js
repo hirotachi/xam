@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import groupSelector from "../../../selectors/groupSelector";
 import { cancelEdit, clearCurrentGroup } from "../../../actions/currentGroup";
-import { cancelGroupCreation, saveGroup, updateGroup } from "../../../actions/cardGroups";
+import { cancelGroupCreation, saveGroup, startSaveGroup, updateGroup } from "../../../actions/cardGroups";
 import Cards from "./cardCreation/Cards";
 import { clearCurrentCards } from "../../../actions/cards";
 
@@ -34,7 +34,7 @@ class CreateFlashGroup extends Component {
     if ( this.props.edit ) {
       this.props.dispatch(updateGroup(_id, { title, cards }))
     } else {
-      this.props.dispatch(saveGroup(_id, { title, cards }));
+      this.props.dispatch(startSaveGroup(_id, this.props.token, { title, cards }));
     }
     this.props.dispatch(clearCurrentGroup());
     this.props.backHome();
@@ -53,7 +53,7 @@ class CreateFlashGroup extends Component {
     const { title } = this.state;
     const cards = this.props.currentCards;
     this.setState(() => ({ edit: false }));
-    this.props.dispatch(updateGroup(id, { title, cards }))
+    this.props.dispatch(updateGroup(_id, { title, cards }))
   };
 
   //===============================================
@@ -90,7 +90,8 @@ const mapStateToProps = (state) => {
     group: groupSelector(state.groups, state.currentGroup.currentId),
     currentCards: state.currentCards,
     edit: state.currentGroup.edit,
-    currentGroup: state.currentGroup
+    currentGroup: state.currentGroup,
+    token: state.auth.token
   }
 };
 export default connect(mapStateToProps)(CreateFlashGroup);

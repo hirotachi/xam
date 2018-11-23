@@ -14,20 +14,20 @@ export const setInitialGroups = (token) => {
         group: {
           createdAt: moment().valueOf(),
           title: "love it now",
-          cards: [ {
+          cards: [{
             question: "add Question",
             answer: "nothing",
             withAnswer: true
-          } ]
+          }]
         }
       },
       headers: {
         authorization: token
       }
     })
-      .then(({data}) => {
-        const {_id, title, createdAt, cards} = data;
-        dispatch(addGroup({_id, title, createdAt, cards}));
+      .then(({ data }) => {
+        const { _id, title, createdAt, cards } = data;
+        dispatch(addGroup({ _id, title, createdAt, cards }));
       })
       .catch(err => console.log(err))
   }
@@ -48,20 +48,20 @@ export const startAddGroup = (token) => {
         group: {
           createdAt: moment().valueOf(),
           title: "Title",
-          cards: [ {
+          cards: [{
             question: "add Question",
             answer: "nothing",
             withAnswer: true
-          } ]
+          }]
         }
       },
       headers: {
         authorization: token
       }
     })
-      .then(({data}) => {
-        const {_id, title, createdAt, cards} = data;
-        dispatch(addGroup({_id, title, createdAt, cards}));
+      .then(({ data }) => {
+        const { _id, title, createdAt, cards } = data;
+        dispatch(addGroup({ _id, title, createdAt, cards }));
         dispatch(setCurrentGroup(_id));
         dispatch(setCards(cards));
         dispatch(startCreationControls());
@@ -88,8 +88,18 @@ export const saveGroup = (id, group) => {
   }
 };
 
-export const startSaveGroup = (group) => {
-
+export const startSaveGroup = (groupId, token, group) => {
+  return (dispatch) => {
+    axios("http://localhost:3000/dashboard/save", {
+      method: "POST",
+      data: { groupId, group },
+      headers: {
+        authorization: token
+      }
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
 };
 //=========================================================================
 
@@ -104,8 +114,8 @@ export const startRemoveGroup = (groupId, token, groups) => {
   return (dispatch) => {
     axios("http://localhost:3000/dashboard/remove", {
       method: "POST",
-      data: {groupId, groups},
-      headers :{
+      data: { groupId, groups },
+      headers: {
         authorization: token
       }
     })
@@ -132,7 +142,7 @@ export const viewGroups = (token) => {
         authorization: token
       }
     })
-      .then(({data}) => {
+      .then(({ data }) => {
         const groups = [];
         Object.entries(data).forEach(([key, value]) => !!value && groups.push(value));
         dispatch(setGroups(groups))
