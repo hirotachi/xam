@@ -19,7 +19,7 @@ class CreateFlashGroup extends Component {
 
 
   handleCancel = () => {
-    if ( this.props.edit ) {
+    if (this.props.edit) {
       this.props.dispatch(cancelEdit());
     } else {
       this.props.dispatch(cancelGroupCreation(this.props.group.id));
@@ -31,11 +31,20 @@ class CreateFlashGroup extends Component {
   handleSave = () => {
     const { title, _id } = this.props.group;
     const cards = this.props.currentCards;
-    if ( this.props.edit ) {
-      this.props.dispatch(updateGroup(_id, { title, cards }))
+    if (this.props.edit) {
+      // this.props.dispatch(updateGroup(_id, { title, cards }))
+      this.props.dispatch(startSaveGroup( // save group to database
+        _id,
+        this.props.token, { title, cards },
+        this.props.groups)
+      );
     } else {
-      this.props.dispatch(startSaveGroup(_id, this.props.token, { title, cards }));
+      this.props.dispatch(startSaveGroup(// save group to database
+        _id,
+        this.props.token, { title, cards })
+      );
     }
+
     this.props.dispatch(clearCurrentGroup());
     this.props.backHome();
   };
@@ -79,7 +88,7 @@ class CreateFlashGroup extends Component {
               <button onClick={this.startTitleEdit}>Edit</button>
             </div>
         }
-        <Cards id={this.props.group._id}/>
+        <Cards id={this.props.group._id} />
       </div>
     );
   }
@@ -87,6 +96,7 @@ class CreateFlashGroup extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    groups: state.groups,
     group: groupSelector(state.groups, state.currentGroup.currentId),
     currentCards: state.currentCards,
     edit: state.currentGroup.edit,

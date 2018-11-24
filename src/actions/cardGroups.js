@@ -80,11 +80,10 @@ export const cancelGroupCreation = (id) => {
 };
 
 //=========================================================================
-export const saveGroup = (id, group) => {
+export const saveGroup = (groups) => {
   return {
-    type: "SAVE_GROUP",
-    id,
-    group
+    type: "SAVE_GROUPS",
+    groups
   }
 };
 
@@ -97,7 +96,7 @@ export const startSaveGroup = (groupId, token, group) => {
         authorization: token
       }
     })
-      .then(res => console.log(res))
+      .then(({ data }) => dispatch(saveGroup(data)))
       .catch(err => console.log(err))
   }
 };
