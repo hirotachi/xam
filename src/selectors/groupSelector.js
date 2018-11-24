@@ -1,3 +1,7 @@
 export default (groups, id) => {
-  return groups.find(group => group._id === id);
+  if (groups.length > 0) {
+    return groups.find(group => group._id === id);
+  } else {
+    return false
+  }
 }

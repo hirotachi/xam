@@ -9,7 +9,7 @@ import { increaseCountAndPercent } from "../../actions/quizz";
 
 class Quizz extends Component {
   state = {
-    cards: this.props.group.cards,
+    cards: this.props.groups.length > 0 && this.props.group.cards,
     currentCard: "",
     answer: "",
     skip: true
@@ -17,17 +17,17 @@ class Quizz extends Component {
 
   //===========================================
   componentWillMount() {
-    if(!this.props.currentGroup.currentId || !this.props.auth){
+    if (!this.props.currentGroup.currentId || !this.props.auth) {
       this.props.history.push("/dashboard");
     }
-    if ( this.props.quizzSettings.random ) {
+    if (this.props.quizzSettings.random) {
       this.randomPicker(this.state.cards)
     } else {
       this.normalPicker(this.state.cards)
     }
   };
-  componentDidUpdate(){
-    if(!this.props.currentGroup.currentId || !this.props.auth){
+  componentDidUpdate() {
+    if (!this.props.currentGroup.currentId || !this.props.auth) {
       this.props.history.push("/dashboard");
     }
   };
@@ -42,14 +42,16 @@ class Quizz extends Component {
   //card picker==========================================
   //Random
   randomPicker = (array) => {
-    const randomIndex = Math.floor(Math.random() * array.length);
-    const selection = array.slice(randomIndex, randomIndex + 1).shift();
-    const newCollection = array.filter(item => item !== selection);
-    this.setState(() => ({ cards: newCollection, currentCard: selection, answer: "" }));
+    if (!!this.props.currentGroup.currentId) {
+      const randomIndex = Math.floor(Math.random() * array.length);
+      const selection = array.slice(randomIndex, randomIndex + 1).shift();
+      const newCollection = array.filter(item => item !== selection);
+      this.setState(() => ({ cards: newCollection, currentCard: selection, answer: "" }));
+    }
   };
   //Normal
   normalPicker = (array) => {
-    const selection = array[ 0 ];
+    const selection = array[0];
     const newCollection = array.filter(item => item !== selection);
     this.setState(() => ({ cards: newCollection, currentCard: selection, answer: "" }));
   };
@@ -63,7 +65,7 @@ class Quizz extends Component {
   };
 
   nextCard = () => { // pass to next card on deck
-    if ( this.props.quizzSettings.random ) {
+    if (this.props.quizzSettings.random) {
       this.randomPicker(this.state.cards);
       this.props.dispatch(
         increaseCountAndPercent(this.props.count + 1, this.props.percent, this.props.group.cards)
@@ -85,25 +87,25 @@ class Quizz extends Component {
     return (
       <React.Fragment>
         {
-          this.props.group &&
+          this.props.group && this.props.groups.length > 0 &&
           <div>
             start quizz
             <h2>{this.props.group.title}</h2>
             <button onClick={this.handleExit}>exit</button>
-            <QuestionCount cards={this.props.group.cards}/>
+            <QuestionCount cards={this.props.group.cards} />
             <div>
               <p>{!!this.state.currentCard && this.state.currentCard.question}</p>
               {this.state.answer && <p>{this.state.answer}</p>}
 
             </div>
-            {this.props.quizzSettings.timer.enabled && <QuestionTimer/>}
+            {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
             {this.state.currentCard.withAnswer && <button onClick={this.handleShow}>show answer</button>}
             {this.state.cards.length !== 0 &&
-            <div>
-              {this.state.skip ?
-                <button onClick={this.handleSkip}>Skip</button> :
-                <button onClick={this.handlePickNext}>Next</button>}
-            </div>
+              <div>
+                {this.state.skip && !this.state.currentCard.withAnswer ?
+                  <button onClick={this.handleSkip}>Skip</button> :
+                  <button onClick={this.handlePickNext}>Next</button>}
+              </div>
             }
             {this.state.cards.length === 0 && <button onClick={this.handleExit}>done</button>}
 
@@ -118,7 +120,7 @@ class Quizz extends Component {
 const mapStateToProps = (state) => {
   return {
     groups: state.groups,
-    group: groupSelector(state.groups, state.currentGroup.currentId || state.groups[0]._id),
+    group: groupSelector(state.groups, state.currentGroup.currentId || state.groups[0]),
     currentGroup: state.currentGroup,
     currentCards: state.currentCards,
     auth: state.auth,
