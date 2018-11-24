@@ -7,8 +7,8 @@ import { removeCard, updateCard } from "../../../../actions/cards";
 class Card extends Component {
   state = {
     question: this.props.question || "Add question",
-    answer: this.props.answer || "",
-    withAnswer: !!this.props.answer,
+    answer: this.props.answer || "add your answer",
+    withAnswer: this.props.withAnswer,
     edit: false,
     editAnswer: false
   };
@@ -47,14 +47,9 @@ class Card extends Component {
 
   handleAddAnswer = (e) => {
     const withAnswer = e.target.checked;
-    if (withAnswer) {
-      this.setState(() => ({ withAnswer, editAnswer: true }));
-    } else {
-      this.setState(() => ({ editAnswer: false, withAnswer: false }));
-      this.props.dispatch(updateCard(this.props._id, { answer: "", withAnswer }));
-    }
+    this.setState(() => ({ editAnswer: true, withAnswer }));
+    this.props.dispatch(updateCard(this.props._id, { withAnswer }));
   };
-
 
   //===========================================
   handleAddCard = () => {

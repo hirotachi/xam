@@ -19,18 +19,18 @@ class ViewCard extends Component {
         </div>
         <h4>{this.props.question}</h4>
         {this.props.withAnswer &&
-        <div>
-          <label htmlFor="showAnswer">
-            Show answer
+          <div>
+            <label htmlFor={this.props._id}>
+              Show answer
             <input
-              id="showAnswer"
-              type="checkbox"
-              value={this.state.showAnswer}
-              onChange={this.handleShowAnswer}
-            />
-          </label>
+                id={this.props._id}
+                type="checkbox"
+                value={this.state.showAnswer}
+                onChange={this.handleShowAnswer}
+              />
+            </label>
 
-        </div>
+          </div>
         }
         {this.state.showAnswer && <p>{this.props.answer}</p>}
       </div>

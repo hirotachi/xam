@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import groupSelector from "../../../../selectors/groupSelector";
-import { clearCurrentGroup, startEdit, setCurrentGroup } from "../../../../actions/currentGroup";
+import { clearCurrentGroup, startEdit } from "../../../../actions/currentGroup";
 import ViewCard from "./ViewCard";
 import { startEditControls } from "../../../../actions/controls";
-import { setCards } from "../../../../actions/cards";
+import QuizzSetup from "./QuizzSetup";
 
 class ViewGroup extends Component {
+  state = {
+    quizzSetup: false,
+  };
 
   handleBack = () => {
     this.props.dispatch(clearCurrentGroup());
@@ -18,11 +21,16 @@ class ViewGroup extends Component {
     this.props.dispatch(startEditControls());
     this.props.edit();
   };
-  handleStartQuizz = () => {
-    this.props.dispatch(setCurrentGroup(this.props.group._id));
-    this.props.dispatch(setCards(this.props.group.cards));
-    this.props.redirect("/quizz");
+  handleStartQuizzSetup = () => {
+    this.setState(() => ({ quizzSetup: true }));
   };
+  handleCancelQuizz = () => {
+    this.props.dispatch(resetSettings());
+  };
+
+  // ====================================
+
+
   render() {
     return (
       <div>
@@ -30,7 +38,11 @@ class ViewGroup extends Component {
         <h2>{this.props.group.title}</h2>
         <button onClick={this.handleBack}>Back</button>
         <button onClick={this.handleEditGroup}>Edit</button>
-        <button onClick={this.handleStartQuizz}>Start</button>
+        <button onClick={this.handleStartQuizzSetup}>Start</button>
+        {
+          this.state.quizzSetup &&
+          <QuizzSetup />
+        }
         <div>
           {this.props.group.cards.length === 0 ?
             <p>No Cards in this group yet</p> :
@@ -39,6 +51,7 @@ class ViewGroup extends Component {
             </React.Fragment>
           }
         </div>
+
       </div>
     );
   }
@@ -46,7 +59,7 @@ class ViewGroup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    group: groupSelector(state.groups, state.currentGroup.currentId)
+    group: groupSelector(state.groups, state.currentGroup.currentId),
   }
 };
 export default connect(mapStateToProps)(ViewGroup);

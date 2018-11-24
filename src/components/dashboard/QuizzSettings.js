@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {
   resetSettings,
-  setTimer,
   turnOffRandom,
   turnOffTimer,
   turnOnRandom,
@@ -31,7 +30,7 @@ class QuizzSettings extends Component {
   handleRandomChange = (e) => {
     const random = e.target.checked;
     this.setState(() => ({ random }));
-    if ( random ) {
+    if (random) {
       this.props.dispatch(turnOnRandom());
     } else {
       this.props.dispatch(turnOffRandom());
@@ -41,7 +40,7 @@ class QuizzSettings extends Component {
   handleTimerEnabledChange = (e) => {
     const timerEnabled = e.target.checked;
     this.setState(() => ({ timerEnabled }));
-    if ( timerEnabled ) {
+    if (timerEnabled) {
       this.props.dispatch(turnOnTimer());
     } else {
       this.props.dispatch(turnOffTimer());
@@ -49,15 +48,15 @@ class QuizzSettings extends Component {
   };
   handleChangeTime = (e) => {
     const time = e.target.value.toString();
-    if ( !time || time.match(/^\d{1,3}?$/g) ) {
+    if (!time || time.match(/^\d{1,3}?$/g)) {
       this.setState(() => ({ time }));
     }
-    if ( !isNaN(parseInt(time)) && this.state.timeMetrics === "seconds" ) {
-      this.props.dispatch(startSetTimer({seconds: parseInt(time)}));
-    }else if (!isNaN(parseInt(time)) && this.state.timeMetrics === "minutes") {
-      this.props.dispatch(startSetTimer({minutes: parseInt(time)}));
+    if (!isNaN(parseInt(time)) && this.state.timeMetrics === "seconds") {
+      this.props.dispatch(startSetTimer({ seconds: parseInt(time) }));
+    } else if (!isNaN(parseInt(time)) && this.state.timeMetrics === "minutes") {
+      this.props.dispatch(startSetTimer({ minutes: parseInt(time) }));
     } else {
-      this.props.dispatch(startSetTimer({seconds: 10}));
+      this.props.dispatch(startSetTimer({ seconds: 10 }));
     }
 
   };
@@ -65,12 +64,12 @@ class QuizzSettings extends Component {
   handleTimeMetricsChange = (e) => {
     const timeMetrics = e.target.value;
     this.setState(() => ({ timeMetrics }));
-    if(timeMetrics === "seconds"){
-      this.props.dispatch(startSetTimer({seconds: parseInt(this.state.time)}));
-    }else if (timeMetrics === "minutes") {
-      this.props.dispatch(startSetTimer({minutes: parseInt(this.state.time)}));
+    if (timeMetrics === "seconds") {
+      this.props.dispatch(startSetTimer({ seconds: parseInt(this.state.time) }));
+    } else if (timeMetrics === "minutes") {
+      this.props.dispatch(startSetTimer({ minutes: parseInt(this.state.time) }));
     } else {
-      this.props.dispatch(startSetTimer({seconds: 10}));
+      this.props.dispatch(startSetTimer({ seconds: 10 }));
     }
   };
 
@@ -91,7 +90,7 @@ class QuizzSettings extends Component {
             id="random"
             type="checkbox"
             value={this.state.random}
-            onChange={this.handleRandomChange}/>
+            onChange={this.handleRandomChange} />
         </label>
         <label htmlFor="timer">
           Timer
@@ -103,20 +102,20 @@ class QuizzSettings extends Component {
           />
         </label>
         {this.state.timerEnabled &&
-        <div>
-          <input
-            type="number"
-            value={this.state.time}
-            onChange={this.handleChangeTime}
-          />
-          <select
-            onChange={this.handleTimeMetricsChange}
-            defaultValue={this.state.timeMetrics}
-            name="timer">
-            <option value="seconds">Seconds</option>
-            <option value="minutes">Minutes</option>
-          </select>
-        </div>
+          <div>
+            <input
+              type="number"
+              value={this.state.time}
+              onChange={this.handleChangeTime}
+            />
+            <select
+              onChange={this.handleTimeMetricsChange}
+              defaultValue={this.state.timeMetrics}
+              name="timer">
+              <option value="seconds">Seconds</option>
+              <option value="minutes">Minutes</option>
+            </select>
+          </div>
         }
         <button onClick={this.handleCancelQuizz}>cancel</button>
         <button onClick={this.handleStartQuizz}>start</button>
