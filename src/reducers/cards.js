@@ -1,18 +1,18 @@
 
 
 export default (state = [], action) => {
-  switch(action.type){
+  switch (action.type) {
     case "SET_CURRENT_CARDS":
       return action.cards;
     case "ADD_CARD":
       return [...state, action.card];
     case "REMOVE_CARD":
-      return state.filter(card => card.id !== action.id);
+      return state.filter(card => card._id !== action.id);
     case "UPDATE_CARD":
       return state.map(card => {
-        if(card.id === action.id){
-          return {...card, ...action.updates}
-        }else {
+        if (card._id === action.id) {
+          return { ...card, ...action.updates }
+        } else {
           return card;
         }
       });

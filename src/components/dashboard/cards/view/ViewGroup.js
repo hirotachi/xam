@@ -5,7 +5,7 @@ import { clearCurrentGroup, startEdit } from "../../../../actions/currentGroup";
 import ViewCard from "./ViewCard";
 import { startEditControls } from "../../../../actions/controls";
 
-class ViewGroup extends Component{
+class ViewGroup extends Component {
 
   handleBack = () => {
     this.props.dispatch(clearCurrentGroup());
@@ -26,9 +26,9 @@ class ViewGroup extends Component{
         <button onClick={this.handleEditGroup}>Edit</button>
         <div>
           {this.props.group.cards.length === 0 ?
-          <p>No Cards in this group yet</p>:
+            <p>No Cards in this group yet</p> :
             <React.Fragment>
-              {this.props.group.cards.map(card => <ViewCard key={card._id} {...card} edit={this.handleEditGroup}/>)}
+              {this.props.group.cards.map(card => <ViewCard key={card._id} {...card} edit={this.handleEditGroup} />)}
             </React.Fragment>
           }
         </div>
