@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import requireAuth from "../RequireAuth";
 import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
@@ -9,7 +9,7 @@ import { viewGroups } from "../../actions/cardGroups";
 import { endCreationControls, endEditControls } from "../../actions/controls";
 
 
-class Dashboard extends Component{
+class Dashboard extends Component {
   state = {
     home: true,
     view: false,
@@ -17,10 +17,10 @@ class Dashboard extends Component{
     startQuizz: false
   };
 
-  componentWillMount(){
-    if(!localStorage.xamUser){
+  componentWillMount() {
+    if (!localStorage.xamUser) {
       this.props.dispatch(requestLogout());
-    }else if (!localStorage.xamUser
+    } else if (!localStorage.xamUser
       && !JSON.parse(localStorage.xamUser).auth
       && !JSON.parse(localStorage.xamUser).token
     ) {
@@ -28,49 +28,49 @@ class Dashboard extends Component{
     }
   }
 
-  componentDidMount(){
-    if(this.props.token){
+  componentDidMount() {
+    if (this.props.token) {
       this.props.dispatch(viewGroups(this.props.token));
     }
   }
   componentDidUpdate() {
-    const {startView, startCreate, startEdit} = this.props.controls;
-    if((!this.state.creation ) && (startCreate || startEdit)){
+    const { startView, startCreate, startEdit } = this.props.controls;
+    if ((!this.state.creation) && (startCreate || startEdit)) {
       this.handleEditOrCreate();
-    }else if(!this.state.view && startView){
+    } else if (!this.state.view && startView) {
       this.handleViewGroup();
     }
   }
 
   handleEditOrCreate = () => {
-    const { startCreate, startEdit} = this.props.controls;
-    if(startCreate || startEdit){
-      this.setState(() => ({home: false, creation: true, view: false, startQuizz: false}));
+    const { startCreate, startEdit } = this.props.controls;
+    if (startCreate || startEdit) {
+      this.setState(() => ({ home: false, creation: true, view: false, startQuizz: false }));
     }
   };
   handleBackHome = () => {
     this.props.dispatch(endCreationControls());
     this.props.dispatch(endEditControls());
-    this.setState(() => ({home: true, creation: false, view: false, startQuizz: false}));
+    this.setState(() => ({ home: true, creation: false, view: false, startQuizz: false }));
   };
 
   handleViewGroup = () => {
-    this.setState(() => ({view: true, home: false, creation: false, startQuizz: false}))
+    this.setState(() => ({ view: true, home: false, creation: false, startQuizz: false }))
   };
 
-  render(){
+  render() {
     return (
       <div>
-          <Controls
-            startCreation={this.handleEditOrCreate}
-            back={this.handleBackHome}
-            redirect={this.props.history.push}
-          />
+        <Controls
+          startCreation={this.handleEditOrCreate}
+          back={this.handleBackHome}
+          redirect={this.props.history.push}
+        />
         <div>
           {!this.state.view &&
             <React.Fragment>
               {this.state.creation ?
-                <CreateFlashGroup backHome={this.handleBackHome}/> :
+                <CreateFlashGroup backHome={this.handleBackHome} /> :
                 <CardsGroupList
                   cancelEdit={this.handleBackHome}
                   startEdit={this.handleEditOrCreate}
@@ -81,7 +81,12 @@ class Dashboard extends Component{
             </React.Fragment>
           }
           {
-            this.state.view && <ViewGroup back={this.handleBackHome} edit={this.handleEditOrCreate}/>
+            this.state.view &&
+            <ViewGroup
+              back={this.handleBackHome}
+              edit={this.handleEditOrCreate}
+              redirect={this.props.history.push}
+            />
           }
         </div>
       </div>
