@@ -99,7 +99,8 @@ class Quizz extends Component {
 
             </div>
             {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
-            {this.state.currentCard.withAnswer && <button onClick={this.handleShow}>show answer</button>}
+            {this.state.currentCard.withAnswer && !this.state.answer
+            && <button onClick={this.handleShow}>show answer</button>}
             {this.state.cards.length !== 0 &&
               <div>
                 {this.state.skip && this.state.currentCard.withAnswer ?
