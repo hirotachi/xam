@@ -37,22 +37,24 @@ class LoginPage extends Component {
   //=========================================
   render() {
     return (
-      <div>
+      <div className="login">
         LoginPage
         {this.state.fail && <p>Enter username and password</p>}
         {this.props.wrongCred && <p>Wrong password or Username</p>}
         <form onSubmit={this.handleLogin}>
           <input
+            className="login__username"
             onChange={this.handleUserNameChange}
             value={this.state.userName}
             type="text"
             placeholder="Username"/>
           <input
+            className="login__password"
             onChange={this.handlePasswordChange}
             value={this.state.password}
             type="password"
             placeholder="password"/>
-          <button>Login</button>
+          <button className="btn btn-green">Login</button>
 
           {/*<label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>*/}
         </form>

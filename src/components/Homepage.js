@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import LoginPage from "./authentication/LoginPage";
 import { login, requestAuth } from "../actions/auth";
 import SignupPage from "./authentication/SignupPage";
+import Responsive from "../Responsive/Responsive";
 
 
 class Homepage extends Component {
@@ -10,7 +11,9 @@ class Homepage extends Component {
     login: false,
     signUp: false,
     guestLogin: false,
-    buttons: true
+    buttons: true,
+    consoleOpen: false,
+    originalHeight: 0
   };
 
   componentWillMount() {
@@ -27,6 +30,10 @@ class Homepage extends Component {
     if ( this.props.isRef ) {
       this.handleSignUp();
     }
+
+  //  check for window resize and resize the bg accordingly
+    window.addEventListener("resize", this.handleResize);
+    this.setState(() => ({originalHeight: window.innerHeight}));
   };
 
   componentDidUpdate() {
@@ -39,6 +46,32 @@ class Homepage extends Component {
     }
   };
 
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
+  //===============================================================
+  // handle resize
+  handleResize = () => {
+    const screenWidth = screen.width;
+    if(screenWidth <= 768 && clientInformation.appVersion.toLowerCase().includes("nexus") &&
+    screen.orientation.type.toLowerCase().includes("portrait")){
+      this.setState(() => ({consoleOpen: false}))
+    } else if(screenWidth > 1024 && clientInformation.appVersion.toLowerCase().includes("nexus")
+    || this.state.originalHeight > window.innerHeight){
+      this.setState(() => ({consoleOpen: true}))
+    }else if (clientInformation.appVersion.toLowerCase().includes("iphone")
+    && screen.orientation.type.toLowerCase().includes("landscape")){
+      this.setState(() => ({consoleOpen: true}))
+    }else if (screenWidth > 768 && screenWidth < 1024){
+      this.setState(() => ({consoleOpen: false}))
+    }else if (screenWidth < 768 && screenWidth > 480){
+      this.setState(() => ({consoleOpen: false}))
+    }
+    if(this.state.originalHeight === window.innerHeight){
+      this.setState(() => ({consoleOpen: false}))
+    }
+  };
   //===============================================================
   handleLogin = () => {
     this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }));
@@ -54,12 +87,22 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div>
-        <h1 onClick={this.handleBackHome}>XAM</h1>
+      <div className="home">
+        <Responsive query={{minWidth: 480}}>
+          <div className="home__bg">
+            <video autoPlay muted loop className="home__bg--video"
+                   style={this.state.consoleOpen ? {width: "100%"} : {height: "100vh"}}>
+              <source src="bg/video-bg.mp4" type="video/mp4"/>
+            </video>
+          </div>
+        </Responsive>
+
+
+        <h1 className="home__logo" onClick={this.handleBackHome}>XAM</h1>
         {(this.state.buttons) &&
-        <div>
-          <button onClick={this.handleLogin}>Login</button>
-          <button onClick={this.handleSignUp}>SignUp</button>
+        <div className="home__buttons">
+          <button className="btn btn-green" onClick={this.handleLogin}>Login</button>
+          <button className="btn btn-blue" onClick={this.handleSignUp}>SignUp</button>
         </div>
         }
 
