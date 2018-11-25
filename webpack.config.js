@@ -14,6 +14,7 @@ module.exports = (env) => {
   const isProduction = env === "production";
 
   console.log("env", env);
+  console.log(process.env.NODE_ENV)
   return {
     mode: "development",
     entry: "./src/index.js",
