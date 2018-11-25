@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import authReducer from "../reducers/auth";
 import groupsReducer from "../reducers/cardGroups";
@@ -11,7 +11,6 @@ import supportReducer from "../reducers/support";
 import controlsReducer from "../reducers/controls";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-console.log(process.env)
 
 export default () => {
   const store = createStore(combineReducers({
