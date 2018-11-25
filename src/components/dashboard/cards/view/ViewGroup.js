@@ -4,7 +4,7 @@ import groupSelector from "../../../../selectors/groupSelector";
 import { clearCurrentGroup, startEdit } from "../../../../actions/currentGroup";
 import ViewCard from "./ViewCard";
 import { startEditControls } from "../../../../actions/controls";
-import QuizzSetup from "./QuizzSetup";
+import QuizzSettings from "../../QuizzSettings";
 
 class ViewGroup extends Component {
   state = {
@@ -24,8 +24,8 @@ class ViewGroup extends Component {
   handleStartQuizzSetup = () => {
     this.setState(() => ({ quizzSetup: true }));
   };
-  handleCancelQuizz = () => {
-    this.props.dispatch(resetSettings());
+  handleCancelQuizzSetup = () => {
+    this.setState(() => ({quizzSetup: false}));
   };
 
   // ====================================
@@ -41,7 +41,7 @@ class ViewGroup extends Component {
         <button onClick={this.handleStartQuizzSetup}>Start</button>
         {
           this.state.quizzSetup &&
-          <QuizzSetup />
+          <QuizzSettings cancelQuizz={this.handleCancelQuizzSetup}/>
         }
         <div>
           {this.props.group.cards.length === 0 ?
