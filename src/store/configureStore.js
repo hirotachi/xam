@@ -11,6 +11,7 @@ import supportReducer from "../reducers/support";
 import controlsReducer from "../reducers/controls";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+console.log(process.env)
 
 export default () => {
   const store = createStore(combineReducers({
