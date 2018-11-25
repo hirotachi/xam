@@ -30,6 +30,8 @@
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
     "express": "^4.16.4",
+    "global": "^4.3.2",
+    "heroku-cli": "^7.0.9",
     "jest": "^23.6.0",
     "jwt-simple": "^0.5.5",
     "live-server": "^1.2.0",

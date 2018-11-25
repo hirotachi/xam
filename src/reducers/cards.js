@@ -10,7 +10,7 @@ export default (state = [], action) => {
       return state.filter(card => card._id !== action.id);
     case "UPDATE_CARD":
       return state.map(card => {
-        if (card._id === action.id) {
+        if ((card._id || card.id) === action.id) {
           return { ...card, ...action.updates }
         } else {
           return card;

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addCard } from "../../../../actions/cardGroups";
-import { removeCard, updateCard } from "../../../../actions/cards";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {addCard} from "../../../../actions/cardGroups";
+import {removeCard, updateCard} from "../../../../actions/cards";
+import shortid from "shortid";
 
 
 class Card extends Component {
@@ -10,45 +11,47 @@ class Card extends Component {
     answer: this.props.answer || "add your answer",
     withAnswer: this.props.withAnswer,
     edit: false,
-    editAnswer: false
+    editAnswer: false,
+    id: shortid()
   };
 
   //=======================================
   handleQuestionChange = (e) => {
     const question = e.target.value;
-    this.setState(() => ({ question }));
+    this.setState(() => ({question}));
   };
   handleAnswerChange = (e) => {
     const answer = e.target.value;
     if (this.state.withAnswer) {
-      this.setState(() => ({ answer }))
+      this.setState(() => ({answer}))
     } else {
-      this.setState(() => ({ answer: undefined }))
+      this.setState(() => ({answer: undefined}))
     }
   };
   //=======================================
   handleQuestionFocus = () => {
-    this.setState(() => ({ edit: true }));
+    this.setState(() => ({edit: true}));
   };
   handleQuestionBlur = () => {
-    const { question, answer } = this.state;
-    this.props.dispatch(updateCard(this.props._id, { question, answer }));
-    this.setState(() => ({ edit: false }));
+    const {question, answer} = this.state;
+    this.props.dispatch(updateCard(this.props._id, {question, answer}));
+    this.setState(() => ({edit: false}));
   };
 
   handleAnswerBlur = () => {
-    const { question, answer, withAnswer } = this.state;
-    this.props.dispatch(updateCard(this.props._id, { question, answer, withAnswer }));
-    this.setState(() => ({ editAnswer: false }));
+    const {question, answer, withAnswer} = this.state;
+    this.props.dispatch(updateCard((this.props._id || this.props.id), {question, answer, withAnswer}));
+    this.setState(() => ({editAnswer: false}));
   };
   handleFocusAnswer = () => {
-    this.setState(() => ({ editAnswer: true }));
+    this.setState(() => ({editAnswer: true}));
   };
 
   handleAddAnswer = (e) => {
     const withAnswer = e.target.checked;
-    this.setState(() => ({ editAnswer: true, withAnswer }));
-    this.props.dispatch(updateCard(this.props._id, { withAnswer }));
+    const {answer} = this.state;
+    this.setState(() => ({editAnswer: true, withAnswer}));
+    this.props.dispatch(updateCard((this.props._id || this.props.id), {answer, withAnswer}));
   };
 
   //===========================================
@@ -56,7 +59,7 @@ class Card extends Component {
     this.props.add();
   };
   handleRemoveCard = () => {
-    this.props.dispatch(removeCard(this.props._id));
+    this.props.dispatch(removeCard(this.props._id || this.props.id));
   };
 
   render() {
@@ -74,30 +77,30 @@ class Card extends Component {
           <p onClick={this.handleQuestionFocus}>{this.state.question}</p>
         }
         {this.state.withAnswer &&
-          <React.Fragment>
-            {this.state.editAnswer ?
-              <textarea
-                autoFocus={true}
-                placeholder="Answer"
-                value={this.state.answer}
-                onChange={this.handleAnswerChange}
-                onBlur={this.handleAnswerBlur}
-              /> :
-              <p onClick={this.handleFocusAnswer}>{this.state.answer}</p>
-            }
+        <React.Fragment>
+          {this.state.editAnswer ?
+            <textarea
+              autoFocus={true}
+              placeholder="Answer"
+              value={this.state.answer}
+              onChange={this.handleAnswerChange}
+              onBlur={this.handleAnswerBlur}
+            /> :
+            <p onClick={this.handleFocusAnswer}>{this.state.answer}</p>
+          }
 
-          </React.Fragment>
+        </React.Fragment>
 
         }
-        <label htmlFor={this.props._id}>
+        <label>
           <input
-            checked={this.state.withAnswer} id={this.props._id}
-            type="checkbox" onChange={this.handleAddAnswer} />
+            checked={this.state.withAnswer} id={this.state.id}
+            type="checkbox" onChange={this.handleAddAnswer}/>
           with answer
         </label>
         <button onClick={this.handleRemoveCard}>remove</button>
         {this.props.last &&
-          <button onClick={this.handleAddCard}>add Card</button>
+        <button onClick={this.handleAddCard}>add Card</button>
         }
       </div>
     );

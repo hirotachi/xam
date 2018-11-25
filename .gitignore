@@ -8,6 +8,7 @@ public/styles.css.map
 .idea/
 config.js
 existEncrypt.js
+database.js
 /server/data/*
 
 # dependencies

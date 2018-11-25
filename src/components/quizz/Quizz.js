@@ -102,7 +102,7 @@ class Quizz extends Component {
             {this.state.currentCard.withAnswer && <button onClick={this.handleShow}>show answer</button>}
             {this.state.cards.length !== 0 &&
               <div>
-                {this.state.skip && !this.state.currentCard.withAnswer ?
+                {this.state.skip && this.state.currentCard.withAnswer ?
                   <button onClick={this.handleSkip}>Skip</button> :
                   <button onClick={this.handlePickNext}>Next</button>}
               </div>
