@@ -8,7 +8,7 @@ import { startCreationControls } from "./controls";
 //add initial group for new users ===========================================
 export const setInitialGroups = (token) => {
   return (dispatch) => {
-    axios("http://localhost:3000/dashboard/create", {
+    axios("/dashboard/create", {
       method: "POST",
       data: {
         group: {
@@ -42,7 +42,7 @@ export const addGroup = (group) => {
 
 export const startAddGroup = (token) => {
   return (dispatch) => {
-    axios("http://localhost:3000/dashboard/create", {
+    axios("/dashboard/create", {
       method: "POST",
       data: {
         group: {
@@ -81,7 +81,7 @@ export const cancelGroupCreation = (id) => {
 
 export const startCancelGroupCreation = (groupId, token, groups) => {
   return (dispatch) => {
-    axios("http://localhost:3000/dashboard/remove", {
+    axios("/dashboard/remove", {
       method: "POST",
       data: { groupId, groups },
       headers: {
@@ -106,7 +106,7 @@ export const saveGroup = (groups) => {
 
 export const startSaveGroup = (groupId, token, group) => {
   return (dispatch) => {
-    axios("http://localhost:3000/dashboard/save", {
+    axios("/dashboard/save", {
       method: "POST",
       data: { groupId, group },
       headers: {
@@ -128,7 +128,7 @@ export const removeGroup = (id) => {
 };
 export const startRemoveGroup = (groupId, token, groups) => {
   return (dispatch) => {
-    axios("http://localhost:3000/dashboard/remove", {
+    axios("/dashboard/remove", {
       method: "POST",
       data: { groupId, groups },
       headers: {
@@ -152,7 +152,7 @@ export const updateGroup = (id, group) => {
 
 export const viewGroups = (token) => {
   return (dispatch) => {
-    axios("http://localhost:3000/dashboard/view", {
+    axios("/dashboard/view", {
       method: "GET",
       headers: {
         authorization: token
