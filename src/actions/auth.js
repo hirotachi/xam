@@ -1,8 +1,8 @@
 import axios from "axios";
 import jwt from "jwt-simple";
-import existEncrypt from "../../existEncrypt";
 
-const statusSecret = process.env.STATUS_SECRET || existEncrypt.secret;
+
+const statusSecret = process.env.STATUS_SECRET || require("../../existEncrypt").secret;
 
 export const login = (token) => {
   return {
