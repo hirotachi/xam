@@ -2,6 +2,8 @@ import axios from "axios";
 import jwt from "jwt-simple";
 import existEncrypt from "../../existEncrypt";
 
+const statusSecret = process.env.STATUS_SECRET || existEncrypt.secret;
+
 export const login = (token) => {
   return {
     type: "LOGIN",
@@ -27,7 +29,7 @@ export const requestSignup = (info) => {
     axios.post("http://localhost:3000/signup", info)
       .then(({data}) => {
         if(!!data.status){
-          const status = jwt.decode(data.status, existEncrypt.secret);
+          const status = jwt.decode(data.status, statusSecret);
           if(status.sub === "409"){
             dispatch(requestUserNameCheck(info.userName));
             dispatch(requestEmailCheck(info.email));
