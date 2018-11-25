@@ -1,8 +1,7 @@
 const User = require("../models/user");
 const jwt = require("jwt-simple");
-const config = require("../../config");
 
-const secret = process.env.CONFIG_SECRET || config.secret;
+const secret = process.env.CONFIG_SECRET || require("../../config").secret;
 
 exports.create = (req, res, next) => { //add group to user groups
   const { group } = req.body;

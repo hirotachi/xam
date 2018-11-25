@@ -7,10 +7,10 @@ const morgan = require("morgan");
 const path = require("path");
 const router = require("./router");
 const cors = require("cors");
-const database = require("../database");
 
-const mongoDB = process.env.MONGODB || database.database;
-mongoose.connect(mongoDB, {useNewUrlParser: true, useCreateIndex: true});
+const databaseUrl = process.env.DATABASE_URL || "mongodb://localhost:27018/xam";
+
+mongoose.connect(databaseUrl, {useNewUrlParser: true, useCreateIndex: true});
 const publicPath = path.join(__dirname, "..", "public");
 const port = process.env.PORT || 3000;
 

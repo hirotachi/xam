@@ -1,10 +1,8 @@
 const User = require("../models/user");
 const jwt = require("jwt-simple");
-const config = require("../../config");
-const statusConfig = require("../../existEncrypt");
 
-const secret = process.env.CONFIG_SECRET || config.secret;
-const statusSecret = process.env.STATUS_CONFIG || statusConfig.secret;
+const secret = process.env.CONFIG_SECRET || require("../../config").secret;
+const statusSecret = process.env.STATUS_SECRET || require("../../existEncrypt").secret;
 const tokenForUser = (user) => {
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user.id, iat: timestamp }, secret)
