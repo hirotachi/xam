@@ -142,6 +142,11 @@ class SignupPage extends Component {
           </label>
           <button>Sign Up</button>
         </form>
+        <div>
+          <p>ALready have an account ?
+          <button onClick={this.props.requestLogin}>Login</button>
+          </p>
+        </div>
       </div>
     );
   }

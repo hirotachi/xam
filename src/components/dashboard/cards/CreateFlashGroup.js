@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import groupSelector from "../../../selectors/groupSelector";
 import { cancelEdit, clearCurrentGroup } from "../../../actions/currentGroup";
-import { cancelGroupCreation, saveGroup, startSaveGroup, updateGroup } from "../../../actions/cardGroups";
+import {
+  cancelGroupCreation,
+  saveGroup,
+  startCancelGroupCreation,
+  startSaveGroup,
+  updateGroup
+} from "../../../actions/cardGroups";
 import Cards from "./cardCreation/Cards";
 import { clearCurrentCards } from "../../../actions/cards";
 
@@ -22,7 +28,8 @@ class CreateFlashGroup extends Component {
     if (this.props.edit) {
       this.props.dispatch(cancelEdit());
     } else {
-      this.props.dispatch(cancelGroupCreation(this.props.group.id));
+      this.props.dispatch(startCancelGroupCreation(
+        this.props.group._id, this.props.token, this.props.groups ));
       this.props.dispatch(clearCurrentGroup());
     }
 

@@ -79,6 +79,23 @@ export const cancelGroupCreation = (id) => {
   }
 };
 
+export const startCancelGroupCreation = (groupId, token, groups) => {
+  return (dispatch) => {
+    axios("http://localhost:3000/dashboard/remove", {
+      method: "POST",
+      data: { groupId, groups },
+      headers: {
+        authorization: token
+      }
+    })
+      .then(() => {
+        dispatch(removeGroup(groupId))
+        dispatch(cancelGroupCreation(groupId))
+      })
+      .catch(err => console.log(err));
+  }
+};
+
 //=========================================================================
 export const saveGroup = (groups) => {
   return {

@@ -38,7 +38,10 @@ class Navigation extends Component {
               <React.Fragment>
                 {
                   this.props.redirect.location.pathname !== "/" &&
-                  <button onClick={this.handleSignUp}>Sign Up</button>
+                    <div>
+                      <button onClick={this.handleSignUp}>Sign Up</button>
+                      <button>Login</button>
+                    </div>
                 }
               </React.Fragment>
           }

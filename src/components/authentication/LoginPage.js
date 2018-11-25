@@ -53,8 +53,12 @@ class LoginPage extends Component {
             type="password"
             placeholder="password"/>
           <button>Login</button>
+
           {/*<label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>*/}
         </form>
+        <p>dont have an account yet
+          <button onClick={this.props.resquestSignup}>signUp</button>
+        </p>
       </div>
     );
   }

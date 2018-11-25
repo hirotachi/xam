@@ -47,13 +47,15 @@ class Homepage extends Component {
     this.setState(() => ({ login: false, signUp: true, guestLogin: false, buttons: false }));
   };
   //===============================================================
-
+  handleBackHome = () => {
+    this.setState(() => ({ login: false, signUp: false, guestLogin: false, buttons: true }));
+  };
   //===============================================================
 
   render() {
     return (
       <div>
-        <h1>XAM</h1>
+        <h1 onClick={this.handleBackHome}>XAM</h1>
         {(this.state.buttons) &&
         <div>
           <button onClick={this.handleLogin}>Login</button>
@@ -61,8 +63,8 @@ class Homepage extends Component {
         </div>
         }
 
-        {this.state.login && <LoginPage login={this.requestLogin}/>}
-        {this.state.signUp && <SignupPage/>}
+        {this.state.login && <LoginPage login={this.requestLogin} resquestSignup={this.handleSignUp}/>}
+        {this.state.signUp && <SignupPage requestLogin={this.handleLogin}/>}
       </div>
     );
   }
