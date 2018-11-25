@@ -31,7 +31,7 @@ class Navigation extends Component {
             }
           </React.Fragment>
         }
-        <Responsive query={{ minWidth: 480 }}>
+        <Responsive >
           {
             this.props.auth ?
               <button onClick={this.handleLogout}>Logout</button> :
