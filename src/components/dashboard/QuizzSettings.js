@@ -23,11 +23,7 @@ class QuizzSettings extends Component {
 
   handleCancelQuizz = () => {
     this.props.dispatch(resetSettings());
-    if(!!this.props.cancelQuizz){
-      this.props.cancelQuizz();
-    }else {
         this.props.end();
-    }
   };
 
   // Random Setting===============================================

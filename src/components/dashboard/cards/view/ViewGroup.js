@@ -41,7 +41,12 @@ class ViewGroup extends Component {
         <button onClick={this.handleStartQuizzSetup}>Start</button>
         {
           this.state.quizzSetup &&
-          <QuizzSettings cancelQuizz={this.handleCancelQuizzSetup}/>
+          <QuizzSettings
+              end={this.handleCancelQuizzSetup}
+              id={this.props.group._id}
+              redirect={this.props.redirect}
+              cards={this.props.group.cards}
+          />
         }
         <div>
           {this.props.group.cards.length === 0 ?
