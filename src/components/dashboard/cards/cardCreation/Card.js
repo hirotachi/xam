@@ -34,7 +34,8 @@ class Card extends Component {
   };
   handleQuestionBlur = () => {
     const {question, answer} = this.state;
-    this.props.dispatch(updateCard(this.props._id, {question, answer}));
+    console.log(question);
+    this.props.dispatch(updateCard((this.props._id || this.props.id), {question, answer}));
     this.setState(() => ({edit: false}));
   };
 

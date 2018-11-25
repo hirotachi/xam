@@ -5,10 +5,12 @@ import { setCurrentGroup } from "./currentGroup";
 import { setCards } from "./cards";
 import { startCreationControls } from "./controls";
 
+const localhost = process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/";
+
 //add initial group for new users ===========================================
 export const setInitialGroups = (token) => {
   return (dispatch) => {
-    axios("/dashboard/create", {
+    axios(`${localhost}dashboard/create`, {
       method: "POST",
       data: {
         group: {
@@ -42,7 +44,7 @@ export const addGroup = (group) => {
 
 export const startAddGroup = (token) => {
   return (dispatch) => {
-    axios("/dashboard/create", {
+    axios(`${localhost}dashboard/create`, {
       method: "POST",
       data: {
         group: {
@@ -81,7 +83,7 @@ export const cancelGroupCreation = (id) => {
 
 export const startCancelGroupCreation = (groupId, token, groups) => {
   return (dispatch) => {
-    axios("/dashboard/remove", {
+    axios(`${localhost}dashboard/remove`, {
       method: "POST",
       data: { groupId, groups },
       headers: {
@@ -106,7 +108,7 @@ export const saveGroup = (groups) => {
 
 export const startSaveGroup = (groupId, token, group) => {
   return (dispatch) => {
-    axios("/dashboard/save", {
+    axios(`${localhost}dashboard/save`, {
       method: "POST",
       data: { groupId, group },
       headers: {
@@ -128,7 +130,7 @@ export const removeGroup = (id) => {
 };
 export const startRemoveGroup = (groupId, token, groups) => {
   return (dispatch) => {
-    axios("/dashboard/remove", {
+    axios(`${localhost}dashboard/remove`, {
       method: "POST",
       data: { groupId, groups },
       headers: {
@@ -152,7 +154,7 @@ export const updateGroup = (id, group) => {
 
 export const viewGroups = (token) => {
   return (dispatch) => {
-    axios("/dashboard/view", {
+    axios(`${localhost}dashboard/view`, {
       method: "GET",
       headers: {
         authorization: token
