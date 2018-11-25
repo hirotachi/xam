@@ -25,7 +25,7 @@ const localLogin = new LocalStrategy(localOptions, (userName, password, done) =>
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader("authorization"),
-  secretOrKey: config.secret
+  secretOrKey: process.env.CONFIG_SECRET || config.secret
 };
 
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
