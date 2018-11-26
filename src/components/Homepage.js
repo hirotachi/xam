@@ -8,10 +8,10 @@ import Responsive from "../Responsive/Responsive";
 
 class Homepage extends Component {
   state = {
-    login: false,
+    login: true,
     signUp: false,
     guestLogin: false,
-    buttons: true,
+    buttons: false,
     consoleOpen: false,
     originalHeight: 0
   };
@@ -66,13 +66,16 @@ class Homepage extends Component {
             </video>
           </div>
         </Responsive>
-
+        <Responsive query={{maxWidth: 480}}>
+          <img src="https://i.ibb.co/VQ63nWb/1.jpg" alt="bg" className="home__mobile--bg"/>
+        </Responsive>
+        {window.outerHeight}
 
         <h1 className="home__logo" onClick={this.handleBackHome}>XAM</h1>
         {(this.state.buttons) &&
         <div className="home__buttons">
-          <button className="btn btn-green" onClick={this.handleLogin}>Login</button>
-          <button className="btn btn-blue" onClick={this.handleSignUp}>SignUp</button>
+          <button className="btn btn-primary btn-lg" onClick={this.handleLogin}>Login</button>
+          <button className="btn btn-blue btn-lg" onClick={this.handleSignUp}>SignUp</button>
         </div>
         }
 

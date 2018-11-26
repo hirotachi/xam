@@ -1,0 +1,15 @@
+@keyframes zigg {
+  20%{transform: translateX(1rem)}
+  40%{transform: translateX(-1rem)}
+  60%{transform: translateX(1rem)}
+  80%{transform: translateX(-1rem)}
+}
+
+@keyframes revealErr {
+  0%{
+    transform: translateY(-1rem);
+  }
+  100%{
+    opacity: 1;
+  }
+}

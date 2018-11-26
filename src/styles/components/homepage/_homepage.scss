@@ -1,8 +1,19 @@
 .home {
   height: 100%;
-  h1{
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  &__mobile--bg{
+    position: fixed;
+    display: inline-block;
+    overflow: hidden;
+    height: 700px;
+    width: 200%;
+    left: -55%;
+    top: -5rem;
+    z-index: -1;
+    transition: filter  1s ease-in-out;
   }
+
 
   &__bg{
     position: fixed;
@@ -38,6 +49,30 @@
         width: 100%;
       }
 
+    } //home--video
+  } // home__bg
+
+  &__logo{
+    text-align: center;
+    margin: 0;
+    margin-top: 10rem;
+    font-size: 7rem;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+  }//home__logo
+  &__buttons{
+    display: flex;
+    font-size: 2rem;
+    flex-direction: column;
+    margin: 0 3rem;
+    margin-top: 10rem;
+    @media (min-width: $tablet-bp){
+      align-items: center;
     }
-  }
+  } // home__buttons
+}
+
+.test {
+  margin-top: 10vh !important;
+  font-size: 10vh !important;
 }

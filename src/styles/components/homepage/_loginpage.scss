@@ -1,0 +1,21 @@
+.login{
+  display: flex;
+  flex-direction: column;
+  &__form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 3rem;
+    &--field{
+      padding: 2rem 1rem;
+      margin: .5rem 0;
+      border: none;
+      border-radius: 3px;
+      &:focus{
+        outline: none;
+      }
+      &::placeholder{
+        opacity: .5;
+      }
+    }
+  }
+}

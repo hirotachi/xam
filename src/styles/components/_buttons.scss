@@ -1,0 +1,25 @@
+.btn {
+  display: inline-block;
+  padding: 1rem;
+  margin: .5rem 0;
+  border-radius: 2.5rem;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
+  &-lg{
+    padding: 2rem;
+    @media (min-width: $tablet-bp){
+      width: 40%;
+    }
+  }
+
+//  colors
+  &-primary{
+    background-color: $btn-primary;
+    color: $color-dark;
+  }
+}
