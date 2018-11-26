@@ -75,7 +75,7 @@ class SignupPage extends Component {
   //=================================================
   // check username and email if they exist
   handleUserNameCheck = () => {
-    this.props.dispatch(requestUserNameCheck(this.state.userName))
+    this.props.dispatch(requestUserNameCheck(this.state.userName.toLowerCase()))
   };
   handleEmailCheck = () => {
     this.props.dispatch(requestEmailCheck(this.state.email))
@@ -98,10 +98,10 @@ class SignupPage extends Component {
   //=================================================
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
+      <div className="signUp">
+        <form className="signUp__form" onSubmit={this.handleFormSubmit}>
           <div>
-            {this.props.userNameUsed && <p>This username is already used</p>}
+            {this.props.userNameUsed && <p className="err-msg">This username is already used</p>}
             <input
               onChange={this.handleUserNameChange}
               value={this.state.userName}
@@ -112,7 +112,7 @@ class SignupPage extends Component {
             />
           </div>
           <div>
-            {this.props.emailUsed && <p>this email is already used</p>}
+            {this.props.emailUsed && <p className="err-msg">this email is already used</p>}
             <input
               onChange={this.handleEmailChange}
               value={this.state.email}

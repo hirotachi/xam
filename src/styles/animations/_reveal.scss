@@ -1,0 +1,24 @@
+@keyframes revealForm {
+  0%{
+    transform: translateY(-2rem);
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes revealPage {
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0%{
+    transform: translateY(100%);
+  }
+}@keyframes slideLeft {
+  100%{
+    transform: translateY(-100%);
+  }
+}

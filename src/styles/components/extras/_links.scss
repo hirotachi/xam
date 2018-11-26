@@ -4,4 +4,10 @@
   margin: .5rem;
   font-weight: bold;
   text-transform: capitalize;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+  &:hover {
+    color: $color-primary-light;
+    text-decoration: underline;
+  }
 }

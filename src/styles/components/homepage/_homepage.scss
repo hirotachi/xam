@@ -55,8 +55,8 @@
   &__logo{
     text-align: center;
     margin: 0;
-    margin-top: 10rem;
-    font-size: 7rem;
+    margin-top: 10vh;
+    font-size: 12vh;
     cursor: pointer;
     transition: all .1s ease-in-out;
   }//home__logo
@@ -64,15 +64,11 @@
     display: flex;
     font-size: 2rem;
     flex-direction: column;
+    animation: btnMove 1s ease-in-out forwards;
     margin: 0 3rem;
     margin-top: 10rem;
     @media (min-width: $tablet-bp){
       align-items: center;
     }
   } // home__buttons
-}
-
-.test {
-  margin-top: 10vh !important;
-  font-size: 10vh !important;
 }

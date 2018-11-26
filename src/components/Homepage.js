@@ -8,8 +8,8 @@ import Responsive from "../Responsive/Responsive";
 
 class Homepage extends Component {
   state = {
-    login: true,
-    signUp: false,
+    login: false,
+    signUp: true,
     guestLogin: false,
     buttons: false,
     consoleOpen: false,
@@ -48,7 +48,15 @@ class Homepage extends Component {
     this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }));
   };
   handleSignUp = () => {
-    this.setState(() => ({ login: false, signUp: true, guestLogin: false, buttons: false }));
+    if(this.state.login){ // check if page already on login and apply animation
+     const loginPage = document.getElementsByClassName("login")[0];
+      loginPage.style.transform = "translate(100%)";
+      const slide = setTimeout(() =>
+        this.setState(() => ({ login: false, signUp: true, guestLogin: false, buttons: false }))
+    ,500)
+    }else {
+      this.setState(() => ({ login: false, signUp: true, guestLogin: false, buttons: false }));
+    }
   };
   //===============================================================
   handleBackHome = () => {
@@ -69,7 +77,6 @@ class Homepage extends Component {
         <Responsive query={{maxWidth: 480}}>
           <img src="https://i.ibb.co/VQ63nWb/1.jpg" alt="bg" className="home__mobile--bg"/>
         </Responsive>
-        {window.outerHeight}
 
         <h1 className="home__logo" onClick={this.handleBackHome}>XAM</h1>
         {(this.state.buttons) &&

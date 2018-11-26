@@ -7,6 +7,7 @@ $font-secondary: 'La Belle Aurore', cursive;
 $btn-primary: #1DB954;
 $color-secondary: #1DB954;
 $color-primary: #5AB9EA;
+$color-primary-light : lighten($color-primary, 25%);
 $color-white: #fff;
 $color-grey: #eee;
 $color-dark-grey: #777;

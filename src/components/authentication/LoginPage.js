@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {approveCred, Login, requestLogin} from "../../actions/auth";
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 
@@ -24,17 +23,31 @@ class LoginPage extends Component {
   };
 
   componentDidMount() {
-    const logo = document.getElementsByClassName("home__logo")[0];
-    logo.classList.add("test");
-    const bg = document.getElementsByClassName("home__mobile--bg")[0];
-    bg.style.filter = "blur(3px)";
+    if(screen.width <= 480){
+      const bg = document.getElementsByClassName("home__mobile--bg")[0];
+      bg.style.filter = "blur(3px)";
+    }
+
   }
   componentWillUnmount() {
-    const bg = document.getElementsByClassName("home__mobile--bg")[0];
-    bg.style.filter = "unset";
-    const logo = document.getElementsByClassName("home__logo")[0];
-    logo.classList.remove("test");
+    if(screen.width <= 480){
+      const bg = document.getElementsByClassName("home__mobile--bg")[0];
+      bg.style.filter = "unset";
+    }
   }
+
+  handleFieldsFocus = () => {
+    if(screen.width <= 480){
+      const logo = document.getElementsByClassName("home__logo")[0];
+      logo.style.fontSize = "0";
+    }
+  };
+  handleFieldsBlur = () => {
+    if(screen.width <= 480){
+      const logo = document.getElementsByClassName("home__logo")[0];
+      logo.style.fontSize = "10vh";
+    }
+  };
 
   //=========================================
   handleUserNameChange = (e) => {
@@ -66,7 +79,10 @@ class LoginPage extends Component {
             onChange={this.handleUserNameChange}
             value={this.state.userName}
             type="text"
-            placeholder="Username"/>
+            placeholder="Username"
+            onFocus={this.handleFieldsFocus}
+            onBlur={this.handleFieldsBlur}
+          />
           <input
             className={`login__form--field
             ${(this.props.wrongCred || this.state.fail)  && "err-field"}`
@@ -74,12 +90,15 @@ class LoginPage extends Component {
             onChange={this.handlePasswordChange}
             value={this.state.password}
             type="password"
-            placeholder="Password"/>
-          <button className="btn btn-primary btn-lg ">Login</button>
+            placeholder="Password"
+            onFocus={this.handleFieldsFocus}
+            onBlur={this.handleFieldsBlur}
+          />
+          <button className="btn btn-primary btn-lg">Login</button>
 
           {/*<label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>*/}
         </form>
-        <p>dont have an account yet
+        <p className="login__signup">dont have an account yet ?
           <span className="link" onClick={this.props.resquestSignup}>signUp</span>
         </p>
       </div>

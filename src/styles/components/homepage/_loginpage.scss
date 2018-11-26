@@ -1,10 +1,28 @@
 .login{
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+  animation: revealPage .5s ease-in-out forwards;
+  @media (min-width: $tablet-bp){
+    align-items: center;
+  }
   &__form{
     display: flex;
     flex-direction: column;
     margin: 0 3rem;
+    animation: revealForm 1s ease-in-out forwards;
+    @media (min-width: $tablet-bp){
+      width: 50%;
+    }
+    button{
+      animation: btnMove 1s ease-in-out forwards;
+      height: fit-content;
+      text-align: center;
+      @media (min-width: $tablet-bp){
+        align-self: center;
+      }
+    } // form button
     &--field{
       padding: 2rem 1rem;
       margin: .5rem 0;
@@ -16,6 +34,13 @@
       &::placeholder{
         opacity: .5;
       }
-    }
+    } //login__form--field
+  } // login__form
+
+  &__signup{
+    margin: 0 3rem;
+    color: $color-white;
+    text-transform: capitalize;
+    font-size: 1.3rem;
   }
 }
