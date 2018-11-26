@@ -30,10 +30,6 @@ class Homepage extends Component {
     if ( this.props.isRef ) {
       this.handleSignUp();
     }
-
-  //  check for window resize and resize the bg accordingly
-    window.addEventListener("resize", this.handleResize);
-    this.setState(() => ({originalHeight: window.innerHeight}));
   };
 
   componentDidUpdate() {
@@ -46,32 +42,7 @@ class Homepage extends Component {
     }
   };
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  }
-
   //===============================================================
-  // handle resize
-  handleResize = () => {
-    const screenWidth = screen.width;
-    if(screenWidth <= 768 && clientInformation.appVersion.toLowerCase().includes("nexus") &&
-    screen.orientation.type.toLowerCase().includes("portrait")){
-      this.setState(() => ({consoleOpen: false}))
-    } else if(screenWidth > 1024 && clientInformation.appVersion.toLowerCase().includes("nexus")
-    || this.state.originalHeight > window.innerHeight){
-      this.setState(() => ({consoleOpen: true}))
-    }else if (clientInformation.appVersion.toLowerCase().includes("iphone")
-    && screen.orientation.type.toLowerCase().includes("landscape")){
-      this.setState(() => ({consoleOpen: true}))
-    }else if (screenWidth > 768 && screenWidth < 1024){
-      this.setState(() => ({consoleOpen: false}))
-    }else if (screenWidth < 768 && screenWidth > 480){
-      this.setState(() => ({consoleOpen: false}))
-    }
-    if(this.state.originalHeight === window.innerHeight){
-      this.setState(() => ({consoleOpen: false}))
-    }
-  };
   //===============================================================
   handleLogin = () => {
     this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }));
@@ -90,8 +61,7 @@ class Homepage extends Component {
       <div className="home">
         <Responsive query={{minWidth: 480}}>
           <div className="home__bg">
-            <video autoPlay muted loop className="home__bg--video"
-                   style={this.state.consoleOpen ? {width: "100%"} : {height: "100vh"}}>
+            <video autoPlay muted loop className="home__bg--video">
               <source src="bg/video-bg.mp4" type="video/mp4"/>
             </video>
           </div>

@@ -18,7 +18,26 @@
       position: absolute;
       top: 0;
       left: 0;
-      display: inline-block;
+      @media (min-width: 1800px){
+        width: 100%;
+      }
+      @media (max-width: 1800px) and (min-width: 1024px) and (min-height: 600px){
+        height: 100%;
+        width: unset;
+      }
+      @media (max-width: 1800px) and (min-width: 1350px){
+        width: 100%;
+        height: unset;
+      }
+      @media (max-width: 768px) and (min-aspect-ratio: 13/9){
+        width: 100%;
+        height: unset;
+      }
+      @media(max-width: $tablet-bp) and (min-width: $mobileL-bp){
+        height: unset;
+        width: 100%;
+      }
+
     }
   }
 }
