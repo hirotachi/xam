@@ -45,7 +45,15 @@ class Homepage extends Component {
   //===============================================================
   //===============================================================
   handleLogin = () => {
-    this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }));
+    if(this.state.signUp){ // check if page already on login and apply animation
+      const signUpPage = document.getElementsByClassName("signUp")[0];
+      signUpPage.style.transform = "translate(100%)";
+      const slide = setTimeout(() =>
+          this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }))
+        ,500)
+    }else {
+      this.setState(() => ({ login: true, signUp: false, guestLogin: false, buttons: false }));
+    }
   };
   handleSignUp = () => {
     if(this.state.login){ // check if page already on login and apply animation
