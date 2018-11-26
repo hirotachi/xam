@@ -172,15 +172,17 @@ class SignupPage extends Component {
               onFocus={this.handleFieldsFocus}
             />
           </div>
-          <input
-            onChange={this.handlePasswordChange}
-            value={this.state.password}
-            type="password"
-            placeholder="Password"
-          className="password signUp__form--field"
-          onFocus={this.handleFieldsFocus}
-            onBlur={this.handleFieldsBlur}
-          />
+          <div className="signUp__form--container">
+            <input
+              onChange={this.handlePasswordChange}
+              value={this.state.password}
+              type="password"
+              placeholder="Password"
+              className="password signUp__form--field"
+              onFocus={this.handleFieldsFocus}
+              onBlur={this.handleFieldsBlur}
+            />
+          </div>
           <div className="signUp__form--container">
             {!this.state.passMatch && <p className="err-msg">Password doesn't match</p>}
             <input
