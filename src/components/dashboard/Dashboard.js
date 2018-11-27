@@ -60,13 +60,13 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="dashboard">
         <Controls
           startCreation={this.handleEditOrCreate}
           back={this.handleBackHome}
           redirect={this.props.history.push}
         />
-        <div>
+        <div className="dashboard__platform">
           {!this.state.view &&
             <React.Fragment>
               {this.state.creation ?

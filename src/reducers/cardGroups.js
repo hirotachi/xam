@@ -7,7 +7,7 @@ export default (state = cardsDefaultState, action) => {
     case "CANCEL_GROUP_CREATION":
       return state.filter(group => group.id !== action.id);
     case "SAVE_GROUPS":
-      return action.groups
+      return action.groups;
     case "REMOVE_GROUP":
       return state.filter(group => group._id !== action.id);
     case "UPDATE_GROUP":

@@ -31,7 +31,7 @@ class Controls extends Component {
   };
   render(){
     return (
-      <div>
+      <div className="controls">
         <button onClick={this.handleAddGroup}>add</button>
         <button onClick={this.handleShowList}>list</button>
         <button onClick={this.handleRequestSupport}>support</button>

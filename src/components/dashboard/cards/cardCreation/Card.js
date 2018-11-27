@@ -34,7 +34,6 @@ class Card extends Component {
   };
   handleQuestionBlur = () => {
     const {question, answer} = this.state;
-    console.log(question);
     this.props.dispatch(updateCard((this.props._id || this.props.id), {question, answer}));
     this.setState(() => ({edit: false}));
   };
@@ -60,12 +59,16 @@ class Card extends Component {
     this.props.add();
   };
   handleRemoveCard = () => {
-    this.props.dispatch(removeCard(this.props._id || this.props.id));
+    if(!this.props._id){
+      this.props.dispatch(removeCard(this.props.id));
+    }else {
+      this.props.dispatch(removeCard(this.props._id));
+    }
   };
 
   render() {
     return (
-      <div>
+      <div style={{backgroundColor: this.props.selectedColor}}>
         {this.state.edit ?
           <textarea
             autoFocus={true}
@@ -108,4 +111,10 @@ class Card extends Component {
   }
 }
 
-export default connect()(Card);
+const mapStateToProps = (state) => {
+  return {
+    selectedColor: state.colors.selectedColor
+  }
+};
+
+export default connect(mapStateToProps)(Card);

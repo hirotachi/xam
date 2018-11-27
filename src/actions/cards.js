@@ -8,11 +8,11 @@ export const setCards = (cards) => {
   }
 };
 
-export const addCard = (question = "", answer = undefined) => {
+export const addCard = (id, question = "", answer = undefined) => {
   return {
     type: "ADD_CARD",
     card: {
-      id: shortid(),
+      id,
       question,
       answer,
       withAnswer: false

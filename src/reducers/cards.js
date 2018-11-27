@@ -7,7 +7,7 @@ export default (state = [], action) => {
     case "ADD_CARD":
       return [...state, action.card];
     case "REMOVE_CARD":
-      return state.filter(card => card._id !== action.id);
+      return state.filter(card => (card._id || card.id) !== action.id);
     case "UPDATE_CARD":
       return state.map(card => {
         if ((card._id || card.id) === action.id) {

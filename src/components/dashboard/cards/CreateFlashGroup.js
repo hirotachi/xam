@@ -11,6 +11,7 @@ import {
 } from "../../../actions/cardGroups";
 import Cards from "./cardCreation/Cards";
 import { clearCurrentCards } from "../../../actions/cards";
+import ColorPicker from "../ColorPicker/ColorPicker";
 
 class CreateFlashGroup extends Component {
   state = {
@@ -38,17 +39,17 @@ class CreateFlashGroup extends Component {
   handleSave = () => {
     const { title, _id } = this.props.group;
     const cards = this.props.currentCards;
+    const color = this.props.selectedColor;
     if (this.props.edit) {
-      // this.props.dispatch(updateGroup(_id, { title, cards }))
       this.props.dispatch(startSaveGroup( // save group to database
         _id,
-        this.props.token, { title, cards },
+        this.props.token, { title, color, cards },
         this.props.groups)
       );
     } else {
       this.props.dispatch(startSaveGroup(// save group to database
         _id,
-        this.props.token, { title, cards })
+        this.props.token, { title, color, cards })
       );
     }
 
@@ -68,8 +69,9 @@ class CreateFlashGroup extends Component {
     const { _id } = this.props.group;
     const { title } = this.state;
     const cards = this.props.currentCards;
+    const color = this.props.selectedColor;
     this.setState(() => ({ edit: false }));
-    this.props.dispatch(updateGroup(_id, { title, cards }))
+    this.props.dispatch(updateGroup(_id, { title, color, cards }))
   };
 
   //===============================================
@@ -80,6 +82,7 @@ class CreateFlashGroup extends Component {
       <div>
         <button onClick={this.handleCancel}>Cancel</button>
         <button onClick={this.handleSave}>save</button>
+        <ColorPicker savedColor={this.props.group.color}/>
         {
           this.state.edit ?
             <input
@@ -108,6 +111,7 @@ const mapStateToProps = (state) => {
     currentCards: state.currentCards,
     edit: state.currentGroup.edit,
     currentGroup: state.currentGroup,
+    selectedColor: state.colors.selectedColor,
     token: state.auth.token
   }
 };

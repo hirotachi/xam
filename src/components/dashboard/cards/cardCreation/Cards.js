@@ -17,7 +17,7 @@ class Cards extends Component {
 
   handleAddCard = () => {
     const { question } = this.state;
-    this.props.dispatch(addCard(question));
+    this.props.dispatch(addCard(shortid(), question));
   };
   render() {
     return (

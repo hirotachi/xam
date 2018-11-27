@@ -9,9 +9,9 @@ import Responsive from "../Responsive/Responsive";
 class Homepage extends Component {
   state = {
     login: false,
-    signUp: true,
+    signUp: false,
     guestLogin: false,
-    buttons: false,
+    buttons: true,
     consoleOpen: false,
     originalHeight: 0
   };
