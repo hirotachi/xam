@@ -8,14 +8,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "live-server public/",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server --host 0.0.0.0",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/index.js",
-    "heroku-postbuild": "yarn run build:prod",
-    "dev": "nodemon ./server/index.js"
+    "heroku-postbuild": "yarn run build:prod"
   },
   "keywords": [],
   "author": "",
@@ -35,10 +33,9 @@
     "enzyme-to-json": "^3.3.4",
     "express": "^4.16.4",
     "global": "^4.3.2",
-    "heroku-cli": "^7.0.9",
     "jest": "^23.6.0",
     "jwt-simple": "^0.5.5",
-    "live-server": "^1.2.0",
+    "kleur": "^3.0.0",
     "mini-css-extract-plugin": "^0.4.4",
     "moment": "^2.22.2",
     "mongoose": "^5.3.13",
