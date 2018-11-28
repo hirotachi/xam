@@ -1,5 +1,5 @@
 const QuizzSettingsDefaultState = {
-  random: true,
+  random: false,
   timer: {
     enabled: false,
     time: {

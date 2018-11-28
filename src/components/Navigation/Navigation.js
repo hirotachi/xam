@@ -7,7 +7,9 @@ import { setRef } from "../../actions/support";
 
 
 class Navigation extends Component {
-
+  state ={
+    menuOpen: false
+  };
 
   handleLogout = () => {
     this.props.dispatch(requestLogout());
@@ -18,10 +20,11 @@ class Navigation extends Component {
     this.props.redirect.history.push("/");
   };
 
-
+  //=========================================
   render() {
     return (
       <div>
+        {this.state.test}
         {
           !this.props.support.isSupport &&
           <React.Fragment>

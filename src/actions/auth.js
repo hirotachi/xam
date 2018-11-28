@@ -3,7 +3,9 @@ import jwt from "jwt-simple";
 
 
 const statusSecret = process.env.STATUS_SECRET || require("../../existEncrypt").secret;
-const localhost = process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/";
+const homehost = clientInformation.appVersion.toLowerCase().includes("samsung") ?
+  "http://xam-app.herokuapp.com/" : "http://localhost:3000/";
+const localhost = process.env.NODE_ENV === "production" ? "/" : homehost;
 
 export const login = (token) => {
   return {

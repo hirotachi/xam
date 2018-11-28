@@ -5,6 +5,9 @@ import shortId from "shortid";
 import {clearSelectedColor, setSelectedColor} from "../../../actions/colors";
 
 class ColorPicker extends Component {
+  state = {
+    show: false
+  };
   componentDidMount() {
     if(!this.props.selectedColor && !this.props.savedColor){
       this.props.dispatch(setSelectedColor(this.props.colors.colorsList[0]));
@@ -16,12 +19,13 @@ class ColorPicker extends Component {
     this.props.dispatch(clearSelectedColor());
   };
 
+  handleShowColorsList = () => {
+    console.log("show")
+  };
   render() {
     return (
-      <div>
-        colorpicker
-        <div style={{
-  padding: "1rem", display: "inline-block",
+      <React.Fragment>
+        <div onClick={this.handleShowColorsList} className="colorpicker" style={{
   backgroundColor: this.props.colors.selectedColor
 }}/>
         {
@@ -29,7 +33,7 @@ class ColorPicker extends Component {
             <Color key={shortId()} index={index} color={color}/>
           )
         }
-      </div>
+      </React.Fragment>
     );
   }
 }

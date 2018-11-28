@@ -14,7 +14,7 @@ class Dashboard extends Component {
     home: true,
     view: false,
     creation: false,
-    startQuizz: false
+    startQuizz: false,
   };
 
   componentWillMount() {
@@ -33,6 +33,7 @@ class Dashboard extends Component {
       this.props.dispatch(viewGroups(this.props.token));
     }
   }
+
   componentDidUpdate() {
     const { startView, startCreate, startEdit } = this.props.controls;
     if ((!this.state.creation) && (startCreate || startEdit)) {

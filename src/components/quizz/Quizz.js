@@ -5,6 +5,7 @@ import { clearCurrentGroup } from "../../actions/currentGroup";
 import QuestionCount from "./QuestionCount";
 import QuestionTimer from "./QuestionTimer";
 import { increaseCountAndPercent } from "../../actions/quizz";
+import {resetSettings} from "../../actions/quizzSettings";
 
 
 class Quizz extends Component {
@@ -31,6 +32,10 @@ class Quizz extends Component {
       this.props.history.push("/dashboard");
     }
   };
+
+  componentWillUnmount() {
+    this.props.dispatch(resetSettings());
+  }
 
   //==========================================
 
