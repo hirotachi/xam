@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Add} from "../../icons/icons";
+import { AddIcon} from "../../icons/icons";
 
 
 class ControlsMobile extends Component {
@@ -10,7 +10,7 @@ handleAddGroup = () => {
   render(){
     return (
         <div onClick={this.handleAddGroup}>
-          <Add/>
+          <AddIcon/>
         </div>
     );
   }

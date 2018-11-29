@@ -1,11 +1,13 @@
 import React, {Component} from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {filterBySearch} from "../../../actions/cardGroupsFilter";
+import {SearchIcon} from "../../icons/icons";
 
 
-class SearchDesktop extends Component{
+class SearchDesktop extends Component {
   state = {
-    search: ""
+    search: "",
+    openSearch: false
   };
 
   handleSearch = (e) => {
@@ -14,14 +16,25 @@ class SearchDesktop extends Component{
     this.props.dispatch(filterBySearch(search));
   };
 
-  render(){
+  toggleSearch = () => {
+    this.setState(() => ({openSearch: !this.state.openSearch}))
+  };
+
+  render() {
     return (
       <React.Fragment>
-        <input
-        type="text"
-        value={this.state.search}
-        onChange={this.handleSearch}
-        />
+        {
+          this.state.openSearch ?
+            <input
+              autoFocus={true}
+              type="text"
+              value={this.state.search}
+              onChange={this.handleSearch}
+              onBlur={this.toggleSearch}
+            /> :
+            <button onClick={this.toggleSearch}><SearchIcon/><span>Search</span></button>
+        }
+
       </React.Fragment>
     );
   }

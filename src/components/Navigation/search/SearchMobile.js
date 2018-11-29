@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { filterBySearch } from "../../../actions/cardGroupsFilter";
-import {LeftArrow, SearchIcon} from "../../icons/icons";
+import { LeftArrowIcon, SearchIcon} from "../../icons/icons";
 
 
 class SearchMobile extends Component {
@@ -38,7 +38,7 @@ class SearchMobile extends Component {
           {
             this.state.searchBar &&
             <div>
-              <div onClick={this.hideSearchBar}><LeftArrow/></div>
+              <div onClick={this.hideSearchBar}><LeftArrowIcon/></div>
               <input
                 onChange={this.handleSearchChange}
                 value={this.state.search}

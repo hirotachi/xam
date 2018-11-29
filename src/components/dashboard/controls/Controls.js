@@ -6,6 +6,7 @@ import { setCurrentGroup } from "../../../actions/currentGroup";
 import { resetRef } from "../../../actions/support";
 import ControlsMobile from "./ControlsMobile";
 import Responsive from "../../../Responsive/Responsive";
+import ControlsDesktop from "./ControlsDesktop";
 
 
 
@@ -35,9 +36,12 @@ class Controls extends Component {
           }
         </Responsive>
         <Responsive query={{minWidth: 769}}>
-          <button onClick={this.handleAddGroup}>add</button>
-          <button onClick={this.handleShowList}>list</button>
-          <button onClick={this.handleRequestSupport}>support</button>
+          <ControlsDesktop
+            {...this.props}
+            add={this.handleAddGroup}
+            list={this.handleShowList}
+            supportRedirect={this.handleRequestSupport}
+          />
         </Responsive>
       </div>
     );
