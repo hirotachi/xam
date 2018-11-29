@@ -13,7 +13,7 @@ class ViewCard extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{backgroundColor: this.props.color}}>
         <div>
           <button onClick={this.props.edit}>edit</button>
         </div>

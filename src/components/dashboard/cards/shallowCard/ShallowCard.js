@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {setCurrentGroup, startEdit} from "../../../../actions/currentGroup";
 import {startRemoveGroup} from "../../../../actions/cardGroups";
-import QuizzSettings from "../../quizzSetup/QuizzSettings";
 import {startEditControls} from "../../../../actions/controls";
 import Responsive from "../../../../Responsive/Responsive";
 import ShallowCardMobile from "./ShallowCardMobile";

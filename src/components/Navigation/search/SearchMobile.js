@@ -40,10 +40,12 @@ class SearchMobile extends Component {
             <div>
               <div onClick={this.hideSearchBar}><LeftArrowIcon/></div>
               <input
+                autoFocus={true}
                 onChange={this.handleSearchChange}
                 value={this.state.search}
                 type="text"
                 placeholder="Search"
+                onBlur={this.hideSearchBar}
               />
             </div>
           }

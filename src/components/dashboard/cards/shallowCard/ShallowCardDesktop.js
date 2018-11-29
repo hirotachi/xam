@@ -28,7 +28,7 @@ class ShallowCardDesktop extends Component{
           <button onClick={this.preQuizzSettings}>Start</button>
         {this.state.quizzSettings &&
         <QuizzSettings
-          layout="desktop"
+          layout="desktop-dashboard"
           end={this.preQuizzSettings}
           cards={this.props.cards}
           id={this.props._id}

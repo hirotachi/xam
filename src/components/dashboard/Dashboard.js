@@ -6,7 +6,7 @@ import Controls from "./controls/Controls";
 import ViewGroup from "./cards/view/ViewGroup";
 import { requestLogout } from "../../actions/auth";
 import { viewGroups } from "../../actions/cardGroups";
-import { endCreationControls, endEditControls } from "../../actions/controls";
+import {endCreationControls, endEditControls, endViewControls, startViewControls} from "../../actions/controls";
 
 
 class Dashboard extends Component {
@@ -32,6 +32,9 @@ class Dashboard extends Component {
     if (this.props.token) {
       this.props.dispatch(viewGroups(this.props.token));
     }
+    if (!this.state.view && !this.props.controls.startView){
+      this.props.dispatch(endViewControls());
+    }
   }
 
   componentDidUpdate() {
@@ -56,6 +59,7 @@ class Dashboard extends Component {
   };
 
   handleViewGroup = () => {
+    this.props.dispatch(startViewControls());
     this.setState(() => ({ view: true, home: false, creation: false, startQuizz: false }))
   };
 
