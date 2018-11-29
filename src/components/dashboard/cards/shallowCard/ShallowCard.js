@@ -42,22 +42,7 @@ class ShallowCard extends Component {
 
   render() {
     return (
-      <div>
-        {/*<h2>{this.state.title}</h2>*/}
-        {/*<p>Number of cards in this group: {this.state.cards.length}</p>*/}
-        {/*<button onClick={this.handleStartEdit}>Edit</button>*/}
-        {/*<button onClick={this.handleRemoveGroup}>remove</button>*/}
-        {/*<button onClick={this.handleViewGroup}>View</button>*/}
-        {/*<button onClick={this.handlestartQuizzSetup}>start</button>*/}
-        {/*{this.state.quizzSetting &&*/}
-        {/*<QuizzSettings*/}
-        {/*end={this.handleEndQuizzSetup}*/}
-        {/*id={this.state.id}*/}
-        {/*redirect={this.props.redirect}*/}
-        {/*cards={this.props.cards}*/}
-        {/*/>*/}
-        {/*}*/}
-
+      <React.Fragment>
         <Responsive query={{maxWidth: 480}}>
           <ShallowCardMobile
             {...this.props}
@@ -74,7 +59,7 @@ class ShallowCard extends Component {
             {...this.props}
           />
         </Responsive>
-      </div>
+      </React.Fragment>
     );
 
   }
