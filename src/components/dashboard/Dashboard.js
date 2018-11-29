@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import requireAuth from "../RequireAuth";
 import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
-import Controls from "./Controls";
+import Controls from "./controls/Controls";
 import ViewGroup from "./cards/view/ViewGroup";
 import { requestLogout } from "../../actions/auth";
 import { viewGroups } from "../../actions/cardGroups";

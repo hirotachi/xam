@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
-import ShallowCard from "./ShallowCard";
+import ShallowCard from "./shallowCard/ShallowCard";
 import cardGroupsFilter from "../../../selectors/cardGroupsFilter";
 import Filters from "../Filters";
 

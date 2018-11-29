@@ -1,13 +1,81 @@
 import React, {Component} from "react";
-import { connect } from "react-redux";
-import {SearchIcon} from "../icons/icons";
+import {connect} from "react-redux";
+import {Close, MenuIcon} from "../icons/icons";
+import SearchMobile from "./search/SearchMobile";
+import {NavLink} from "react-router-dom";
+import {requestLogout} from "../../actions/auth";
+import {setRef} from "../../actions/support";
 
-class NavigationMobile extends Component{
-  render(){
+class NavigationMobile extends Component {
+  state = {
+    searchBar: false,
+    showMenu: false
+  };
+
+  //Menu handlers===========================================
+  showMenu = () => {
+    this.setState(() => ({showMenu: true}));
+  };
+  hideMenu = () => {
+    this.setState(() => ({showMenu: false}));
+  };
+
+  //===========================================
+  handleLogout = () => {
+    this.props.dispatch(requestLogout());
+  };
+
+  handleSignUp = () => {
+    this.props.dispatch(setRef({location: this.props.redirect.location.pathname, request: "signup"}));
+    this.props.redirect.history.push("/");
+  };
+
+  handleLogin = () => {
+    this.props.dispatch(setRef({location: this.props.redirect.location.pathname, request: "login"}));
+    this.props.redirect.history.push("/");
+  };
+
+  goHome = () => {
+    this.props.redirect.history.push("/")
+  };
+
+  render() {
     return (
       <div>
-        <SearchIcon />
-        <p>XAM</p>
+        {
+          this.props.auth &&
+          <SearchMobile/>
+
+        }
+        <p onClick={this.goHome}>XAM</p>
+        {
+          this.state.showMenu ?
+            <div onClick={this.hideMenu}><Close/></div> :
+            <div onClick={this.showMenu}><MenuIcon/></div>
+        }
+        {
+          this.state.showMenu &&
+          <div>
+            {
+              this.props.auth &&
+              <button onClick={this.handleLogout}>Logout</button>
+            }
+            {
+              this.props.redirect.location.pathname === "/dashboard" ?
+                <NavLink to="/support">support</NavLink>:
+                <React.Fragment>
+                  {
+                    this.props.auth ?
+                      <NavLink to="/dashboard">Dashboard</NavLink>:
+                      <div>
+                        <button onClick={this.handleLogin}>Login</button>
+                        <button onClick={this.handleSignUp}>Signup</button>
+                      </div>
+                  }
+                </React.Fragment>
+            }
+          </div>
+        }
       </div>
     )
   }

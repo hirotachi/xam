@@ -27,8 +27,10 @@ class Homepage extends Component {
     if ( this.props.auth ) {
       this.props.history.push("/dashboard");
     }
-    if ( this.props.isRef ) {
+    if ( this.props.isRef && this.props.isRef.request === "signup" ) {
       this.handleSignUp();
+    }else if (this.props.isRef && this.props.isRef.request === "login" ){
+      this.handleLogin();
     }
   };
 

@@ -27,13 +27,12 @@ class CreateFlashGroup extends Component {
 
   handleCancel = () => {
     if (this.props.edit) {
-      this.props.dispatch(cancelEdit());
+       this.props.dispatch(cancelEdit());
     } else {
       this.props.dispatch(startCancelGroupCreation(
         this.props.group._id, this.props.token, this.props.groups ));
       this.props.dispatch(clearCurrentGroup());
     }
-
     this.props.backHome();
   };
   handleSave = () => {

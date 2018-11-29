@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { enterSupport, leaveSupport, setRef } from "../../actions/support";
+import {login} from "../../actions/auth";
 
 
 class SupportPage extends Component {
@@ -14,6 +15,10 @@ class SupportPage extends Component {
   };
 
   componentDidMount() {
+      if(localStorage.xamUser){
+        const { token } = JSON.parse(localStorage.xamUser);
+        this.props.dispatch(login(token))
+      }
     this.props.dispatch(enterSupport());
   }
 

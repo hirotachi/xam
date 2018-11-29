@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setCurrentGroup, startEdit } from "../../../actions/currentGroup";
-import { startRemoveGroup } from "../../../actions/cardGroups";
-import QuizzSettings from "../QuizzSettings";
-import { startEditControls } from "../../../actions/controls";
+import { setCurrentGroup, startEdit } from "../../../../actions/currentGroup";
+import { startRemoveGroup } from "../../../../actions/cardGroups";
+import QuizzSettings from "../../QuizzSettings";
+import { startEditControls } from "../../../../actions/controls";
 
 class ShallowCard extends Component {
   state = {
