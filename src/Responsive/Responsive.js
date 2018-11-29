@@ -6,17 +6,19 @@ class Responsive extends Component {
     show: true
   };
 
-  componentWillMount() {
-    this.responsive();
+  componentDidMount() {
+    this.query();
+    this.queries();
   }
 
   componentWillUnmount(){
-    window.removeEventListener("resize", this.responsive);
+    window.removeEventListener("resize", this.query);
   }
 
-  responsive = () => {
-    if ( this.props.query ) { // if query props is defined else don't anything
-      window.addEventListener("resize", this.responsive);
+  //Single query checker
+  query = () => {
+    if ( this.props.query ) { // if query props is defined else don't do anything
+      window.addEventListener("resize", this.query);
       const { maxWidth = "", minWidth = "", orientation = "" } = this.props.query;
       const screenWidth = screen.width;
       //Width===========================================================
@@ -34,7 +36,7 @@ class Responsive extends Component {
         }
     }
   };
-  // single query checker=======================================================================
+  //   state handler for all queries=======================================================================
   showChecker = (property) => { // shows children if property is defined and true
     if(property !== null && property === true){
       this.setState(() => ({show: true}));
@@ -42,6 +44,22 @@ class Responsive extends Component {
       this.setState(() => ({show: false}));
     }
   };
+  // multiple query checker =====================================================================
+  queries = () => { // check all queries provided and set state of show
+    if(!!this.props.queries){
+      let queryList = [];
+      window.addEventListener("resize", this.queries);
+      Object.entries(this.props.queries).forEach(([key, value]) => {
+        if(key.toLowerCase().includes("width")){
+          queryList.push(this.widthChecker(key, value, screen.width))
+        }else if (key.toLowerCase().includes("orientation")){
+          queryList.push(orientationChecker(value))
+        }
+      });
+      this.showChecker(!(queryList.indexOf(false) !== -1)); // set the show state if all queries are true
+    }
+  };
+  //============================================================================================
 
   widthChecker = (term, width, screenWidth) => { // check width and return result
     const widthCheck = term === "maxWidth" ? !!width &&  width >= screenWidth : !!width &&  width <= screenWidth;
@@ -53,6 +71,7 @@ class Responsive extends Component {
       return false
     }
   };
+
 //===========================================================================
   render() {
     return (

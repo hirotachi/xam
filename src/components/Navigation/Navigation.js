@@ -34,7 +34,7 @@ class Navigation extends Component {
             }
           </React.Fragment>
         }
-        <Responsive >
+        {/*<Responsive queries={{maxWidth: 480}}>*/}
           {
             this.props.auth ?
               <button onClick={this.handleLogout}>Logout</button> :
@@ -48,8 +48,11 @@ class Navigation extends Component {
                 }
               </React.Fragment>
           }
-        </Responsive>
+        {/*</Responsive>*/}
 
+        <Responsive queries={{ minWidth: 480, orientation: "landscape"}}>
+          this is a test responsive
+        </Responsive>
       </div>
     );
   }

@@ -1,10 +1,12 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
+import {SearchIcon} from "../icons/icons";
 
 class NavigationMobile extends Component{
   render(){
     return (
       <div>
+        <SearchIcon />
         <p>XAM</p>
       </div>
     )
