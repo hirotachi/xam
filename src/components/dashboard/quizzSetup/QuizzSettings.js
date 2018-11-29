@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import {
   resetSettings,
   turnOffRandom,
@@ -8,9 +7,9 @@ import {
   turnOnRandom,
   turnOnTimer,
   startSetTimer
-} from "../../actions/quizzSettings";
-import { setCurrentGroup } from "../../actions/currentGroup";
-import { setCards } from "../../actions/cards";
+} from "../../../actions/quizzSettings";
+import { setCurrentGroup } from "../../../actions/currentGroup";
+import { setCards } from "../../../actions/cards";
 
 
 class QuizzSettings extends Component {
@@ -58,7 +57,6 @@ class QuizzSettings extends Component {
     } else {
       this.props.dispatch(startSetTimer({ seconds: 10 }));
     }
-
   };
 
   handleTimeMetricsChange = (e) => {

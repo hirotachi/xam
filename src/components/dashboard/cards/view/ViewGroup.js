@@ -4,7 +4,7 @@ import groupSelector from "../../../../selectors/groupSelector";
 import { clearCurrentGroup, startEdit } from "../../../../actions/currentGroup";
 import ViewCard from "./ViewCard";
 import { startEditControls } from "../../../../actions/controls";
-import QuizzSettings from "../../QuizzSettings";
+import QuizzSettings from "../../quizzSetup/QuizzSettings";
 
 class ViewGroup extends Component {
   state = {

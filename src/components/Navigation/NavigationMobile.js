@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Close, MenuIcon} from "../icons/icons";
+import { CloseIcon, MenuIcon} from "../icons/icons";
 import SearchMobile from "./search/SearchMobile";
 import {NavLink} from "react-router-dom";
 import {requestLogout} from "../../actions/auth";
@@ -50,7 +50,7 @@ class NavigationMobile extends Component {
         <p onClick={this.goHome}>XAM</p>
         {
           this.state.showMenu ?
-            <div onClick={this.hideMenu}><Close/></div> :
+            <div onClick={this.hideMenu}><CloseIcon/></div> :
             <div onClick={this.showMenu}><MenuIcon/></div>
         }
         {
