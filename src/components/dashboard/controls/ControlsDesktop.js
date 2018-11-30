@@ -17,8 +17,14 @@ class ControlsDesktop extends Component {
     return (
       <div>
         <h2 onClick={this.redirectHome}>XAM</h2>
-        <SearchDesktop/>
-        <button onClick={this.props.add}><AddIcon/><span>New group</span></button>
+        {
+          Object.values(this.props.controls).indexOf(true) === -1 &&
+          <SearchDesktop/>
+        }
+        {
+          !this.props.controls.startCreate && !this.props.controls.startEdit &&
+          <button onClick={this.props.add}><AddIcon/><span>New group</span></button>
+        }
         <button onClick={this.props.list}><MenuIcon/><span>Groups List</span></button>
         <button onClick={this.props.supportRedirect}><SupportIcon/></button>
         <button onClick={this.handleLogout}><LogoutIcon/><span>Logout</span></button>
@@ -26,5 +32,9 @@ class ControlsDesktop extends Component {
     );
   }
 }
-
-export default connect()(ControlsDesktop);
+const mapStateToProps = (state) => {
+  return {
+    controls: state.controls
+  }
+};
+export default connect(mapStateToProps)(ControlsDesktop);

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {addCard} from "../../../../actions/cardGroups";
 import {removeCard, updateCard} from "../../../../actions/cards";
 import shortid from "shortid";
-import {CloseIcon, DropDownIcon} from "../../../icons/icons";
+import {CloseIcon, DropDownIcon, Test} from "../../../icons/icons";
 import Responsive from "../../../../Responsive/Responsive";
 
 
@@ -117,7 +117,7 @@ class Card extends Component {
           }
         </React.Fragment>
 
-        <button onClick={this.handleRemoveCard}><CloseIcon/></button>
+        <span onClick={this.handleRemoveCard}><CloseIcon/></span>
         {this.props.last &&
         <Responsive query={{minWidth: 480}}>
           <button onClick={this.handleAddCard}>add Card</button>
