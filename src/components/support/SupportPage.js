@@ -94,6 +94,7 @@ class SupportPage extends Component {
         </Responsive>
 
         <h2>How can we help?</h2>
+        {this.props.support.sent === null && <p>sorry something went wrong try again later</p>}
         {this.props.support.sent ? <p>success</p> :
           <React.Fragment>
             <form onSubmit={this.handleFormSubmit}>

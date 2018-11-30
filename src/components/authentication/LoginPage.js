@@ -95,8 +95,6 @@ class LoginPage extends Component {
             onBlur={this.handleFieldsBlur}
           />
           <button className="btn btn-primary btn-lg">Login</button>
-
-          {/*<label htmlFor="remember"><input type="checkbox" id="remember"/> Remember Me</label>*/}
         </form>
         <p className="login__signup">dont have an account yet ?
           <span className="link" onClick={this.props.resquestSignup}>signUp</span>
