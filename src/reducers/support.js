@@ -1,6 +1,7 @@
 const supportDefaultState = {
   isSupport: false,
-  isRef: false
+  isRef: false,
+   sent: false
 };
 
 export default (state = supportDefaultState, action) => {
@@ -13,6 +14,12 @@ export default (state = supportDefaultState, action) => {
       return {...state, isRef: action.ref};
     case "RESET_REF":
       return {...state, isRef: false};
+    case "TICKET_SENT":
+      return {...state, sent: true};
+    case "TICKET_NOT_SENT":
+      return {...state, sent: null};
+    case "RESET_TICKET":
+      return {...state, sent: false};
     default :
       return state;
   }

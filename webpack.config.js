@@ -67,7 +67,10 @@ module.exports = (env) => {
       new webpack.DefinePlugin({
         "process.env.DATABASE_URL": JSON.stringify(process.env.DATABASE_URL),
         "process.env.CONFIG_SECRET": JSON.stringify(process.env.CONFIG_SECRET),
-        "process.env.STATUS_SECRET": JSON.stringify(process.env.STATUS_SECRET)
+        "process.env.STATUS_SECRET": JSON.stringify(process.env.STATUS_SECRET),
+        "process.env.API_KEY": JSON.stringify(process.env.API_KEY),
+        "process.env.DOMAIN": JSON.stringify(process.env.DOMAIN),
+        "process.env.SUPPORT_EMAIL": JSON.stringify(process.env.SUPPORT_EMAIL),
       })
     ],
     devtool: isProduction ? "source-map" : "inline-source-map",

@@ -69,7 +69,7 @@ class Dashboard extends Component {
         <Controls
           startCreation={this.handleEditOrCreate}
           back={this.handleBackHome}
-          redirect={this.props.history.push}
+          {...this.props}
         />
         <div className="dashboard__platform">
           {!this.state.view &&

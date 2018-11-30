@@ -18,7 +18,7 @@ class Controls extends Component {
   };
 
   handleRequestSupport = () => {
-    this.props.redirect("/support");
+    this.props.history.push("/support");
   };
 
   handleShowList = () => {

@@ -9,6 +9,7 @@ public/styles.css.map
 config.js
 existEncrypt.js
 database.js
+supportApi.js
 .env.test
 .env.development
 /server/data/*

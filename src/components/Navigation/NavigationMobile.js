@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { CloseIcon, MenuIcon} from "../icons/icons";
+import {CloseIcon, MenuIcon} from "../icons/icons";
 import SearchMobile from "./search/SearchMobile";
 import {NavLink} from "react-router-dom";
 import {requestLogout} from "../../actions/auth";
@@ -44,6 +44,7 @@ class NavigationMobile extends Component {
       <div>
         {
           this.props.auth && Object.values(this.props.controls).indexOf(true) === -1 &&
+          this.props.redirect.location.pathname !== "/support" &&
           <SearchMobile/>
         }
         <p onClick={this.goHome}>XAM</p>
@@ -61,11 +62,11 @@ class NavigationMobile extends Component {
             }
             {
               this.props.redirect.location.pathname === "/dashboard" ?
-                <NavLink to="/support">support</NavLink>:
+                <NavLink to="/support">support</NavLink> :
                 <React.Fragment>
                   {
                     this.props.auth ?
-                      <NavLink to="/dashboard">Dashboard</NavLink>:
+                      <NavLink to="/dashboard">Dashboard</NavLink> :
                       <div>
                         <button onClick={this.handleLogin}>Login</button>
                         <button onClick={this.handleSignUp}>Signup</button>
@@ -84,7 +85,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.auth.auth,
     support: state.support,
-     controls: state.controls
+    controls: state.controls
   }
 };
 

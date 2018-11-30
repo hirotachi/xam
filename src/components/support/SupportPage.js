@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { enterSupport, leaveSupport, setRef } from "../../actions/support";
+import {enterSupport, leaveSupport, sendTicket, setRef, ticketReset, ticketSent} from "../../actions/support";
 import {login} from "../../actions/auth";
+import Controls from "../dashboard/controls/Controls";
+import Responsive from "../../Responsive/Responsive";
 
 
 class SupportPage extends Component {
   state = {
-    mainSubject: "",
     fullName: "",
     email: "",
     subject: "",
     message: "",
-    success: false
   };
 
   componentDidMount() {
@@ -23,11 +23,11 @@ class SupportPage extends Component {
   }
 
   componentDidUpdate() {
-    if ( this.state.success ) {
+    if ( this.props.support.sent ) {
       const success = setTimeout(() => {
-        this.setState(() => ({ success: false }));
+        this.props.dispatch(ticketReset());
         clearTimeout(success);
-      }, 1000)
+      }, 5000)
     }
   }
 
@@ -36,10 +36,6 @@ class SupportPage extends Component {
   }
 
   //====================================================
-  handleMainSubjectChange = (e) => {
-    const mainSubject = e.target.value;
-    this.setState(() => ({ mainSubject }))
-  };
   handleFullNameChange = (e) => {
     const fullName = e.target.value;
     this.setState(() => ({ fullName }))
@@ -63,24 +59,24 @@ class SupportPage extends Component {
     e.preventDefault();
     if ( !!fullName && emailReg.test(email) && !!subject && !!message ) {
       this.setState(() => ({
-        mainSubject: "", fullName: "", email: "", subject: "", message: "", success: true
+         fullName: "", email: "", subject: "", message: "", success: true
       }));
+      this.props.dispatch(sendTicket({ fullName, email, subject, message }));
     }
     this.submitCheck({ fullName, email, subject, message }, emailReg)
   };
   //====================================================
   submitCheck = (object, reg) => { // pass every object as a string and value to single checker
-    // console.log(mainSubject, fullName, email, subject, message)
     Object.entries(object).forEach(([ key, value ]) => this.singleFieldCheck(value, key, reg))
-
   };
   singleFieldCheck = (field, name, reg) => { // check each field and give style according to condition
+    const tag = document.getElementsByClassName(name)[0];
     if ( (name === "email" && !reg.test(field)) ) {
-      document.getElementsByClassName(name)[ 0 ].style.borderColor = "red";
+      tag.classList.add("err-field")
     } else if ( !field ) {
-      document.getElementsByClassName(name)[ 0 ].style.borderColor = "red";
+      tag.classList.add("err-field")
     } else {
-      document.getElementsByClassName(name)[ 0 ].style.borderColor = "green";
+      tag.classList.remove("err-field")
     }
   };
 
@@ -90,19 +86,16 @@ class SupportPage extends Component {
   render() {
     return (
       <div>
+        <Responsive query={{minWidth: 480}}>
+          <Controls
+            redirect={this.props.history.push}
+            {...this.props}
+          />
+        </Responsive>
+
         <h2>How can we help?</h2>
-        {this.state.success ? <p>success</p> :
+        {this.props.support.sent ? <p>success</p> :
           <React.Fragment>
-            <select
-              name="headerSubject"
-              defaultValue="What would you like to talk about?"
-              onChange={this.handleMainSubjectChange}
-            >
-              <option disabled>What would you like to talk about?</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
             <form onSubmit={this.handleFormSubmit}>
               <input
                 value={this.state.fullName}
@@ -143,7 +136,8 @@ class SupportPage extends Component {
 
 const mapStatToProps = (state) => {
   return {
-    auth: state.auth.auth
+    auth: state.auth.auth,
+    support: state.support
   }
 };
 export default connect(mapStatToProps)(SupportPage);
