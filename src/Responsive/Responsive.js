@@ -13,6 +13,7 @@ class Responsive extends Component {
 
   componentWillUnmount(){
     window.removeEventListener("resize", this.query);
+    window.removeEventListener("resize", this.queries);
   }
 
   //Single query checker

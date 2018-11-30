@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {addCard} from "../../../../actions/cardGroups";
 import {removeCard, updateCard} from "../../../../actions/cards";
 import shortid from "shortid";
+import {CloseIcon, DropDownIcon} from "../../../icons/icons";
+import Responsive from "../../../../Responsive/Responsive";
 
 
 class Card extends Component {
@@ -12,7 +14,8 @@ class Card extends Component {
     withAnswer: this.props.withAnswer,
     edit: false,
     editAnswer: false,
-    id: shortid()
+    id: shortid(),
+    showAnswerSection: false
   };
 
   //=======================================
@@ -65,6 +68,11 @@ class Card extends Component {
       this.props.dispatch(removeCard(this.props._id));
     }
   };
+  //===========================================
+  toggleShowAnswerSection = () => {
+    this.setState(() => ({showAnswerSection: !this.state.showAnswerSection}))
+  };
+  //===========================================
 
   render() {
     return (
@@ -80,31 +88,40 @@ class Card extends Component {
           :
           <p onClick={this.handleQuestionFocus}>{this.state.question}</p>
         }
-        {this.state.withAnswer &&
-        <React.Fragment>
-          {this.state.editAnswer ?
-            <textarea
-              autoFocus={true}
-              placeholder="Answer"
-              value={this.state.answer}
-              onChange={this.handleAnswerChange}
-              onBlur={this.handleAnswerBlur}
-            /> :
-            <p onClick={this.handleFocusAnswer}>{this.state.answer}</p>
-          }
-
-        </React.Fragment>
-
-        }
         <label>
           <input
             checked={this.state.withAnswer} id={this.state.id}
             type="checkbox" onChange={this.handleAddAnswer}/>
           with answer
         </label>
-        <button onClick={this.handleRemoveCard}>remove</button>
+        <React.Fragment>
+          {this.state.withAnswer &&
+          <div>
+            <span onClick={this.toggleShowAnswerSection}><DropDownIcon/></span>
+            {
+              this.state.showAnswerSection &&
+                <div>
+                  {this.state.editAnswer ?
+                    <textarea
+                      autoFocus={true}
+                      placeholder="Answer"
+                      value={this.state.answer}
+                      onChange={this.handleAnswerChange}
+                      onBlur={this.handleAnswerBlur}
+                    /> :
+                    <p onClick={this.handleFocusAnswer}>{this.state.answer}</p>
+                  }
+                </div>
+            }
+          </div>
+          }
+        </React.Fragment>
+
+        <button onClick={this.handleRemoveCard}><CloseIcon/></button>
         {this.props.last &&
-        <button onClick={this.handleAddCard}>add Card</button>
+        <Responsive query={{minWidth: 480}}>
+          <button onClick={this.handleAddCard}>add Card</button>
+        </Responsive>
         }
       </div>
     );

@@ -42,7 +42,7 @@ export const addGroup = (group) => {
   }
 };
 
-export const startAddGroup = (token) => {
+export const startAddGroup = (token, color) => {
   return (dispatch) => {
     axios(`${localhost}dashboard/create`, {
       method: "POST",
@@ -50,9 +50,10 @@ export const startAddGroup = (token) => {
         group: {
           createdAt: moment().valueOf(),
           title: "Title",
+          color,
           cards: [{
             question: "add Question",
-            answer: "nothing",
+            answer: "Add your answer",
             withAnswer: true
           }]
         }

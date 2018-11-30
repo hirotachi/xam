@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Responsive from "../../../../Responsive/Responsive";
-import {PencilDesktopIcon, PencilMobileIcon} from "../../../icons/icons";
+import {DropDownIcon, PencilDesktopIcon, PencilMobileIcon} from "../../../icons/icons";
 
 class ViewCard extends Component {
   state = {
@@ -31,19 +31,10 @@ class ViewCard extends Component {
         <h4>{this.props.question}</h4>
         {this.props.withAnswer &&
           <div>
-            <label htmlFor={this.props._id}>
-              Show answer
-            <input
-                id={this.props._id}
-                type="checkbox"
-                value={this.state.showAnswer}
-                onChange={this.handleShowAnswer}
-              />
-            </label>
-
+            <span onClick={this.handleShowAnswer}><DropDownIcon/></span>
+            {this.state.showAnswer && <p>{this.props.answer}</p>}
           </div>
         }
-        {this.state.showAnswer && <p>{this.props.answer}</p>}
       </div>
     );
   }

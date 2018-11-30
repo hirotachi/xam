@@ -133,6 +133,11 @@ export const PencilMobileIcon = (props) => (
       </clipPath>
     </defs>
   </svg>
+);
 
+export const DropDownIcon = (props) => (
+  <svg className={props.style || "icon"}  viewBox="0 0 255 255"  xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 63.75L127.5 191.25L255 63.75H0Z"/>
+  </svg>
 );
 

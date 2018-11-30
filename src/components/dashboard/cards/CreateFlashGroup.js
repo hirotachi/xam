@@ -81,7 +81,7 @@ class CreateFlashGroup extends Component {
       <div>
         <button onClick={this.handleCancel}>Cancel</button>
         <button onClick={this.handleSave}>save</button>
-        <ColorPicker savedColor={this.props.group.color}/>
+        <ColorPicker _id={this.props.group._id} savedColor={this.props.group.color}/>
         {
           this.state.edit ?
             <input
