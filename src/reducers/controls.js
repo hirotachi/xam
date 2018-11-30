@@ -18,6 +18,8 @@ export default (state = controlsDefaultState, action) => {
       return {...state, startEdit: true};
     case "END_EDIT":
       return {...state, startEdit: false};
+    case "RESET_CONTROLS":
+      return controlsDefaultState;
     default:
       return state;
   }

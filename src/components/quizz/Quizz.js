@@ -6,6 +6,7 @@ import QuestionCount from "./QuestionCount";
 import QuestionTimer from "./QuestionTimer";
 import { increaseCountAndPercent } from "../../actions/quizz";
 import {resetSettings} from "../../actions/quizzSettings";
+import {resetControls} from "../../actions/controls";
 
 
 class Quizz extends Component {
@@ -20,11 +21,12 @@ class Quizz extends Component {
   componentWillMount() {
     if (!this.props.currentGroup.currentId || !this.props.auth) {
       this.props.history.push("/dashboard");
-    }
-    if (this.props.quizzSettings.random) {
-      this.randomPicker(this.state.cards)
-    } else {
-      this.normalPicker(this.state.cards)
+    }else {
+      if (this.props.quizzSettings.random) {
+        this.randomPicker(this.state.cards)
+      } else {
+        this.normalPicker(this.state.cards)
+      }
     }
   };
   componentDidUpdate() {
@@ -35,6 +37,7 @@ class Quizz extends Component {
 
   componentWillUnmount() {
     this.props.dispatch(resetSettings());
+    this.props.dispatch(resetControls());
   }
 
   //==========================================
@@ -91,19 +94,19 @@ class Quizz extends Component {
   render() {
     return (
       <React.Fragment>
+        <p>XAM</p>
+        <button onClick={this.handleExit}>exit</button>
         {
           this.props.group && this.props.groups.length > 0 &&
           <div>
-            start quizz
             <h2>{this.props.group.title}</h2>
-            <button onClick={this.handleExit}>exit</button>
             <QuestionCount cards={this.props.group.cards} />
+            {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
             <div>
               <p>{!!this.state.currentCard && this.state.currentCard.question}</p>
               {this.state.answer && <p>{this.state.answer}</p>}
 
             </div>
-            {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
             {this.state.currentCard.withAnswer && !this.state.answer
             && <button onClick={this.handleShow}>show answer</button>}
             {this.state.cards.length !== 0 &&

@@ -34,7 +34,7 @@ class QuestionTimer extends Component {
     return (
       <div>
         <p>
-          time : {this.state.minutes.toString().length === 1 && <span>0</span>}{this.state.minutes}:
+          {this.state.minutes.toString().length === 1 && <span>0</span>}{this.state.minutes}:
           {this.state.seconds.toString().length === 1 && <span>0</span>}{this.state.seconds}
 
         </p>

@@ -83,14 +83,6 @@ class SupportPage extends Component {
       document.getElementsByClassName(name)[ 0 ].style.borderColor = "green";
     }
   };
-  //====================================================
-  handleSupportAddRequest = () => {
-    this.props.dispatch(setRef(this.props.location.pathname));
-    this.props.history.push("/dashboard");
-  };
-  handleSupportListRequest = () => {
-    this.props.history.push("/dashboard");
-  };
 
   //====================================================
 
@@ -98,13 +90,6 @@ class SupportPage extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.auth &&
-          <div>
-            <button onClick={this.handleSupportAddRequest}>add</button>
-            <button onClick={this.handleSupportListRequest}>list</button>
-          </div>
-        }
         <h2>How can we help?</h2>
         {this.state.success ? <p>success</p> :
           <React.Fragment>

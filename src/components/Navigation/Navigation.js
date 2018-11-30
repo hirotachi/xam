@@ -8,7 +8,7 @@ class Navigation extends Component {
     return (
       <React.Fragment>
         {
-          !(this.props.redirect.location.pathname === "/") &&
+          !(this.props.redirect.location.pathname === ("/quizz" || "/")) &&
           <Responsive query={{maxWidth: 480}}>
             <NavigationMobile {...this.props}/>
           </Responsive>

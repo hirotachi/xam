@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { increaseCountAndPercent, resetCount, startSetStartPercent } from "../../actions/quizz";
+import QuestionBar from "./QuestionBar";
 
 class QuestionCount extends Component {
 
@@ -25,8 +26,7 @@ class QuestionCount extends Component {
     return (
       <div>
         Questions count is : {`${this.props.count}/${this.props.cards.length}`}
-
-        <p>bar: {this.props.currentPercent}% </p>
+        <QuestionBar percent={this.props.currentPercent}/>
       </div>
     );
   }
