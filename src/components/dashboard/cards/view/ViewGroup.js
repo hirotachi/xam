@@ -66,7 +66,7 @@ class ViewGroup extends Component {
                 </span>
                 }
 
-                <span onClick={this.handleStartQuizzSetup}>
+                <span onClick={this.handleEditGroup}>
                   <GearIcon/>
                 </span>
                 <span onClick={this.toggleGroupMenu}>

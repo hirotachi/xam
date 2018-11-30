@@ -81,7 +81,6 @@ class QuizzSettings extends Component {
   render() {
     return (
       <div>
-        <p>quizz settings</p>
         <label htmlFor="random">
           Random
           <input

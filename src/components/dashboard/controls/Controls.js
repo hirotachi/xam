@@ -27,8 +27,6 @@ class Controls extends Component {
   render(){
     return (
       <div className="controls">
-
-
         <Responsive query={{maxWidth: 480}}>
           {
             !(this.props.controls.startCreate || this.props.controls.startEdit) &&

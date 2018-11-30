@@ -22,18 +22,15 @@ class ShallowCardDesktop extends Component{
           <TrashIcon fill={this.props.color}/>
         </span>
         <h2 onClick={this.props.viewGroup}>{this.props.title}</h2>
-        <div>
-          span
-        </div>
-          <button onClick={this.preQuizzSettings}>Start</button>
-        {this.state.quizzSettings &&
+        {this.state.quizzSettings ?
         <QuizzSettings
           layout="desktop-dashboard"
           end={this.preQuizzSettings}
           cards={this.props.cards}
           id={this.props._id}
           redirect={this.props.redirect}
-        />
+        /> :
+          <button onClick={this.preQuizzSettings}>Start</button>
         }
       </div>
     );
