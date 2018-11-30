@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Responsive from "../../../../Responsive/Responsive";
+import {PencilDesktopIcon, PencilMobileIcon} from "../../../icons/icons";
 
 class ViewCard extends Component {
   state = {
@@ -15,7 +17,16 @@ class ViewCard extends Component {
     return (
       <div style={{backgroundColor: this.props.color}}>
         <div>
-          <button onClick={this.props.edit}>edit</button>
+          <Responsive query={{maxWidth: 480}}>
+            <span onClick={this.props.edit}>
+              <PencilMobileIcon/>
+            </span>
+          </Responsive>
+          <Responsive query={{minWidth: 480}}>
+            <span onClick={this.props.edit}>
+              <PencilDesktopIcon/>
+            </span>
+          </Responsive>
         </div>
         <h4>{this.props.question}</h4>
         {this.props.withAnswer &&

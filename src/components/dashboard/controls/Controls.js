@@ -35,7 +35,7 @@ class Controls extends Component {
             <ControlsMobile startCreation={this.handleAddGroup}/>
           }
         </Responsive>
-        <Responsive query={{minWidth: 769}}>
+        <Responsive query={{minWidth: 480}}>
           <ControlsDesktop
             {...this.props}
             add={this.handleAddGroup}

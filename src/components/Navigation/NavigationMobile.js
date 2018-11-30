@@ -43,9 +43,8 @@ class NavigationMobile extends Component {
     return (
       <div>
         {
-          this.props.auth &&
+          this.props.auth && Object.values(this.props.controls).indexOf(true) === -1 &&
           <SearchMobile/>
-
         }
         <p onClick={this.goHome}>XAM</p>
         {
@@ -84,7 +83,8 @@ class NavigationMobile extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.auth,
-    support: state.support
+    support: state.support,
+     controls: state.controls
   }
 };
 
