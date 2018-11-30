@@ -20,6 +20,7 @@ class ViewGroup extends Component {
   handleEditGroup = () => {
     this.props.dispatch(startEdit(this.props.group._id));
     this.props.dispatch(startEditControls());
+    this.props.dispatch(endViewControls());
     this.props.edit();
   };
   handleStartQuizzSetup = () => {
