@@ -2,7 +2,7 @@ import axios from "axios";
 import jwt from "jwt-simple";
 
 
-const statusSecret = process.env.STATUS_SECRET || require("../../existEncrypt").secret;
+const statusSecret = process.env.STATUS_SECRET || require("../../../existEncrypt").secret;
 const homehost = clientInformation.appVersion.toLowerCase().includes("samsung") ?
   "http://xam-app.herokuapp.com/" : "http://localhost:3000/";
 const localhost = process.env.NODE_ENV === "production" ? "/" : homehost;
@@ -148,4 +148,5 @@ export const requestAuth = () => {
       .catch(err => console.log(err))
   }
 };
+
 

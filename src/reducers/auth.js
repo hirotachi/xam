@@ -3,8 +3,12 @@ const authDefaultState = {
   userNameUsed: false,
   emailUsed: false,
   token: false,
-  wrongCred: false
+  wrongCred: false,
+  passMatch: false,
+  emailFormat: false
 };
+
+
 
 export default (state = authDefaultState, action) => {
   switch (action.type) {
@@ -24,6 +28,14 @@ export default (state = authDefaultState, action) => {
       return {...state, wrongCred: true};
     case "APPROVE_CREDENTIALS":
       return {...state, wrongCred: false};
+    case "PASS_MATCH":
+      return {...state, passMatch: false};
+    case "PASS_NOT_MATCH":
+      return { ...state, passMatch: true};
+    case "APPROVE_EMAIL_FORMAT":
+      return {...state, emailFormat: false};
+    case "REJECT_EMAIL_FORMAT":
+      return {...state, emailFormat: true};
     default:
       return state;
   }

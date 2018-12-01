@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { resetRef } from "../../actions/support";
+import { resetRef } from "../../../actions/support";
 import {
   approveEmail,
   approveUserName,
   requestEmailCheck,
   requestSignup,
   requestUserNameCheck
-} from "../../actions/auth";
+} from "../../../actions/auth/auth";
 
 
 class SignupPage extends Component {

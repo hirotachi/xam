@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LoginPage from "./authentication/LoginPage";
-import { login, requestAuth } from "../actions/auth";
-import SignupPage from "./authentication/SignupPage";
+import LoginPage from "./authentication/loginpage/LoginPage";
+import { login, requestAuth } from "../actions/auth/auth";
+import SignupPage from "./authentication/signuppage/SignupPage";
 import Responsive from "../Responsive/Responsive";
+import LoginForm from "./authentication/forms/LoginForm";
+import SignUpForm from "./authentication/forms/SignUpForm";
 
 
 class Homepage extends Component {
@@ -84,20 +86,18 @@ class Homepage extends Component {
             </video>
           </div>
         </Responsive>
-        <Responsive query={{maxWidth: 480}}>
-          <img src="https://i.ibb.co/VQ63nWb/1.jpg" alt="bg" className="home__mobile--bg"/>
-        </Responsive>
 
         <h1 className="home__logo" onClick={this.handleBackHome}>XAM</h1>
         {(this.state.buttons) &&
         <div className="home__buttons">
-          <button className="btn btn-primary btn-lg" onClick={this.handleLogin}>Login</button>
-          <button className="btn btn-blue btn-lg" onClick={this.handleSignUp}>SignUp</button>
+          {/*<button className="btn btn-primary btn-lg" onClick={this.handleLogin}>Login</button>*/}
+          {/*<button className="btn btn-blue btn-lg" onClick={this.handleSignUp}>SignUp</button>*/}
         </div>
         }
 
         {this.state.login && <LoginPage login={this.requestLogin} resquestSignup={this.handleSignUp}/>}
         {this.state.signUp && <SignupPage requestLogin={this.handleLogin}/>}
+        <SignUpForm/>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {enterSupport, leaveSupport, sendTicket, setRef, ticketReset, ticketSent} from "../../actions/support";
-import {login} from "../../actions/auth";
+import {login} from "../../actions/auth/auth";
 import Controls from "../dashboard/controls/Controls";
 import Responsive from "../../Responsive/Responsive";
 

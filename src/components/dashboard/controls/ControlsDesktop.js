@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import SearchDesktop from "../../Navigation/search/SearchDesktop";
 import {AddIcon, LogoutIcon, MenuIcon, SupportIcon} from "../../icons/icons";
-import {requestLogout} from "../../../actions/auth";
+import {requestLogout} from "../../../actions/auth/auth";
 import {NavLink} from "react-router-dom";
 import {setRef} from "../../../actions/support";
 

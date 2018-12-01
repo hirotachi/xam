@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {CloseIcon, MenuIcon} from "../icons/icons";
 import SearchMobile from "./search/SearchMobile";
 import {NavLink} from "react-router-dom";
-import {requestLogout} from "../../actions/auth";
+import {requestLogout} from "../../actions/auth/auth";
 import {setRef} from "../../actions/support";
 
 class NavigationMobile extends Component {

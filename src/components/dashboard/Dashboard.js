@@ -4,7 +4,7 @@ import CardsGroupList from "./cards/CardsGroupList";
 import CreateFlashGroup from "./cards/CreateFlashGroup";
 import Controls from "./controls/Controls";
 import ViewGroup from "./cards/view/ViewGroup";
-import { requestLogout } from "../../actions/auth";
+import { requestLogout } from "../../actions/auth/auth";
 import { viewGroups } from "../../actions/cardGroups";
 import {endCreationControls, endEditControls, endViewControls, startViewControls} from "../../actions/controls";
 

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {approveCred, Login, requestLogin} from "../../actions/auth";
+import {approveCred, Login, requestLogin} from "../../../actions/auth/auth";
 import {connect} from "react-redux";
 
 
