@@ -22,7 +22,8 @@ class LoginForm extends Component {
     this.props.dispatch(approveCred());
   };
   //Submit handler===============================================
-  handleFormSubmit = () => {
+  handleFormSubmit = (e) => {
+    e.preventDefault();
     const {userName, password} = this.state;
     if(!userName || !password){
       this.setState(() => ({error: "Username and password needed"}))
@@ -36,8 +37,11 @@ class LoginForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
+          {this.state.error && <p>{this.state.error}</p>}
+          {this.props.wrongCred && <p>Wrong username or password</p>}
           <div>
             <input
+              className={this.props.wrongCred ? "err-field" : ""}
               onChange={this.handleUserNameChange}
               value={this.state.userName}
               type="text"
@@ -45,6 +49,7 @@ class LoginForm extends Component {
           </div>
           <div>
             <input
+              className={this.props.wrongCred ? "err-field" : ""}
               onChange={this.handlePasswordChange}
               value={this.state.password}
               type="password"
@@ -52,8 +57,14 @@ class LoginForm extends Component {
           </div>
           <button>Login</button>
         </form>
+        <p>Don't have an account yet? <span onClick={this.props.resquestSignup}>sign up</span></p>
       </div>
     );
   }
 }
-export default connect()(LoginForm);
+const mapStateToProps = (state) => {
+  return {
+    wrongCred: state.auth.wrongCred
+  }
+};
+export default connect(mapStateToProps)(LoginForm);

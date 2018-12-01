@@ -195,6 +195,7 @@ class SignUpForm extends Component {
           </div>
           <button>sign up</button>
         </form>
+        <p>Already have an account ? <span onClick={this.props.requestLogin}>Login</span></p>
       </div>
     )
   }
