@@ -1,25 +1,23 @@
 .btn {
-  display: inline-block;
-  padding: 1rem;
-  margin: .5rem 0;
-  border-radius: 2.5rem;
-  border: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
   &:focus{
     outline: none;
   }
-  &-lg{
+  border: none;
+  cursor: pointer;
+  &__primary{
     padding: 2rem;
-    @media (min-width: $tablet-bp){
-      width: 40%;
-    }
-  }
+    width: 60%;
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+    box-shadow: 0 2px 9px rgba($color-black, 0.25);
 
-//  colors
-  &-primary{
-    background-color: $btn-primary;
-    color: $color-dark;
+  }
+  &--green{
+    background-color: $color-btn-primary;
+    color: $color-black;
+  }
+  &--dark{
+    color: $color-white;
+    background-color: $color-btn-secondary;
   }
 }

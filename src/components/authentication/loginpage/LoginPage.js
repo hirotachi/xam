@@ -12,7 +12,7 @@ class LoginPage extends Component {
         {
           !this.props.loginState &&
           !this.props.signUpState &&
-          <button onClick={this.props.show}>Login</button>
+          <button className="btn btn__primary btn--dark login__btn" onClick={this.props.show}>Login</button>
         }
       </React.Fragment>
     );

@@ -12,7 +12,7 @@ class SignupPage extends Component {
         {this.props.signUpState && <SignUpForm {...this.props}/>}
         {!this.props.signUpState &&
           !this.props.loginState &&
-        <button onClick={this.props.show}>Signup</button>
+        <button className="btn btn__primary btn--green signUp__btn" onClick={this.props.show}>Signup</button>
         }
       </React.Fragment>
     );

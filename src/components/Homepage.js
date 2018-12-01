@@ -10,7 +10,7 @@ import SignUpForm from "./authentication/forms/SignUpForm";
 
 class Homepage extends Component {
   state = {
-    login: false,
+    login: true,
     signUp: false,
     guestLogin: false,
     buttons: true,
@@ -79,21 +79,23 @@ class Homepage extends Component {
             </video>
           </div>
         </Responsive>
-
-        <h1 className="home__logo" onClick={this.handleBackHome}>XAM</h1>
-
-        <LoginPage
-          show={this.handleLogin}
-          signUpState={this.state.signUp}
-          loginState={this.state.login}
-          resquestSignup={this.handleSignUp}
-        />
-        <SignupPage
-          show={this.handleSignUp}
-          loginState={this.state.login}
-          signUpState={this.state.signUp}
-          requestLogin={this.handleLogin}
-        />
+        <div className="home__intro">
+          <p className="home__intro--logo" onClick={this.handleBackHome}>XAM</p>
+          <div className="home__intro--forms">
+            <LoginPage
+              show={this.handleLogin}
+              signUpState={this.state.signUp}
+              loginState={this.state.login}
+              resquestSignup={this.handleSignUp}
+            />
+            <SignupPage
+              show={this.handleSignUp}
+              loginState={this.state.login}
+              signUpState={this.state.signUp}
+              requestLogin={this.handleLogin}
+            />
+          </div>
+        </div>
       </div>
     );
   }

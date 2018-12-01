@@ -1,9 +1,14 @@
-@keyframes revealForm {
+@keyframes increaseWidth {
+  100%{
+    width: 30%;
+  }
+}
+@keyframes decreaseWidth {
   0%{
-    transform: translateY(-2rem);
+    width: 30%;
   }
   100%{
-    opacity: 1;
+    width: 15%;
   }
 }
 

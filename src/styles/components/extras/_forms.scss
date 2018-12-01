@@ -1,0 +1,24 @@
+.form{
+
+  &__field{
+    color: $color-white;
+    border-bottom: 1px solid rgba($color-white, .5);
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    input{
+      border: none;
+      background: transparent;
+      padding: 2rem;
+      &:focus{
+        outline: none;
+      }
+      &::placeholder{
+        color: $color-white;
+      }
+      &:focus &::placeholder{
+        transform: translateY(10rem);
+      }
+    } // input
+  }
+}

@@ -1,0 +1,9 @@
+.scale{
+  &-right{
+    animation: increaseWidth 1s ease-in-out forwards;
+  }
+}
+
+.shrink{
+  animation: decreaseWidth 1s ease-in-out forwards;
+}

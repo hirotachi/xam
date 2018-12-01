@@ -1,20 +1,51 @@
 .home {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  &__mobile--bg{
-    position: fixed;
-    display: inline-block;
-    overflow: hidden;
-    height: 700px;
-    width: 200%;
-    left: -55%;
-    top: -5rem;
-    z-index: -1;
-    transition: filter  1s ease-in-out;
+  background: linear-gradient(150.41deg, $color-bg-primary 2.49%, $color-bg-secondary 101.78%);
+  @media (min-width: $mobileL-bp){
+    background: none;
+    display: flex;
   }
+  // mobile
+  &__intro{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 1s ease-in-out;
+    @media (min-width: $mobileL-bp){
+      position: relative;
+      width: 15%;
+      background-color: rgba($color-white, 0.25);
+      box-shadow: 6px 0 6px rgba(0, 0, 0, 0.25);
+    }
+    &--logo{
+      color: $color-white;
+      font-weight: bold;
+      font-size: 7rem;
+      align-self: center;
+      margin-top: 10rem;
+      margin-bottom: 7rem;
+      @media (min-width: $mobileL-bp){
+        margin: 0 .5rem;
+        margin-top: 5rem;
+        color: $color-black;
+        font-weight: 300;
+        letter-spacing: 1rem;
+        font-size: 4rem;
+      }
+    } // home__intro--logo
 
-
+    &--forms{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      @media (min-width: $mobileL-bp){
+        width: 100%;
+        position: absolute;
+        top: 40%;
+      }
+    }
+  }//home__intro
+  // tablet and higher
   &__bg{
     position: fixed;
     top: 0;
@@ -52,23 +83,4 @@
     } //home--video
   } // home__bg
 
-  &__logo{
-    text-align: center;
-    margin: 0;
-    margin-top: 10vh;
-    font-size: 12vh;
-    cursor: pointer;
-    transition: all .1s ease-in-out;
-  }//home__logo
-  &__buttons{
-    display: flex;
-    font-size: 2rem;
-    flex-direction: column;
-    animation: btnMove 1s ease-in-out forwards;
-    margin: 0 3rem;
-    margin-top: 10rem;
-    @media (min-width: $tablet-bp){
-      align-items: center;
-    }
-  } // home__buttons
 }
