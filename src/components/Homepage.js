@@ -53,6 +53,11 @@ class Homepage extends Component {
     if (this.props.auth) {
       this.props.history.push("/dashboard");
     }
+    this.removeClass("slide_right-in", ".home__intro")
+  };
+  removeClass = (classTitle, target) => {
+    const targetComponent = document.querySelector(target);
+    targetComponent.classList.remove(classTitle);
   };
 
   //===============================================================
@@ -105,7 +110,7 @@ class Homepage extends Component {
             </video>
           </div>
         </Responsive>
-        <div className={`home__intro ${screen.width > 480 && "slide_right-in"}`}>
+        <div className={`home__intro ${screen.width > 480 ? "slide_right-in" : ""}`}>
           <p className="home__intro--logo" onClick={this.handleBackHome}>XAM</p>
           <div className="home__intro--forms">
             <LoginPage
