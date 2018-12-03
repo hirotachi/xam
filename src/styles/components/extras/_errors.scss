@@ -3,8 +3,12 @@
     opacity: 0;
     color: $color-white;
     animation: errMsg 1s ease-in-out forwards;
+    @media (max-width: $tablet-bp) and (min-width: $mobileL-bp){
+      font-size: 1.2rem;
+    }
   }
   &-field{
-    animation: errField 1s ease-in-out;
+    opacity: 1 !important;
+    animation: errField 1s ease-in-out !important;
   }
 }

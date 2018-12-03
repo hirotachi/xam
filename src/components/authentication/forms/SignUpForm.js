@@ -17,28 +17,58 @@ class SignUpForm extends Component {
     userNameFormatError: false
   };
 
+  //==================================================================
+  componentDidMount() {
+    const tag = document.querySelector(".home__intro");
+    tag.classList.add("scale-right");
+    tag.classList.remove("shrink");
+    const logo = document.querySelector(".home__intro--logo");
+    logo.classList.add("shrink-logo");
+    const forms = document.querySelector(".home__intro--forms");
+    forms.style.top = "20%";
+    const removeFieldAnimation = setTimeout(() => { // remove field reveal animation on component mount
+      const fields = document.querySelectorAll(".form__field");
+      for (let field of fields){
+        field.style.opacity = 1;
+        field.classList.remove("fieldReveal");
+      }
+      clearTimeout(removeFieldAnimation)
+    }, 1000)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(passMatch());
+    const tag = document.querySelector(".home__intro");
+    tag.classList.add("shrink");
+    tag.classList.remove("scale-right");
+    const logo = document.querySelector(".home__intro--logo");
+    logo.classList.remove("shrink-logo");
+    const forms = document.querySelector(".home__intro--forms");
+    forms.style.top = "40%";
+      const fields = document.querySelectorAll(".form__field");
+      for (let field of fields){
+        field.style.opacity = 1;
+        field.classList.add("fieldReveal");
+      }
+  }
+
   //Input handlers=======================================================
   handleUserNameChange = (e) => {
     const userName = e.target.value;
     this.setState(() => ({userName, userNameFormatError: false}));
-    this.resetError("userName");
   };
   handleEmailChange = (e) => {
     const email = e.target.value;
     this.setState(() => ({email}));
-    this.resetError("email");
   };
   handlePasswordChange = (e) => {
     const password = e.target.value;
     this.setState(() => ({password}));
-    this.resetError("password");
-    this.resetError("confirmPass");
     this.props.dispatch(passMatch());
   };
   handleConfirmPassChange = (e) => {
     const confirmPass = e.target.value;
     this.setState(() => ({confirmPass}));
-    this.resetError("confirmPass");
     this.props.dispatch(passMatch());
   };
   handleTermsChange = (e) => {
@@ -103,7 +133,7 @@ class SignUpForm extends Component {
         this.setState(() => ({userNameFormatError: "No special Characters allowed"}));
       } else if (this.state.userName.length < 6 || this.state.userName.length > 12) {
         this.addErrorToField("userName");
-        this.setState(() => ({userNameFormatError: "Minimum 6 and maximum 12"}))
+        this.setState(() => ({userNameFormatError: "username minimum length 6 and maximum 12"}))
       } else {
         this.resetError("userName");
         this.setState(() => ({userNameFormatError: false}));
@@ -125,11 +155,11 @@ class SignUpForm extends Component {
     });
 
     this.checkUserNameField()
-      .then(( ) => {
+      .then(() => {
         if (allFields.indexOf(false) === -1 &&
           !this.props.auth.passMatch &&
           !this.props.auth.emailFormat
-        && !this.state.userNameFormatError) {
+          && !this.state.userNameFormatError) {
           const {userName, email, password} = this.state;
           this.props.dispatch(requestSignup({userName, email, password}))
         }
@@ -140,62 +170,66 @@ class SignUpForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <div>
-            {this.props.auth.userNameUsed && <p>Username already used</p>}
-            {this.state.userNameFormatError && <p>{this.state.userNameFormatError}</p>}
+        <form className="form" onSubmit={this.handleFormSubmit}>
+            {this.props.auth.userNameUsed && <p className="err-msg">Username already used</p>}
+            {this.state.userNameFormatError && <p className="err-msg form__msg">{this.state.userNameFormatError}</p>}
             <input
+              className={`form__field fieldReveal`}
+              placeholder="Username"
               id="userName"
               onChange={this.handleUserNameChange}
               value={this.state.userName}
               type="text"
               onBlur={this.handleField}
             />
-          </div>
-          <div>
-            {this.props.auth.emailUsed && <p>Email already used</p>}
-            {this.props.auth.emailFormat && <p>Need a valid email</p>}
+            {this.props.auth.emailUsed && <p className="err-msg">Email already used</p>}
+            {this.props.auth.emailFormat && <p className="err-msg">Need a valid email</p>}
             <input
-              className={(this.props.auth.emailUsed || this.props.auth.emailFormat) ?
-                "err-field" : ""}
+              className={`${(this.props.auth.emailUsed || this.props.auth.emailFormat) ?
+                "err-field" : ""} form__field fieldReveal`}
+              placeholder="Email"
               id="email"
               onChange={this.handleEmailChange}
               value={this.state.email}
               type="text"
               onBlur={this.handleField}
             />
-          </div>
-          <div>
             <input
+              className={`form__field fieldReveal`}
+              placeholder="Password"
               id="password"
               onChange={this.handlePasswordChange}
               value={this.state.password}
               type="password"
             />
-          </div>
-          <div>
-            {this.props.auth.passMatch && <p>passwords does not match</p>}
+            {this.props.auth.passMatch && <p className="err-msg">passwords does not match</p>}
             <input
-              className={this.props.auth.passMatch ? "err-field" : ""}
+              className={`${this.props.auth.passMatch ? "err-field" : ""} form__field fieldReveal`}
+              placeholder="Confirm password"
               id="confirmPass"
               onChange={this.handleConfirmPassChange}
               value={this.state.confirmPass}
               type="password"
               onBlur={this.handleField}
             />
+          <div className="form__checkbox">
+            <label className="checkbox__container">
+              <span className="checkbox__label">I agree to terms of service</span>
+              <input
+                id="terms"
+                onChange={this.handleTermsChange}
+                value={this.state.terms}
+                type="checkbox"
+              />
+              <span className="checkbox__checkmark"/>
+            </label>
           </div>
-          <div>
-            <input
-              id="terms"
-              onChange={this.handleTermsChange}
-              value={this.state.terms}
-              type="checkbox"
-            />
-            <p>I agree to terms of service</p>
-          </div>
-          <button>sign up</button>
+          <button className="form__signUp slide_right-in">sign up</button>
         </form>
-        <p>Already have an account ? <span onClick={this.props.requestLogin}>Login</span></p>
+        <p className="form__text">
+          Already have an account?
+          <span className="form__text--link" onClick={this.props.requestLogin}>Login</span>
+        </p>
       </div>
     )
   }

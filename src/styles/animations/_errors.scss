@@ -3,12 +3,22 @@
     border-bottom: 1px solid $color-warning;
     color: $color-warning;
   }
+  70%{
+    color: $color-white;
+  }
 }
 
 @keyframes errMsg {
-  50%{
+  25%{
     color: $color-warning;
     opacity: 1;
+  }
+  50%{
+    color: $color-white;
+  }
+
+  70%{
+    color: $color-warning;
   }
   100%{
     opacity: 1;

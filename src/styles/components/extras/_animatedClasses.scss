@@ -29,7 +29,7 @@
     }
     &-in{
       opacity: 0;
-      animation: slideRightIn .5s .5s ease-in-out forwards;
+      animation: slideRightIn .5s .3s ease-in-out forwards;
     }
   }
   &_left{
@@ -41,7 +41,7 @@
       @media (min-width: $mobileL-bp){
         opacity: unset;
       }
-      animation: slideLeftIn .5s 1s ease-in-out forwards;
+      animation: slideLeftIn .5s .7s ease-in-out forwards;
     }
   }
 }

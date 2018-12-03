@@ -41,7 +41,7 @@ class Homepage extends Component {
         intro.classList.remove("slide_right-in");
         intro.style.opacity = 1;
         clearTimeout(slideIntro);
-      }, 2000)
+      }, 1200)
     }
   };
 
@@ -88,9 +88,9 @@ class Homepage extends Component {
         clearTimeout(slideBtns)
       }, 700);
     }else if (this.state.signUp && !this.state.buttons){
-      // const loginBtn = document.querySelector(".form__signUp");
-      // loginBtn.classList.remove("slide_right-in");
-      // loginBtn.classList.add("slide_right-out");
+      const signUpBtn = document.querySelector(".form__signUp");
+      signUpBtn.classList.remove("slide_right-in");
+      signUpBtn.classList.add("slide_right-out");
       const slideBtns = setTimeout(() => {
         this.setState(() => ({login: false, signUp: false, guestLogin: false, buttons: true}));
         clearTimeout(slideBtns)

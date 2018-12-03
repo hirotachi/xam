@@ -3,7 +3,8 @@
 @import "components/extras/index";
 
 
-@import "./components/buttons";
+@import "components/buttons/buttons";
+@import "components/checkbox/checkbox";
 @import "./components/homepage/index";
 @import "./components/dashboard/index";
 

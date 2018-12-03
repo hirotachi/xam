@@ -8,7 +8,9 @@ $color-bg-primary: #1E5979;
 $color-bg-secondary: #0C0C0C;
 
 $color-btn-primary: #1DB954;
+$color-btn-primary-light: lighten($color-btn-primary, 10%);
 $color-btn-secondary: #393A3C;
+$color-btn-secondary-light: lighten($color-btn-secondary, 10%);
 
 $color-white: #fff;
 $color-black: #000;

@@ -17,7 +17,24 @@ class LoginForm extends Component {
     tag.classList.remove("shrink");
     const logo = document.querySelector(".home__intro--logo");
     logo.classList.add("shrink-logo");
+    const handleFormFieldsStyle = setTimeout(() => {
+      const formFields = document.querySelectorAll(".form__field");
+      for (let field of formFields){
+        field.classList.remove("fieldReveal");
+        field.style.opacity = 1;
+      }
+      clearTimeout(handleFormFieldsStyle)
+    }, 1500);
   }
+
+  componentDidUpdate() {
+      const formFields = document.querySelectorAll(".form__field");
+      for (let field of formFields){
+        field.classList.remove("fieldReveal");
+        field.style.opacity = 1;
+      }
+  }
+
   componentWillUnmount() {
     const tag = document.querySelector(".home__intro");
     tag.classList.add("shrink");
@@ -59,14 +76,14 @@ class LoginForm extends Component {
           {this.props.wrongCred && <p className="err-msg">Wrong username or password</p>}
             <input
               placeholder="Username"
-              className={`form__field ${this.props.wrongCred ? "err-field" : ""}`}
+              className={`form__field fieldReveal ${this.props.wrongCred ? "err-field" : ""}`}
               onChange={this.handleUserNameChange}
               value={this.state.userName}
               type="text"
             />
             <input
               placeholder="Password"
-              className={`form__field ${this.props.wrongCred ? "err-field" : ""}`}
+              className={`form__field fieldReveal ${this.props.wrongCred ? "err-field" : ""}`}
               onChange={this.handlePasswordChange}
               value={this.state.password}
               type="password"
@@ -74,7 +91,7 @@ class LoginForm extends Component {
           <button className="btn form__login btn__secondary slide_right-in">Login</button>
         </form>
         <p className="form__text">need an account?
-          <span className="form__text--signUp"
+          <span className="form__text--link"
             onClick={this.props.resquestSignup}>sign up</span>
         </p>
       </div>

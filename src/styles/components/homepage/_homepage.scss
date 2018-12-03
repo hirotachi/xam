@@ -25,6 +25,7 @@
       margin-top: 10rem;
       margin-bottom: 7rem;
       transition: all .5s ease-in-out;
+      cursor: pointer;
       @media (min-width: $mobileL-bp){
         margin: 0 .5rem;
         margin-top: 5rem;
@@ -33,16 +34,22 @@
         letter-spacing: 1rem;
         font-size: 4rem;
       }
+      @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
+        margin-top: 1rem;
+      }
     } // home__intro--logo
 
     &--forms{
       width: 100%;
       display: flex;
       flex-direction: column;
-      @media (min-width: $mobileL-bp){
+      @media (min-width: $tablet-bp){
         width: 100%;
         position: absolute;
         top: 40%;
+      }
+      @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
+        top: 20%;
       }
     }
   }//home__intro

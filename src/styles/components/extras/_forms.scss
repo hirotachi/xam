@@ -1,8 +1,15 @@
-.form{
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  &__field  {
+  div{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  };
+  &__field {
     margin: 1rem 0;
     background: transparent;
     border: none;
@@ -11,36 +18,37 @@
     padding: 1rem;
     color: $color-white;
     opacity: 0;
-    @media (max-width: $mobileL-bp){
-      animation: revealFieldsUp 1s .5s ease-in-out forwards;
-    }
-    @media (min-width: $mobileL-bp){
-      animation: revealFieldsRight 1s .5s ease-in-out forwards;
-    }
-    &::placeholder{
+
+
+    &::placeholder {
       color: $color-white;
       opacity: .7;
     }
-    &:focus{
+
+    &:focus {
       outline: none;
     }
-  } //form__field
-  &__login{
-    cursor: pointer;
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    text-transform: uppercase;
-    margin-top: 3rem;
+  }
+
+  //form__field
+  &__login {
+  @extend %formBtn;
     color: $color-white;
     background-color: $color-btn-secondary;
-    letter-spacing: .2rem;
-    opacity: 0;
-    &:focus{
-      outline: none;
+    &:hover{
+      background-color: $color-btn-secondary-light;
     }
-  }// form__login
-  &__text{
+  } // form__login
+  &__signUp {
+  @extend %formBtn;
+    background-color: $color-btn-primary;
+    color: $color-black;
+    &:hover{
+      background-color: $color-btn-primary-light;
+    }
+  } // form__signUp
+
+  &__text {
     color: $color-white;
     margin-top: 3rem;
     letter-spacing: .3rem;
@@ -48,10 +56,51 @@
     text-align: center;
     opacity: 0;
     animation: fadeIn .5s .5s ease-in-out forwards;
-    &--signUp{
+
+    &--link {
       margin: 0 1rem;
       color: $color-btn-primary;
       cursor: pointer;
+      transition: all .5s ease-in-out;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-btn-primary-light;
+      }
     }
   }//form__text
+  &__checkbox{
+    width: 100%;
+    animation: fadeIn .5s 1.5s ease-in-out forwards;
+    opacity: 0;
+  } // form__checkbox
+&__msg{
+  font-size: 1.6rem;
+  text-align: center;
+}// form--msg
+}
+
+%formBtn {
+  cursor: pointer;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  letter-spacing: .2rem;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.fieldReveal{
+  @media (max-width: $mobileL-bp) {
+    animation: revealFieldsUp 1s .5s ease-in-out forwards;
+  }
+  @media (min-width: $mobileL-bp) {
+    animation: revealFieldsRight 1s .5s ease-in-out forwards;
+  }
 }
