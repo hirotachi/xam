@@ -7,14 +7,18 @@
     transition: all .3s ease-in-out;
     @media (min-width: $mobileL-bp) {
       margin: 0;
+      margin-top: 10rem;
       border-radius: 0;
       width: 100%;
       padding: 1rem;
-      margin-bottom: 2rem;
       opacity: 0;
       &:hover{
         width: 110%;
       }
+    }
+
+    @media (min-width: $mobileL-bp) and (max-width: $tablet-bp) and (orientation: landscape){
+      margin: 0;
     }
   } //login__btn
 }

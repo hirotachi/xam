@@ -72,8 +72,8 @@ class LoginForm extends Component {
     return (
       <div className="login">
         <form className="login__form form" onSubmit={this.handleFormSubmit}>
-          {this.state.error && <p className="err-msg">{this.state.error}</p>}
-          {this.props.wrongCred && <p className="err-msg">Wrong username or password</p>}
+          {this.state.error && <p className="err-msg form__msg">{this.state.error}</p>}
+          {this.props.wrongCred && <p className="err-msg form__msg">Wrong username or password</p>}
             <input
               placeholder="Username"
               className={`form__field fieldReveal ${this.props.wrongCred ? "err-field" : ""}`}

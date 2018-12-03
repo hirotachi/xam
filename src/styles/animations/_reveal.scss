@@ -1,63 +1,81 @@
 @keyframes revealFieldsUp {
-  0%{
+  0% {
     transform: translateY(3rem);
   }
-  100%{
+  100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
+
 @keyframes revealFieldsDown {
-  0%{
+  0% {
     transform: translateY(-3rem);
   }
-  100%{
+  100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
-@keyframes revealFieldsLeft{
-  0%{
+
+@keyframes revealFieldsLeft {
+  0% {
     transform: translateX(3rem);
   }
-  100%{
+  100% {
     transform: translateX(0);
     opacity: 1;
   }
 }
+
 @keyframes revealFieldsRight {
-  0%{
+  0% {
     transform: translateX(-3rem);
   }
-  100%{
+  100% {
     transform: translateX(0);
     opacity: 1;
   }
 }
 
 //=======================================================
-@keyframes increaseWidth {
-  100%{
+@keyframes increaseWidthD{
+  100% {
     width: 30%;
   }
 }
 
-@keyframes decreaseWidth {
-  0%{
+@keyframes decreaseWidthD {
+  0% {
     width: 30%;
   }
-  100%{
+  100% {
     width: 15%;
   }
 }
+@keyframes increaseWidthM{
+  100% {
+    width: 100%;
+  }
+}
+@keyframes decreaseWidthM{
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 20%;
+  }
+}
+
 //========================================================
-@keyframes fadeIn{
+@keyframes fadeIn {
   100% {
     opacity: 1;
   }
 }
+
 @keyframes fadeOut {
-  100%{
+  100% {
     opacity: 0;
   }
 }

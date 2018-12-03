@@ -13,6 +13,10 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
+      width: 60%;
+      margin: 0 auto;
+    }
     & input {
       position: absolute;
       opacity: 0;

@@ -24,8 +24,6 @@ class SignUpForm extends Component {
     tag.classList.remove("shrink");
     const logo = document.querySelector(".home__intro--logo");
     logo.classList.add("shrink-logo");
-    const forms = document.querySelector(".home__intro--forms");
-    forms.style.top = "20%";
     const removeFieldAnimation = setTimeout(() => { // remove field reveal animation on component mount
       const fields = document.querySelectorAll(".form__field");
       for (let field of fields){
@@ -44,7 +42,6 @@ class SignUpForm extends Component {
     const logo = document.querySelector(".home__intro--logo");
     logo.classList.remove("shrink-logo");
     const forms = document.querySelector(".home__intro--forms");
-    forms.style.top = "40%";
       const fields = document.querySelectorAll(".form__field");
       for (let field of fields){
         field.style.opacity = 1;
@@ -169,10 +166,15 @@ class SignUpForm extends Component {
   //=======================================================
   render() {
     return (
-      <div>
+      <React.Fragment>
         <form className="form" onSubmit={this.handleFormSubmit}>
+          <div className="form__errors">
             {this.props.auth.userNameUsed && <p className="err-msg">Username already used</p>}
             {this.state.userNameFormatError && <p className="err-msg form__msg">{this.state.userNameFormatError}</p>}
+            {this.props.auth.emailUsed && <p className="err-msg">Email already used</p>}
+            {this.props.auth.emailFormat && <p className="err-msg">Need a valid email</p>}
+            {this.props.auth.passMatch && <p className="err-msg">passwords does not match</p>}
+          </div>
             <input
               className={`form__field fieldReveal`}
               placeholder="Username"
@@ -182,8 +184,6 @@ class SignUpForm extends Component {
               type="text"
               onBlur={this.handleField}
             />
-            {this.props.auth.emailUsed && <p className="err-msg">Email already used</p>}
-            {this.props.auth.emailFormat && <p className="err-msg">Need a valid email</p>}
             <input
               className={`${(this.props.auth.emailUsed || this.props.auth.emailFormat) ?
                 "err-field" : ""} form__field fieldReveal`}
@@ -202,7 +202,6 @@ class SignUpForm extends Component {
               value={this.state.password}
               type="password"
             />
-            {this.props.auth.passMatch && <p className="err-msg">passwords does not match</p>}
             <input
               className={`${this.props.auth.passMatch ? "err-field" : ""} form__field fieldReveal`}
               placeholder="Confirm password"
@@ -230,7 +229,7 @@ class SignUpForm extends Component {
           Already have an account?
           <span className="form__text--link" onClick={this.props.requestLogin}>Login</span>
         </p>
-      </div>
+      </React.Fragment>
     )
   }
 }
