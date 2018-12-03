@@ -1,13 +1,14 @@
-@keyframes zigg {
-  20%{transform: translateX(1rem)}
-  40%{transform: translateX(-1rem)}
-  60%{transform: translateX(1rem)}
-  80%{transform: translateX(-1rem)}
+@keyframes errField {
+  50%{
+    border-bottom: 1px solid $color-warning;
+    color: $color-warning;
+  }
 }
 
-@keyframes revealErr {
-  0%{
-    transform: translateY(-1rem);
+@keyframes errMsg {
+  50%{
+    color: $color-warning;
+    opacity: 1;
   }
   100%{
     opacity: 1;

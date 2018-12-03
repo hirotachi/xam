@@ -11,12 +11,10 @@
       width: 100%;
       padding: 1rem;
       margin-bottom: 2rem;
+      opacity: 0;
       &:hover{
         width: 110%;
       }
     }
   } //login__btn
-
-  &__form{
-  }
 }

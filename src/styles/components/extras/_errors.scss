@@ -1,13 +1,10 @@
 .err {
   &-msg{
-    color: $color-warning;
-    font-weight: bold;
-    margin: 0 3rem;
     opacity: 0;
-    animation: revealErr .5s ease-in-out forwards;
+    color: $color-white;
+    animation: errMsg 1s ease-in-out forwards;
   }
   &-field{
-   border-bottom: solid 3px rgba(red, 0.8) !important;
-    animation: zigg .5s ease-in-out forwards;
+    animation: errField 1s ease-in-out;
   }
 }

@@ -1,0 +1,42 @@
+@keyframes slideRightOut{
+  0%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+}
+@keyframes slideRightIn{
+  0%{
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeftOut{
+  0%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(100%);
+    opacity: 1;
+  }
+}
+@keyframes slideLeftIn{
+  0%{
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+//==============================================================

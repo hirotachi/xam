@@ -10,7 +10,7 @@ import SignUpForm from "./authentication/forms/SignUpForm";
 
 class Homepage extends Component {
   state = {
-    login: true,
+    login: false,
     signUp: false,
     guestLogin: false,
     buttons: true,
@@ -33,6 +33,15 @@ class Homepage extends Component {
       this.handleSignUp();
     } else if (this.props.isRef && this.props.isRef.request === "login") {
       this.handleLogin();
+    }
+    if(screen.width > 480){
+      const intro = document.querySelector(".home__intro");
+      intro.style.opacity = 0;
+      const slideIntro = setTimeout(() => { // animate intro window on app load
+        intro.classList.remove("slide_right-in");
+        intro.style.opacity = 1;
+        clearTimeout(slideIntro);
+      }, 2000)
     }
   };
 
@@ -64,7 +73,24 @@ class Homepage extends Component {
   };
   //===============================================================
   handleBackHome = () => {
-    this.setState(() => ({login: false, signUp: false, guestLogin: false, buttons: true}));
+    //check if the user already on login or signUp page and add animation to buttons
+    if(this.state.login && !this.state.buttons ){ // login page animation outro
+      const loginBtn = document.querySelector(".form__login");
+      loginBtn.classList.remove("slide_right-in");
+      loginBtn.classList.add("slide_right-out");
+      const slideBtns = setTimeout(() => {
+        this.setState(() => ({login: false, signUp: false, guestLogin: false, buttons: true}));
+        clearTimeout(slideBtns)
+      }, 700);
+    }else if (this.state.signUp && !this.state.buttons){
+      // const loginBtn = document.querySelector(".form__signUp");
+      // loginBtn.classList.remove("slide_right-in");
+      // loginBtn.classList.add("slide_right-out");
+      const slideBtns = setTimeout(() => {
+        this.setState(() => ({login: false, signUp: false, guestLogin: false, buttons: true}));
+        clearTimeout(slideBtns)
+      }, 700);
+    }
   };
 
   //===============================================================
@@ -79,7 +105,7 @@ class Homepage extends Component {
             </video>
           </div>
         </Responsive>
-        <div className="home__intro">
+        <div className={`home__intro ${screen.width > 480 && "slide_right-in"}`}>
           <p className="home__intro--logo" onClick={this.handleBackHome}>XAM</p>
           <div className="home__intro--forms">
             <LoginPage

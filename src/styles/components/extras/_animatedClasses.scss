@@ -1,0 +1,47 @@
+.scale{
+  &-right{
+    @media (min-width: $mobileL-bp){
+      animation: increaseWidth 1s ease-in-out forwards;
+    }
+  } // scale-right
+} //scale
+
+.shrink{
+  @media (min-width: $mobileL-bp){
+    animation: decreaseWidth 1s ease-in-out forwards;
+  }
+}// shrink
+
+
+.shrink{
+  &-logo{
+    @media (max-width: $mobileL-bp){
+      margin: 3rem 0 !important;
+      font-size: 10vh !important;
+    }
+  }
+}
+
+.slide {
+  &_right{
+    &-out{
+      animation: slideRightOut .5s ease-in-out forwards;
+    }
+    &-in{
+      opacity: 0;
+      animation: slideRightIn .5s .5s ease-in-out forwards;
+    }
+  }
+  &_left{
+    &-out{
+      animation: slideLeftOut .5s ease-in-out forwards ;
+    }
+    &-in{
+      opacity: 0;
+      @media (min-width: $mobileL-bp){
+        opacity: unset;
+      }
+      animation: slideLeftIn .5s 1s ease-in-out forwards;
+    }
+  }
+}

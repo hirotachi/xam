@@ -5,6 +5,13 @@ import LoginForm from "../forms/LoginForm";
 
 
 class LoginPage extends Component {
+  state = {
+    showButton: true
+  };
+  hideButton = () => {
+    this.setState(() => ({showButton: false}));
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -12,7 +19,12 @@ class LoginPage extends Component {
         {
           !this.props.loginState &&
           !this.props.signUpState &&
-          <button className="btn btn__primary btn--dark login__btn" onClick={this.props.show}>Login</button>
+          <button
+            className={`btn btn__primary btn--dark login__btn
+            slide_right-in
+            `}
+            onClick={this.props.show}
+          >Login</button>
         }
       </React.Fragment>
     );

@@ -24,6 +24,7 @@
       align-self: center;
       margin-top: 10rem;
       margin-bottom: 7rem;
+      transition: all .5s ease-in-out;
       @media (min-width: $mobileL-bp){
         margin: 0 .5rem;
         margin-top: 5rem;
