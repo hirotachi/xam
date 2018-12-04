@@ -30,7 +30,10 @@ class Controls extends Component {
       <div className="controls">
         <Responsive query={{maxWidth: 480}}>
           {
-            !(this.props.controls.startCreate || this.props.controls.startEdit) &&
+            !(this.props.controls.startCreate ||
+              this.props.controls.startEdit ||
+                this.props.controls.startView
+            ) &&
             <ControlsMobile startCreation={this.handleAddGroup}/>
           }
         </Responsive>

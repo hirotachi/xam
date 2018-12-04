@@ -14,8 +14,11 @@ $color-btn-secondary-light: lighten($color-btn-secondary, 10%);
 
 $color-white: #fff;
 $color-black: #000;
+$color-grey: #ccc;
 
 $themeM: linear-gradient(150.41deg, $color-bg-primary 2.49%, $color-bg-secondary 101.78%);
+
+$shallowCardTheme: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #151416 43.75%);
 
 $color-warning: red;
 $color-warning-light: lighten($color-warning, 25%);

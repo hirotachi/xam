@@ -2,9 +2,6 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {CloseIcon, ShowMoreIcon} from "../../../icons/icons";
 import QuizzSettings from "../../quizzSetup/QuizzSettings";
-import {startEdit} from "../../../../actions/currentGroup";
-import {startEditControls} from "../../../../actions/controls";
-import {startRemoveGroup} from "../../../../actions/cardGroups";
 
 
 class ShallowCardMobile extends Component{
@@ -13,7 +10,17 @@ class ShallowCardMobile extends Component{
     quizzSettings: false
   };
   toggleDetails = () => {
-    this.setState(() => ({showDetails: !this.state.showDetails}))
+    if(this.state.showDetails){
+      const cardInfo = document.querySelector(".shallowCardM__info");
+      cardInfo.classList.remove("slide_up-in");
+      cardInfo.classList.add("slide_down-out");
+      const hideInfo = setTimeout(() => {
+        this.setState(() => ({showDetails: !this.state.showDetails}));
+        clearTimeout(hideInfo);
+      },500);
+    }else {
+      this.setState(() => ({showDetails: !this.state.showDetails}));
+    }
   };
 
   preQuizzSettings = () => {
@@ -22,22 +29,22 @@ class ShallowCardMobile extends Component{
 
   render() {
     return (
-      <div style={{backgroundColor: this.props.color}} >
-        <span onClick={this.toggleDetails}><ShowMoreIcon/></span>
+      <div style={{backgroundColor: this.props.color}} className="shallowCardM">
+        <span onClick={this.toggleDetails}><ShowMoreIcon style="shallowCardM__more"/></span>
         <h2 onClick={this.props.viewGroup}>{this.props.title}</h2>
         {
           this.state.showDetails &&
-            <div>
-              <p>{this.props.title}</p>
+            <div className="shallowCardM__info slide_up-in">
+              <p className="shallowCardM__info--title">{this.props.title}</p>
               <div>
-                <p>cards: {this.props.cards.length}</p>
+                <p className="shallowCardM__info--count">cards: {this.props.cards.length}</p>
               </div>
-              <div>
-                <span onClick={this.toggleDetails}><CloseIcon/></span>
-                <button onClick={this.preQuizzSettings}>Start</button>
-                <button onClick={this.props.editGroup}>Edit</button>
-                <button onClick={this.props.removeGroup}>Remove</button>
-                <button onClick={this.props.viewGroup}>View</button>
+              <div className="shallowCardM__info--options">
+                <span onClick={this.toggleDetails}><CloseIcon style="shallowCardM__close"/></span>
+                <p className="shallowCardM__info--btn" onClick={this.preQuizzSettings}>Start</p>
+                <p className="shallowCardM__info--btn" onClick={this.props.editGroup}>Edit</p>
+                <p className="shallowCardM__info--btn" onClick={this.props.removeGroup}>Remove</p>
+                <p className="shallowCardM__info--btn" onClick={this.props.viewGroup}>View</p>
               </div>
               {this.state.quizzSettings &&
               <QuizzSettings

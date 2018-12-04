@@ -1,0 +1,63 @@
+.shallowCardM{
+  width: 100%;
+  margin: 2rem 0;
+  height: 10rem;
+  border-radius: .5rem;
+  box-shadow: 0 .6rem 1rem rgba($color-black, .5);
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  &__more{
+    fill: $color-white;
+    height: 3rem;
+    width: 3rem;
+    position: absolute;
+    right: 1rem;
+    top: 0;
+  }
+  &__close {
+    height: 3rem;
+    width: 3rem;
+    fill: $color-white;
+    position: absolute;
+    top: 30%;
+    right: 5%;
+  }
+  &__info{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background: $shallowCardTheme;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    font-weight: bold;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &--title{
+      text-transform: capitalize;
+      font-size: 4rem;
+      margin-top: auto;
+    }
+    &--options{
+      margin-bottom: 10rem;
+      margin-top: 2rem;
+    }
+    &--btn{
+      font-size: 3rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    &--count{
+      font-weight: 300;
+      color: $color-grey;
+      margin: .5rem 0;
+    }
+  } //shallowCard__info
+}

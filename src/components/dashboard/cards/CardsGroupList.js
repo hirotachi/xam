@@ -7,7 +7,7 @@ import Filters from "../Filters";
 class CardsGroupList extends Component {
   render(){
     return (
-      <div>
+      <div className="dashboard__groups">
         <Filters/>
         {
           this.props.groups.length === 0 ? <p>no cards</p> :

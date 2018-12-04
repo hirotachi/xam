@@ -9,8 +9,8 @@ handleAddGroup = () => {
 };
   render(){
     return (
-        <div onClick={this.handleAddGroup}>
-          <AddIcon/>
+        <div className="controls__add slide_up-in" onClick={this.handleAddGroup}>
+          <AddIcon style="controls__add--icon"/>
         </div>
     );
   }
