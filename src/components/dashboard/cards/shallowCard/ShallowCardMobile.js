@@ -35,7 +35,7 @@ class ShallowCardMobile extends Component{
     return (
       <div style={{backgroundColor: this.props.color}} className="shallowCardM">
         <span onClick={this.toggleDetails}><ShowMoreIcon style="shallowCardM__more"/></span>
-        <h2 onClick={this.props.viewGroup}>{this.props.title}</h2>
+        <p className="shallowCardM__title" onClick={this.props.viewGroup}>{this.props.title}</p>
         {
           this.state.showDetails &&
             <div className="shallowCardM__info slide_up-in">
