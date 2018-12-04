@@ -96,22 +96,20 @@ class NavigationMobile extends Component {
   render() {
     return (
       <div className="nav">
-        {
+        {// appear if not controls or support is on screen
           this.props.auth && Object.values(this.props.controls).indexOf(true) === -1 &&
           this.props.redirect.location.pathname !== "/support" &&
           <SearchMobile/>
         }
-        <p className={`nav__logo slide_down-in logo${
-          this.props.redirect.location.pathname === "/support" ? "--sup" : "--dash"
-          }`}
+        <p className={`nav__logo slide_down-in`}
            onClick={this.goHome}>XAM</p>
         {
           this.state.showMenu ?
             <div onClick={this.hideMenu}>
-              <CloseIcon style="nav__menu--btn"/>
+              <CloseIcon style="nav__menu--btn scale-in"/>
             </div> :
             <div onClick={this.showMenu}>
-              <MenuIcon style="nav__menu--btn"/>
+              <MenuIcon style="nav__menu--btn scale-in"/>
             </div>
         }
         {

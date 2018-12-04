@@ -1,0 +1,41 @@
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  width: 100%;
+  position: relative;
+  height: 5rem;
+  transition: all .5s ease-in-out;
+  &__menu{
+    position: absolute;
+    left: 30%;
+    opacity: 0;
+    transform: translateY(-100%);
+    display: flex;
+    &--link{
+      margin: 0 1rem;
+      color: $color-white;
+      text-transform: capitalize;
+      background: transparent;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    &--btn{
+      height: 3.5rem;
+      width: 4rem;
+      fill: $color-white;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+  }
+  &__logo{
+    color: $color-white;
+    font-weight: bold;
+    letter-spacing: .2rem;
+    transition: all .5s ease-in-out;
+  }
+}

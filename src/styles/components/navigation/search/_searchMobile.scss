@@ -1,0 +1,18 @@
+.search{
+  &__btn{
+    height: 3rem;
+    width: 2.5rem;
+    fill: $color-white;
+  }
+  &__bar{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    padding: 1rem;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}

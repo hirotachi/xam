@@ -6,9 +6,13 @@
     @media (min-width: $mobileL-bp) and (max-width: $tablet-bp) and (orientation: landscape) {
       animation: increaseWidthM 1s ease-in-out forwards;
     }
+  } // scale-right
+  &-out{
+    animation: scaleOut .1s ease-in-out forwards;
   }
-
-  // scale-right
+  &-in{
+    animation: scaleIn .1s ease-in-out forwards;
+  }
 }
 
 //scale
@@ -35,6 +39,9 @@
 }
 
 .slide {
+  &-fast {
+    animation-duration: .3s !important;
+  }
   &_right {
     &-out {
       animation: slideRightOut .5s ease-in-out forwards;
@@ -75,5 +82,14 @@
     &-in{
       animation: slideDownIn .5s ease-in-out forwards;
     }
+  }
+}
+//========================================================
+.fade {
+  &-out{
+    animation: fadeOut .3s ease-in-out forwards;
+  }
+  &-in{
+    animation: fadeIn .3s ease-in-out forwards;
   }
 }

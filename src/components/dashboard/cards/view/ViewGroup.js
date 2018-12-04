@@ -14,6 +14,10 @@ class ViewGroup extends Component {
     showGroupMenu: false
   };
 
+  componentWillUnmount() {
+    this.props.dispatch(endViewControls());
+  }
+
   handleBack = () => {
     this.props.dispatch(clearCurrentGroup());
     this.props.dispatch(endViewControls());
