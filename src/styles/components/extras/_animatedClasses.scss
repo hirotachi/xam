@@ -58,5 +58,22 @@
       }
       animation: slideLeftIn .5s .7s ease-in-out forwards;
     }
+  } // slide_left
+  &_up{
+    &-out{
+      animation: slideUpOut .5s ease-in-out forwards;
+    }
+    &-in{
+      animation: slideUpIn .5s ease-in-out forwards;
+    }
+  } // slide__up
+
+  &_down{
+    &-out{
+      animation: slideDownOut .5s ease-in-out forwards;
+    }
+    &-in{
+      animation: slideDownIn .5s ease-in-out forwards;
+    }
   }
 }
