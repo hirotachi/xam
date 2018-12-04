@@ -9,6 +9,9 @@ class ShallowCardMobile extends Component{
     showDetails: false,
     quizzSettings: false
   };
+
+
+
   toggleDetails = () => {
     if(this.state.showDetails){
       const cardInfo = document.querySelector(".shallowCardM__info");
@@ -26,6 +29,7 @@ class ShallowCardMobile extends Component{
   preQuizzSettings = () => {
     this.setState(() => ({quizzSettings: !this.state.quizzSettings}));
   };
+
 
   render() {
     return (

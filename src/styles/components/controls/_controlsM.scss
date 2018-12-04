@@ -6,6 +6,7 @@
     position: fixed;
     bottom: 4rem;
     right: 3rem;
+    z-index: 2;
     box-shadow: 0 0 2rem rgba($color-black, .5);
     &--icon{
       height: 3rem;
