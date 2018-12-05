@@ -13,6 +13,7 @@ class NavigationMobile extends Component {
   };
 
   //Menu handlers===========================================
+
   componentDidUpdate(){
     const currentRoute = this.props.redirect.location.pathname;
     if(currentRoute === "/support"){

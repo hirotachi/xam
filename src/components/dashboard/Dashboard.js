@@ -18,6 +18,7 @@ class Dashboard extends Component {
   };
 
   componentWillMount() {
+
     if (!localStorage.xamUser) {
       this.props.dispatch(requestLogout());
     } else if (!localStorage.xamUser
@@ -60,12 +61,14 @@ class Dashboard extends Component {
 
   handleViewGroup = () => {
     this.props.dispatch(startViewControls());
+
     this.setState(() => ({ view: true, home: false, creation: false, startQuizz: false }))
   };
 
   render() {
     return (
       <div className="dashboard">
+        <div className="app-bg"/>
         <Controls
           startCreation={this.handleEditOrCreate}
           back={this.handleBackHome}

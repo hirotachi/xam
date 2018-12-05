@@ -11,10 +11,11 @@ class CardsGroupList extends Component {
         <Filters/>
         {
           this.props.groups.length === 0 ? <p>no cards</p> :
-          this.props.groups.map(group =>
+          this.props.groups.map((group, index) =>
             <ShallowCard
               key={group._id}
               {...group}
+              index={index}
               edit={this.props.startEdit}
               view={this.props.viewGroup}
               redirect={this.props.redirect}

@@ -21,6 +21,8 @@ $themeM: linear-gradient(150.41deg, $color-bg-primary 2.49%, $color-bg-secondary
 
 $shallowCardTheme: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #151416 43.75%);
 
+$btnShadow : 0 0 2rem rgba($color-black, .5);
+
 $color-warning: red;
 $color-warning-light: lighten($color-warning, 25%);
 // Spacing

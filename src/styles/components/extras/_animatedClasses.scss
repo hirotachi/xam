@@ -7,6 +7,14 @@
       animation: increaseWidthM 1s ease-in-out forwards;
     }
   } // scale-right
+  &_down{
+    &-in{
+      animation: scaleDownIn .5s ease-in-out forwards;
+    }
+    &-out{
+      animation: scaleDownOut .5s ease-in-out forwards;
+    }
+  }
   &-out{
     animation: scaleOut .1s ease-in-out forwards;
   }

@@ -40,8 +40,12 @@ img{
   cursor: pointer;
 }
 
-#app{
-  @media (max-width: $mobileL-bp){
-    background: $themeM;
-  }
+.app-bg{
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background: $themeM;
+  transition: all .5s ease-in-out;
 }

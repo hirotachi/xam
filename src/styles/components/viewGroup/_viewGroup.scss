@@ -1,0 +1,57 @@
+.viewGroup {
+  background-color: $color-light-grey;
+  height: fit-content;
+  min-height: 100%;
+  width: 100%;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  &__title{
+    position: absolute;
+    top: 4.5rem;
+    color: $color-white;
+    text-transform: capitalize;
+    width: 100%;
+    text-align: center;
+  }// viewGroup__title
+  &__back{
+    position: absolute;
+    top: 4.5rem;
+    left: 1%;
+    &--icon{
+      height: 3rem;
+      width: 3rem;
+      fill: $color-white;
+    }
+  } // viewGroup__back
+  &__edit{
+    background-color: $color-white;
+    border-radius: 5rem;
+    position: fixed;
+    bottom: 3rem;
+    left: 3rem;
+    box-shadow: $btnShadow;
+    height: fit-content;
+    padding: .5rem;
+    z-index: 3;
+    &--icon{
+      height: 3rem;
+      width: 3rem;
+    }
+  } // viewGroup__edit
+  &__start{
+    padding: 1rem 2rem;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5rem;
+    background-color: $color-white;
+    box-shadow: 0 .2rem 1rem rgba($color-black, .25);
+    font-weight: bold;
+    letter-spacing: .1rem;
+    position: fixed;
+    z-index: 1;
+    top: 8rem;
+    left: 28%;
+  }
+}

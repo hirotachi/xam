@@ -1,6 +1,5 @@
 .shallowCardM{
-  width: 100%;
-  margin: 2rem 0;
+  margin: 2rem;
   max-width: 100%;
   min-height: 10rem;
   border-radius: .5rem;
@@ -11,6 +10,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  transition: all 1s ease-in-out;
   &__title{
     font-weight: bold;
     text-align: center;
