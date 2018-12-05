@@ -20,7 +20,7 @@ class ViewCard extends Component {
         clearTimeout(showAnswer);
       },500);
     }else if (this.state.showAnswer){
-      answer.style.minHeight = "1rem";
+      answer.style.minHeight = "0";
       showAnswerIcon.style.transform  = "rotate(0deg)";
       this.setState(() => ({showAnswer: !this.state.showAnswer}));
     }
