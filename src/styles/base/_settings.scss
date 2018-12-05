@@ -12,10 +12,15 @@ $color-btn-primary-light: lighten($color-btn-primary, 10%);
 $color-btn-secondary: #393A3C;
 $color-btn-secondary-light: lighten($color-btn-secondary, 10%);
 
+$color-toggle-primary: #2196F3;
+$color-toggle-primary-dark: darken($color-toggle-primary, 10%);
+
 $color-white: #fff;
 $color-black: #000;
 $color-grey: #ccc;
 $color-light-grey: #eee;
+
+$color-light-black : #151416;
 
 $themeM: linear-gradient(150.41deg, $color-bg-primary 2.49%, $color-bg-secondary 101.78%);
 

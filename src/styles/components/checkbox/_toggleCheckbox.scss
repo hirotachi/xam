@@ -1,0 +1,44 @@
+.switch{
+  position: relative;
+  display: inline-block;
+  width: 4rem;
+  height: 1.7rem;
+  input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    &:checked + .slider{
+      background-color: $color-toggle-primary;
+    }
+    &:focus + .slider{
+      box-shadow: 0 0 1px $color-toggle-primary;
+    }
+    &:checked + .slider:before{
+      transform: translateX(2rem);
+      background-color: $color-toggle-primary-dark;
+    }
+  }
+}
+
+.slider{
+  position: absolute;
+  border-radius: 5rem;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $color-grey;
+  transition: .5s;
+  &:before{
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    height: 2.3rem;
+    width: 2.3rem;
+    left: 0;
+    bottom: -.3rem;
+    background-color: $color-white;
+    transition: .4s;
+  }
+}
