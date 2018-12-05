@@ -47,9 +47,15 @@ componentDidMount() {
   };
   handleStartQuizzSetup = () => {
     this.setState(() => ({quizzSetup: true}));
+    // fix overlap of quizzSettings and last card in viewGroup
+    const viewGroup = document.querySelector(".viewGroup");
+    viewGroup.style.paddingBottom = "12rem";
   };
   handleCancelQuizzSetup = () => {
     this.setState(() => ({quizzSetup: false}));
+    // fix overlap of quizzSettings and last card in viewGroup
+    const viewGroup = document.querySelector(".viewGroup");
+    viewGroup.style = "";
   };
 
   // ====================================
