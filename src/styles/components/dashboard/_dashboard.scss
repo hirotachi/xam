@@ -1,10 +1,12 @@
 .dashboard{
-  height: 90%;
-  overflow: auto;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   width: 100%;
   margin-top: 2rem;
   &__platform{
     width: 100%;
+    height: fit-content;
+    padding-bottom: 7rem;
   }
 }
