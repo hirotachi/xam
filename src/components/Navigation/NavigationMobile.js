@@ -26,7 +26,9 @@ class NavigationMobile extends Component {
   }
 
   showMenu = () => {
-    if (this.props.redirect.location.pathname === "/dashboard") { // if page is dashboard hide logo on menu open
+    const {startCreate, startView, startEdit} = this.props.controls;
+    if (this.props.redirect.location.pathname === "/dashboard" &&
+      !(startView || startCreate || startEdit)) { // if page is dashboard hide logo on menu open
       const logo = document.querySelector(".nav__logo");
       logo.classList.add("slide_up-out");
       logo.classList.remove("slide_down-in");
