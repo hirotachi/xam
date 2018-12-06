@@ -7,7 +7,7 @@ import {SearchIcon} from "../../icons/icons";
 class SearchDesktop extends Component {
   state = {
     search: "",
-    openSearch: false
+    openSearch: true
   };
 
   handleSearch = (e) => {
@@ -17,7 +17,23 @@ class SearchDesktop extends Component {
   };
 
   toggleSearch = () => {
-    this.setState(() => ({openSearch: !this.state.openSearch}))
+    const controls = document.querySelector(".controls");
+    if(!this.state.openSearch){
+      controls.style.width = "40%";
+      const showSearchBar = setTimeout(() => {
+        this.setState(() => ({openSearch: !this.state.openSearch}));
+        clearTimeout(showSearchBar);
+      },500)
+    }else {
+      const searchBar = document.querySelector(".controlsD__search--input");
+      searchBar.classList.remove("slide_right-in");
+      searchBar.classList.add("slide_right-out");
+      const hideSearchBar = setTimeout(() => {
+        this.setState(() => ({openSearch: !this.state.openSearch}));
+        controls.style.width = "10%";
+        clearTimeout(hideSearchBar);
+      }, 500)
+    }
   };
 
   render() {
@@ -26,7 +42,7 @@ class SearchDesktop extends Component {
         {
           this.state.openSearch ?
             <input
-              className="controlsD__search--input"
+              className="controlsD__search--input slide_right-in"
               autoFocus={true}
               type="text"
               value={this.state.search}

@@ -20,6 +20,7 @@
   align-items: center;
   padding: .5rem;
   left: .5rem;
+  z-index: 1;
   @media (min-width: $tablet-bp){
     left: 1.5rem;
   }
@@ -65,6 +66,16 @@
     }
   }//controls__logout
   &__search{
+      &--input{
+        padding: 1rem;
+        width: 100%;
+        background-color: $color-grey;
+        color: $color-white;
+        border: none;
+        &:focus{
+          outline: none;
+        }
+      }
     span{
       display: none;
     }
@@ -88,8 +99,14 @@
   align-items: center;
   border: none;
   transition: all .3s ease-in-out;
+  cursor: pointer;
   &:focus{
-    outline: none;
+    @media (max-width: $tablet-bp) and (min-width: $mobileL-bp){
+      outline: none;
+      background-color: rgba($color-white, .2);
+    }
+  }
+  &:hover{
     background-color: rgba($color-white, .2);
   }
 
