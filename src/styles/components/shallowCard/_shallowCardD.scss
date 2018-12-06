@@ -10,6 +10,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  @media (max-width: $mobileVL-bp) and (min-width: $mobileL-bp) and (orientation: landscape){
+    flex-basis: 45%;
+  }
   &__edit{
     @extend %shallowCard-btn;
     left: 1rem;

@@ -20,5 +20,9 @@
       display: flex;
       flex-wrap: wrap;
     }
+    @media (min-width: $mobileL-bp) and (max-width: $mobileVL-bp) and (orientation: landscape){
+      height: 100vh;
+      overflow-y: scroll;
+    }
   }
 }
