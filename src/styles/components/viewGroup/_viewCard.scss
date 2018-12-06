@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 .6rem 1rem rgba($color-black, .5);
 
   &__question {
     color: $color-white;
@@ -44,6 +45,7 @@
       min-height: 0;
       transition: all .5s ease-in-out;
       position: relative;
+      box-shadow: 0 .6rem .5rem rgba($color-black, .5);
     }
 
     &--show {

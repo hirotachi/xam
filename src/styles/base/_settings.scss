@@ -23,7 +23,9 @@ $color-light-grey: #eee;
 $color-light-black : #151416;
 
 $themeM: linear-gradient(150.41deg, $color-bg-primary 2.49%, $color-bg-secondary 101.78%);
+$themeD: #16191c;
 
+//background theme for more info mobile layout
 $shallowCardTheme: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #151416 43.75%);
 
 $btnShadow : 0 0 2rem rgba($color-black, .5);
@@ -37,7 +39,7 @@ $color-warning-light: lighten($color-warning, 25%);
 // breakpoints
 
 $desktop-bp: 1024px;
-$tablet-bp: 768px;
+$tablet-bp: 769px;
 $mobileS-bp: 320px;
 $mobileM-bp: 375px;
 $mobileL-bp: 480px;

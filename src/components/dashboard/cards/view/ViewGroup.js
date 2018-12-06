@@ -16,10 +16,13 @@ class ViewGroup extends Component {
 
 componentDidMount() {
   //make place for group title under the nav
-  const nav = document.querySelector(".nav");
-  nav.style.marginBottom = "5rem";
-  const appBg = document.querySelector(".app-bg");
-  appBg.style.background = `linear-gradient(100deg, ${this.props.group.color} -1.15%, black 93.39%)`;
+  if(screen.width <= 480){
+    const nav = document.querySelector(".nav");
+    nav.style.marginBottom = "5rem";
+    const appBg = document.querySelector(".app-bg");
+    appBg.style.background = `linear-gradient(100deg, ${this.props.group.color} -1.15%, black 93.39%)`;
+  }
+
 }
 
   componentWillUnmount() {

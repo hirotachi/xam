@@ -9,14 +9,16 @@ class ColorPicker extends Component {
   state = {
     show: false
   };
+
   componentDidMount() {
-    if(!this.props.selectedColor && !this.props.savedColor){
-      this.props.dispatch(updateGroup(this.props._id, {color:this.props.colors.colorsList[0]}));
+    if (!this.props.selectedColor && !this.props.savedColor) {
+      this.props.dispatch(updateGroup(this.props._id, {color: this.props.colors.colorsList[0]}));
       this.props.dispatch(setSelectedColor(this.props.colors.colorsList[0]));
-    }else {
+    } else {
       this.props.dispatch(setSelectedColor(this.props.savedColor));
     }
   };
+
   componentWillUnmount() {
     this.props.dispatch(clearSelectedColor());
   };
@@ -24,12 +26,13 @@ class ColorPicker extends Component {
   toggleColorList = () => {
     this.setState(() => ({show: !this.state.show}))
   };
+
   render() {
     return (
       <React.Fragment>
         <div onClick={this.toggleColorList} className="color-picker" style={{
-  backgroundColor: this.props.colors.selectedColor, padding: "1rem"
-}}/>
+          backgroundColor: this.props.colors.selectedColor, padding: "1rem"
+        }}/>
         {
           this.state.show &&
           this.props.colors.colorsList.map((color, index) =>
@@ -40,6 +43,7 @@ class ColorPicker extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     colors: state.colors,

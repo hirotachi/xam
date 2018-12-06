@@ -1,0 +1,101 @@
+.controls{
+  transition: all .5s ease-in-out;
+  box-shadow: 0 .6rem .6rem rgba($color-black, .5);
+  @media (min-width: $mobileL-bp){
+    height: 100%;
+    position: relative;
+  }
+  @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
+    width: 10%;
+  }
+  @media (min-width: $tablet-bp){
+    width: 15%;
+  }
+}
+.controlsD{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  align-items: center;
+  padding: .5rem;
+  left: .5rem;
+  @media (min-width: $tablet-bp){
+    left: 1.5rem;
+  }
+  &__btns{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin-top: 5rem;
+  } //controls__btns
+  &__logo{
+    text-align: center;
+    color: $color-white;
+    letter-spacing: .3rem;
+    font-size: 2vw;
+  }// controlsD__logo
+  &__btn{
+    @extend %controlsD-btn;
+    margin: 1rem 0;
+    span{
+      display: none;
+    }
+    &--icon{
+      @extend %controlsD-icon;
+    } // controlsD__btn--icon
+  } // controlsD__btn
+  &__support {
+    @extend %controlsD-btn;
+    margin: 1rem 0;
+    margin-top: auto;
+    &--icon{
+      @extend %controlsD-icon;
+    }
+  }//controls__support
+  &__logout{
+    @extend %controlsD-btn;
+    margin-bottom: 2rem;
+    span{
+      display: none;
+    }
+    &--icon{
+      @extend %controlsD-icon;
+    }
+  }//controls__logout
+  &__search{
+    span{
+      display: none;
+    }
+    &--btn{
+      @extend %controlsD-btn;
+      margin: 1rem 0;
+    }
+    &--icon{
+      @extend %controlsD-icon;
+    }
+  }//controlsD__search
+}
+
+%controlsD-btn{
+  background: transparent;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transition: all .3s ease-in-out;
+  &:focus{
+    outline: none;
+    background-color: rgba($color-white, .2);
+  }
+
+}
+%controlsD-icon{
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: $color-white;
+}

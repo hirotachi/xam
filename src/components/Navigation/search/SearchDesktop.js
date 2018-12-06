@@ -22,20 +22,23 @@ class SearchDesktop extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="controlsD__search">
         {
           this.state.openSearch ?
             <input
+              className="controlsD__search--input"
               autoFocus={true}
               type="text"
               value={this.state.search}
               onChange={this.handleSearch}
               onBlur={this.toggleSearch}
             /> :
-            <button onClick={this.toggleSearch}><SearchIcon/><span>Search</span></button>
+            <button className="controlsD__search--btn" onClick={this.toggleSearch}>
+              <SearchIcon style="controlsD__search--icon"/><span>Search</span>
+            </button>
         }
 
-      </React.Fragment>
+      </div>
     );
   }
 }

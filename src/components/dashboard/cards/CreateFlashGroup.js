@@ -79,9 +79,7 @@ class CreateFlashGroup extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleCancel}>Cancel</button>
-        <button onClick={this.handleSave}>save</button>
-        <ColorPicker _id={this.props.group._id} savedColor={this.props.group.color}/>
+
         {
           this.state.edit ?
             <input
@@ -97,6 +95,9 @@ class CreateFlashGroup extends Component {
               <button onClick={this.startTitleEdit}>Edit</button>
             </div>
         }
+        <button onClick={this.handleCancel}>Cancel</button>
+        <button onClick={this.handleSave}>save</button>
+        <ColorPicker _id={this.props.group._id} savedColor={this.props.group.color}/>
         <Cards id={this.props.group._id} />
       </div>
     );

@@ -20,7 +20,7 @@ class Filters extends Component {
 
   render() {
     return (
-      <div>
+      <div className="filters">
         <select name="sort" value={this.state.sort} onChange={this.handleOptionChange}>
           <option value="date">Date</option>
           <option value="name">Name</option>

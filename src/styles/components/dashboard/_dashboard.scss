@@ -4,9 +4,21 @@
   display: flex;
   width: 100%;
   margin-top: 2rem;
+  @media (min-width: $mobileL-bp){
+    margin-top: 0;
+  }
   &__platform{
     width: 100%;
     height: fit-content;
     padding-bottom: 7rem;
+    @media (min-width: $mobileL-bp){
+      padding: 0;
+    }
+  } // dashboard__platform
+  &__groups{
+    @media(min-width: $mobileL-bp){
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }
