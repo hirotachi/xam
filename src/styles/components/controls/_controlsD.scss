@@ -1,118 +1,203 @@
-.controls{
+.controls {
   transition: all .5s ease-in-out;
   box-shadow: 0 .6rem .6rem rgba($color-black, .5);
-  @media (min-width: $mobileL-bp){
+  @media (min-width: $mobileL-bp) {
     height: 100%;
     position: relative;
   }
-  @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
+  @media (min-width: $mobileL-bp) and (max-width: $tablet-bp) {
     width: 10%;
   }
-  @media (min-width: $tablet-bp){
-    width: 15%;
+  @media (min-width: $tablet-bp) {
+    width: 20%;
   }
 }
-.controlsD{
+
+.controlsD {
   display: flex;
   flex-direction: column;
   height: 100%;
-  position: fixed;
   align-items: center;
-  padding: .5rem;
   left: .5rem;
   z-index: 1;
-  @media (min-width: $tablet-bp){
-    left: 1.5rem;
+  @media (min-width: $tablet-bp) {
+    position: static;
+    width: 100%
   }
-  &__btns{
+
+  &__btns {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     justify-content: center;
     margin-top: 5rem;
-  } //controls__btns
-  &__logo{
+    transition: all .5s ease-in-out;
+  }
+
+  //controls__btns
+  &__logo {
     text-align: center;
     color: $color-white;
     letter-spacing: .3rem;
     font-size: 2vw;
-  }// controlsD__logo
-  &__btn{
+  }
+
+  // controlsD__logo
+  &__btn {
     @extend %controlsD-btn;
     margin: 1rem 0;
-    span{
-      display: none;
-    }
-    &--icon{
+
+    &--icon {
       @extend %controlsD-icon;
-    } // controlsD__btn--icon
-  } // controlsD__btn
+    }
+
+    // controlsD__btn--icon
+  }
+
+  // controlsD__btn
   &__support {
     @extend %controlsD-btn;
     margin: 1rem 0;
     margin-top: auto;
-    &--icon{
+
+    &--icon {
       @extend %controlsD-icon;
     }
-  }//controls__support
-  &__logout{
+  }
+
+  //controls__support
+  &__logout {
     @extend %controlsD-btn;
     margin-bottom: 2rem;
-    span{
-      display: none;
-    }
-    &--icon{
+
+    &--icon {
       @extend %controlsD-icon;
     }
-  }//controls__logout
-  &__search{
-      &--input{
-        padding: 1rem;
-        width: 100%;
-        background-color: $color-grey;
-        color: $color-white;
-        border: none;
-        &:focus{
-          outline: none;
-        }
-      }
-    span{
-      display: none;
-    }
-    &--btn{
-      @extend %controlsD-btn;
+  }
+
+  //controls__logout
+  &__search {
+    height: fit-content;
+
+    button {
+      width: 100%;
       margin: 1rem 0;
     }
-    &--icon{
-      @extend %controlsD-icon;
+
+    &--input {
+      margin: 1rem 0;
+      padding: .5rem;
+      width: 100%;
+      height: 3rem;
+      background-color: rgba($color-grey, .5);
+      color: $color-white;
+      border: none;
+      transition: all 1s ease-in-out;
+
+      &:focus {
+        outline: none;
+      }
     }
-  }//controlsD__search
+
+    span {
+      display: none;
+      @media (min-width: $tablet-bp) {
+        display: inline-block;
+        opacity: 0;
+        animation: fadeIn .5s ease-in-out forwards;
+      }
+    }
+
+    &--btn {
+      height: 3rem;
+      border: none;
+      width: 100%;
+      margin: 1rem 0;
+      box-shadow: $btnShadow;
+      background-color: rgba($color-grey, .5);
+      @media (min-width: $tablet-bp){
+        border-radius: 5rem;
+        cursor: pointer;
+        position: relative;
+        color: $color-white;
+        transition: all 1s ease-in-out;
+      }
+
+
+      &:hover {
+        background-color: rgba($color-grey, .8);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--icon {
+      height: 2rem;
+      width: 2rem;
+      fill: $color-white;
+      @media (min-width: $tablet-bp) {
+        position: absolute;
+        height: 2rem;
+        width: 2rem;
+        left: 20%;
+        top: 15%;
+        fill: $color-white;
+        opacity: 0;
+        animation: fadeIn .5s ease-in-out forwards;
+      }
+    }
+  }
+
+  //controlsD__search
 }
 
-%controlsD-btn{
-  background: transparent;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 50%;
+%controlsD-btn {
+  height: 3rem;
+  background-color: rgba($color-white, .5);
+  border-radius: 5rem 0 0 5rem;
   display: flex;
   justify-content: center;
+  align-self: flex-end;
   align-items: center;
   border: none;
   transition: all .3s ease-in-out;
   cursor: pointer;
-  &:focus{
-    @media (max-width: $tablet-bp) and (min-width: $mobileL-bp){
+  box-shadow: $btnShadow;
+  width: 80%;
+  position: relative;
+  span{
+    display: none;
+    @media (min-width: $tablet-bp){
+      display: inline-block;
+      color: $color-white;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: .2rem;
+      font-size: 1.2rem;
+      flex: 1;
+    }
+  }
+  &:focus {
+    @media (max-width: $tablet-bp) and (min-width: $mobileL-bp) {
       outline: none;
       background-color: rgba($color-white, .2);
     }
   }
-  &:hover{
-    background-color: rgba($color-white, .2);
-  }
+
 
 }
-%controlsD-icon{
+
+%controlsD-icon {
   height: 1.5rem;
   width: 1.5rem;
   fill: $color-white;
+  @media (min-width: $tablet-bp){
+    margin-right: auto;
+    margin-left: 1rem;
+    height: 2rem;
+    width: 2rem;
+  }
 }

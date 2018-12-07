@@ -14,22 +14,20 @@ class ViewGroup extends Component {
     showGroupMenu: false
   };
 
-componentDidMount() {
-  //make place for group title under the nav
-  if(screen.width <= 480){
-    const nav = document.querySelector(".nav");
-    nav.style.marginBottom = "5rem";
-    const appBg = document.querySelector(".app-bg");
-    appBg.style.background = `linear-gradient(100deg, ${this.props.group.color} -1.15%, black 93.39%)`;
+  componentDidMount() {
+    //make place for group title under the nav
+    if (screen.width <= 480) {
+      const nav = document.querySelector(".nav");
+      nav.style.marginBottom = "5rem";
+      const appBg = document.querySelector(".app-bg");
+      appBg.style.background = `linear-gradient(100deg, ${this.props.group.color} -1.15%, black 93.39%)`;
+    }
+
   }
 
-}
-
   componentWillUnmount() {
-    this.props.dispatch(endViewControls());
-    //remove group title placer on unmount
     const nav = document.querySelector(".nav");
-    if(nav){
+    if (nav) {
       nav.style.marginBottom = "0";
       const appBg = document.querySelector(".app-bg");
       appBg.style = "";
@@ -84,7 +82,8 @@ componentDidMount() {
                 <GearIcon style="viewGroup__edit--icon"/>
               </span>
               <button className="viewGroup__start slide_down-in"
-                onClick={this.handleStartQuizzSetup}>Start quizz</button>
+                      onClick={this.handleStartQuizzSetup}>Start quizz
+              </button>
             </React.Fragment>
           }
         </Responsive>
@@ -139,6 +138,7 @@ componentDidMount() {
 const mapStateToProps = (state) => {
   return {
     group: groupSelector(state.groups, state.currentGroup.currentId),
+    controls: state.controls
   }
 };
 export default connect(mapStateToProps)(ViewGroup);

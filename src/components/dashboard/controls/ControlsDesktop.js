@@ -5,11 +5,23 @@ import {AddIcon, LogoutIcon, MenuIcon, SupportIcon} from "../../icons/icons";
 import {requestLogout} from "../../../actions/auth/auth";
 import {NavLink} from "react-router-dom";
 import {setRef} from "../../../actions/support";
+import {endCreationControls, endEditControls, endViewControls} from "../../../actions/controls";
 
 
 class ControlsDesktop extends Component {
 
+  componentDidUpdate() {
+    //reset controls width when not unmounted properly
+    const controls = document.querySelector(".controls");
+    if(!!controls.style.width){
+      controls.style = "";
+    }
+  }
+
   redirectHome = () => {
+    this.props.dispatch(endViewControls());
+    this.props.dispatch(endCreationControls());
+    this.props.dispatch(endEditControls());
     this.props.history.push("/");
   };
   handleLogout = () => {
@@ -46,7 +58,7 @@ class ControlsDesktop extends Component {
                 <MenuIcon style="controlsD__btn--icon"/><span>Groups List</span>
               </button>
               <button className="controlsD__support" onClick={this.props.supportRedirect}>
-                <SupportIcon style="controlsD__support--icon"/>
+                <SupportIcon style="controlsD__support--icon"/><span>Support</span>
               </button>
               <button className="controlsD__logout" onClick={this.handleLogout}>
                 <LogoutIcon style="controlsD__logout--icon"/><span>Logout</span>

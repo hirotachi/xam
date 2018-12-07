@@ -50,12 +50,14 @@ class Dashboard extends Component {
   handleEditOrCreate = () => {
     const { startCreate, startEdit } = this.props.controls;
     if (startCreate || startEdit) {
+      this.props.dispatch(endViewControls());
       this.setState(() => ({ home: false, creation: true, view: false, startQuizz: false }));
     }
   };
   handleBackHome = () => {
     this.props.dispatch(endCreationControls());
     this.props.dispatch(endEditControls());
+    this.props.dispatch(endViewControls());
     this.setState(() => ({ home: true, creation: false, view: false, startQuizz: false }));
   };
 
