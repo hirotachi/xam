@@ -40,7 +40,8 @@
     text-align: center;
     color: $color-white;
     letter-spacing: .3rem;
-    font-size: 2vw;
+    font-size: 3vw;
+    margin-top: 2rem;
   }
 
   // controlsD__logo
@@ -116,7 +117,7 @@
       margin: 1rem 0;
       box-shadow: $btnShadow;
       background-color: rgba($color-grey, .5);
-      @media (min-width: $tablet-bp){
+      @media (min-width: $tablet-bp) {
         border-radius: 5rem;
         cursor: pointer;
         position: relative;
@@ -148,6 +149,9 @@
         opacity: 0;
         animation: fadeIn .5s ease-in-out forwards;
       }
+      @media (max-width: $mobileVL-bp) and (orientation: landscape) and (min-width: $mobileL-bp) {
+        left: 11%;
+      }
     }
   }
 
@@ -168,9 +172,14 @@
   box-shadow: $btnShadow;
   width: 80%;
   position: relative;
-  span{
+  @media (max-width: $mobileVL-bp) and (orientation: landscape) and (min-width: $mobileL-bp) {
+    width: 50%;
+  }
+
+  span {
     display: none;
-    @media (min-width: $tablet-bp){
+
+    @media (min-width: $tablet-bp) {
       display: inline-block;
       color: $color-white;
       text-transform: uppercase;
@@ -179,7 +188,12 @@
       font-size: 1.2rem;
       flex: 1;
     }
+    @media (max-width: $mobileVL-bp) and (orientation: landscape) and (min-width: $mobileL-bp) {
+      display: none;
+    }
+
   }
+
   &:focus {
     @media (max-width: $tablet-bp) and (min-width: $mobileL-bp) {
       outline: none;
@@ -194,7 +208,7 @@
   height: 1.5rem;
   width: 1.5rem;
   fill: $color-white;
-  @media (min-width: $tablet-bp){
+  @media (min-width: $tablet-bp) {
     margin-right: auto;
     margin-left: 1rem;
     height: 2rem;

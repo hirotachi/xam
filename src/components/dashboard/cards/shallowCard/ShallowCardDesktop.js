@@ -71,7 +71,9 @@ class ShallowCardDesktop extends Component {
               }
             </React.Fragment>
           }
-          <p className="shallowCardD__title" onClick={this.props.viewGroup}>{this.props.title}</p>
+          <div className="shallowCardD__clickSection" onClick={this.props.viewGroup}>
+            <p className="shallowCardD__title" >{this.props.title}</p>
+          </div>
           {this.state.quizzSettings &&
           <QuizzSettings
             layout="desktop-dashboard"

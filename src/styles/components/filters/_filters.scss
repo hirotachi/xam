@@ -1,3 +1,65 @@
 .filters{
-  flex-basis: 100%;
+  position: fixed;
+  bottom: 4rem;
+  left: 3rem;
+  z-index: 2;
+  animation: slideUpIn .5s ease-in-out forwards;
+  display: flex;
+  flex-direction: column-reverse;
+  @media (min-width: $mobileL-bp){
+    flex-direction: row;
+    right: 2rem;
+    left: unset;
+    bottom: unset;
+    top: 1rem;
+  }
+  &__btn{
+    border-radius: 50%;
+    border: none;
+    background-color: $color-white;
+    box-shadow: $btnShadow;
+    height: 4.5rem;
+    width: 4.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .2rem;
+    cursor: pointer;
+    @media (min-width: $mobileL-bp){
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+    &:focus{
+      outline: none;
+    }
+    &--icon{
+      height: 2rem;
+      width: 2rem;
+      fill: $color-black;
+    } // filters__btn--icon
+  }// filters__btn
+  &__date{
+    opacity: 0;
+    position: absolute;
+    bottom: 100%;
+    @media (min-width: $mobileL-bp){
+      right: 100%;
+      bottom: 0;
+      animation-delay: .1s;
+    }
+  }
+  &__name{
+    opacity: 0;
+    animation-delay: .2s;
+    position: absolute;
+    bottom: 200%;
+    @media (min-width: $mobileL-bp){
+      right: 200%;
+      bottom: 0;
+    }
+  }
+  &__sort{
+    z-index: 3;
+  }
+
 }

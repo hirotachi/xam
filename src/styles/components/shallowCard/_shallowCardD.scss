@@ -54,6 +54,7 @@
     font-size: 1.3rem;
     box-shadow: $btnShadow;
     background: transparent;
+    cursor: pointer;
   }//shallowCard__start
   &__showMore{
     position: absolute;
@@ -66,6 +67,13 @@
       fill: $color-white;
     }
   }//shallowCard__showMore
+  &__clickSection{
+    height: 80%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }//shallowCard
 
 %shallowCard-btn{
