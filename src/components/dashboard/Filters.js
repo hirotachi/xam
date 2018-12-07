@@ -23,8 +23,8 @@ class Filters extends Component {
 
   setAnimations = () => {
     this.setState(() => ({
-      inAnimation: screen.width > 480 ? "slide_right-in" : "slide_up-in",
-      outAnimation: screen.width > 480 ? "slide_right-out" : "slide_down-out"
+      inAnimation: screen.width > 480 ? "slide_left-in" : "slide_up-in",
+      outAnimation: screen.width > 480 ? "slide_left-out" : "slide_down-out"
     }))
   };
 
