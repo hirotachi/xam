@@ -120,7 +120,7 @@ class ViewGroup extends Component {
             cards={this.props.group.cards}
           />
         }
-        <div>
+        <div className="viewGroup__list">
           {this.props.group.cards.length === 0 ?
             <p>No Cards in this group yet</p> :
             <React.Fragment>

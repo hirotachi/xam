@@ -29,7 +29,7 @@ class ViewCard extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="viewCard__container">
         <div className={`viewCard ${this.props._id}`} style={{backgroundColor: this.props.color}}>
           <React.Fragment>
             <Responsive query={{maxWidth: 480}}>
@@ -38,8 +38,8 @@ class ViewCard extends Component {
             </span>
             </Responsive>
             <Responsive query={{minWidth: 480}}>
-            <span onClick={this.props.edit}>
-              <PencilDesktopIcon/>
+            <span className="viewCard__editD" onClick={this.props.edit}>
+              <PencilDesktopIcon style="viewCard__editD--icon"/>
             </span>
             </Responsive>
           </React.Fragment>
@@ -59,7 +59,7 @@ class ViewCard extends Component {
           </React.Fragment>
           }
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

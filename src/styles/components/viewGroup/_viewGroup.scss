@@ -4,12 +4,15 @@
   min-height: 89vh;
   width: 100%;
   padding-top: 3rem;
-  padding-bottom: 5rem;
   display: flex;
   flex-direction: column;
   transition: all .5s ease-in-out;
   @media (min-width: $mobileL-bp){
-    min-height: 100vh;
+    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    position: relative;
   }
 
   &__title{
@@ -64,5 +67,15 @@
     z-index: 1;
     top: 8rem;
     left: 28%;
+  }
+  &__list{
+    padding-bottom: 5rem;
+    width: 100%;
+    @media (min-width: $mobileL-bp){
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      height: 89%;
+    }
   }
 }
