@@ -93,34 +93,41 @@ class Quizz extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <p>XAM</p>
-        <button onClick={this.handleExit}>exit</button>
+      <div className="quizz">
+        <p className="quizz__logo">XAM</p>
+        <button className="quizz__exit" onClick={this.handleExit}>exit</button>
         {
           this.props.group && this.props.groups.length > 0 &&
-          <div>
-            <h2>{this.props.group.title}</h2>
+          <div className="quizz__group">
+            <h2 className="quizz__group--title">{this.props.group.title}</h2>
             <QuestionCount cards={this.props.group.cards} />
             {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
-            <div>
-              <p>{!!this.state.currentCard && this.state.currentCard.question}</p>
-              {this.state.answer && <p>{this.state.answer}</p>}
+            <div className="quizz__section">
+              <p className="quizz__section--question">
+                {!!this.state.currentCard && this.state.currentCard.question}
+                </p>
+              {
+                this.state.answer &&
+              <p className="quizz__section--answer">{this.state.answer}</p>
+              }
 
             </div>
             {this.state.currentCard.withAnswer && !this.state.answer
-            && <button onClick={this.handleShow}>show answer</button>}
+            && <button className="quizz__control" onClick={this.handleShow}>show answer</button>}
             {this.state.cards.length !== 0 &&
               <div>
                 {this.state.skip && this.state.currentCard.withAnswer ?
-                  <button onClick={this.handleSkip}>Skip</button> :
-                  <button onClick={this.handlePickNext}>Next</button>}
+                  <button className="quizz__control" onClick={this.handleSkip}>Skip</button> :
+                  <button className="quizz__control" onClick={this.handlePickNext}>Next</button>}
               </div>
             }
-            {this.state.cards.length === 0 && <button onClick={this.handleExit}>done</button>}
+            {this.state.cards.length === 0 &&
+            <button className="quizz__control" onClick={this.handleExit}>done</button>
+            }
 
           </div>
         }
-      </React.Fragment>
+      </div>
 
     );
   }

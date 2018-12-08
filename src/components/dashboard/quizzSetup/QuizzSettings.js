@@ -14,11 +14,14 @@ import {setCards} from "../../../actions/cards";
 
 class QuizzSettings extends Component {
   state = {
-    random: this.props.settings.random,
-    timerEnabled: this.props.settings.timer.enabled,
+    random: false,
+    timerEnabled: false,
     time: this.props.settings.timer.time.seconds,
     timeMetrics: "seconds"
   };
+  componentDidMount() {
+    this.props.dispatch(resetSettings());
+  }
 
   handleCancelQuizz = () => {
     this.props.dispatch(resetSettings());
@@ -75,6 +78,13 @@ class QuizzSettings extends Component {
 
   //============================================================
   handleStartQuizz = () => {
+    const {timeEnabled, random} = this.state;
+    if(timeEnabled){
+      this.props.dispatch(turnOnTimer());
+    }
+    if(random){
+      this.props.dispatch(turnOnRandom());
+    }
     this.props.dispatch(setCurrentGroup(this.props.id));
     this.props.dispatch(setCards(this.props.cards));
     this.props.redirect("/quizz");
@@ -83,12 +93,15 @@ class QuizzSettings extends Component {
   //============================================================
   render() {
     return (
-      <div className={`${this.props.layout}`}>
+      <div className={`${this.props.layout}`}
+           style={this.props.layout === "shallowCardQuizzD" ?
+             {backgroundColor: `${this.props.color}`} : {}}
+      >
         <div className={`${this.props.layout}__random--toggle`}>
           <p>random</p>
-          <label htmlFor="random" className={`switch`}>
+          <label htmlFor={`${this.props.id}-random`} className={`switch`}>
             <input
-              id="random"
+              id={`${this.props.id}-random`}
               type="checkbox"
               value={this.state.random}
               onChange={this.handleRandomChange}/>
@@ -97,10 +110,10 @@ class QuizzSettings extends Component {
         </div>
         <div className={`${this.props.layout}__time--toggle`}>
           <p>time</p>
-          <label htmlFor="timer" className={`switch`}>
+          <label htmlFor={`${this.props.id}-timer`} className={`switch`}>
             <input
               type="checkbox"
-              id="timer"
+              id={`${this.props.id}-timer`}
               value={this.state.timerEnabled}
               onChange={this.handleTimerEnabledChange}
             />
@@ -125,12 +138,12 @@ class QuizzSettings extends Component {
           </select>
         </div>
         }
-        <button className={`${this.props.layout}__cancel slide_down-in`}
-                onClick={this.handleCancelQuizz}>cancel
-        </button>
-        <button className={`${this.props.layout}__start slide_up-in`}
-                onClick={this.handleStartQuizz}>start
-        </button>
+          <button className={`${this.props.layout}__cancel`}
+                  onClick={this.handleCancelQuizz}>cancel
+          </button>
+          <button className={`${this.props.layout}__start`}
+                  onClick={this.handleStartQuizz}>start
+          </button>
       </div>
     );
   }

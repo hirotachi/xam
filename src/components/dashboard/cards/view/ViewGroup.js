@@ -17,13 +17,23 @@ class ViewGroup extends Component {
   componentDidMount() {
     //make place for group title under the nav
     if (screen.width <= 480) {
-      const nav = document.querySelector(".nav");
-      nav.style.marginBottom = "5rem";
-      const appBg = document.querySelector(".app-bg");
-      appBg.style.background = `linear-gradient(100deg, ${this.props.group.color} -1.15%, black 93.39%)`;
+      this.applyNavBg();
     }
 
+    window.addEventListener("resize", this.applyNavBg);
   }
+  applyNavBg = () => {
+    //apply group style on mobile layout
+    const appBg = document.querySelector(".app-bg");
+    const nav = document.querySelector(".nav");
+    if(screen.width <= 480 && !!nav){
+      nav.style.marginBottom = "5rem";
+      appBg.style.background = `linear-gradient(100deg, ${this.props.group.color} -1.15%, black 93.39%)`;
+    }else if (!!nav || appBg) {
+      appBg.style = "";
+    }
+
+  };
 
   componentWillUnmount() {
     const nav = document.querySelector(".nav");
@@ -32,6 +42,7 @@ class ViewGroup extends Component {
       const appBg = document.querySelector(".app-bg");
       appBg.style = "";
     }
+    window.removeEventListener("resize", this.applyNavBg);
   }
 
   handleBack = () => {
@@ -71,10 +82,11 @@ class ViewGroup extends Component {
     return (
       <div className="viewGroup">
         <h2 className="viewGroup__title slide_down-in">{this.props.group.title}</h2>
-        <span className="viewGroup__back slide_right-in" onClick={this.handleBack}>
-          <LeftArrowIcon style="viewGroup__back--icon"/>
-        </span>
+
         <Responsive query={{maxWidth: 480}}>
+          <span className="viewGroup__back slide_right-in" onClick={this.handleBack}>
+            <LeftArrowIcon style="viewGroup__back--icon"/>
+          </span>
           {
             !this.state.quizzSetup &&
             <React.Fragment>
@@ -90,30 +102,30 @@ class ViewGroup extends Component {
         <Responsive query={{minWidth: 480}}>
           {
             this.state.showGroupMenu ?
-              <div>
+              <div className="viewGroup__options">
                 {
                   !this.state.quizzSetup &&
-                  <span onClick={this.handleStartQuizzSetup}>
-                  <PlayIcon/>
+                  <span className="viewGroup__options--startQuizz" onClick={this.handleStartQuizzSetup}>
+                  <PlayIcon style="viewGroup__options--startQuizz-icon"/>
                 </span>
                 }
 
-                <span onClick={this.handleEditGroup}>
-                  <GearIcon/>
+                <span className="viewGroup__options--edit" onClick={this.handleEditGroup}>
+                  <GearIcon style="viewGroup__options--edit-icon"/>
                 </span>
-                <span onClick={this.toggleGroupMenu}>
-                  <LeftArrowIcon/>
+                <span className="viewGroup__options--showLess" onClick={this.toggleGroupMenu}>
+                  <LeftArrowIcon style="viewGroup__options--showLess-icon"/>
                 </span>
               </div> :
-              <span onClick={this.toggleGroupMenu}>
-                <ShowMoreIcon/>
+              <span className="viewGroup__options--showMore" onClick={this.toggleGroupMenu}>
+                <ShowMoreIcon styl="viewGroup__options--showMore-icon"/>
               </span>
           }
         </Responsive>
         {
           this.state.quizzSetup &&
           <QuizzSettings
-            layout="mobile-viewGroup"
+            layout="viewGroupQuizz"
             end={this.handleCancelQuizzSetup}
             id={this.props.group._id}
             redirect={this.props.redirect}

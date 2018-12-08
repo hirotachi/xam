@@ -5,6 +5,7 @@ import cardGroupsFilter from "../../../selectors/cardGroupsFilter";
 import Filters from "../Filters";
 
 class CardsGroupList extends Component {
+
   render(){
     return (
       <div className="dashboard__groups">

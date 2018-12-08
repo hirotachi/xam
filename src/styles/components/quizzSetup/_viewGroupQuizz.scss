@@ -1,4 +1,4 @@
-.mobile-viewGroup {
+.viewGroupQuizz {
   position: fixed;
   bottom: 0;
   z-index: 4;
@@ -6,21 +6,35 @@
   height: 7rem;
   background-color: $color-light-black;
   transition: all .5s ease-in-out;
-  box-shadow: 0px -.1rem .4rem rgba($color-black, 0.25);
+  box-shadow: -.2rem 0 0.4rem rgba($color-black, 0.25);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: $mobileL-bp){
+    justify-content: flex-start;
+  }
+  @media (min-width: $tablet-bp){
+    width: 82%;
+  }
 
   &__cancel {
     @extend %btn;
     top: 8rem;
+    left: 30%;
+    animation: slideDownIn .5s ease-in-out forwards;
+    @media (min-width: $mobileL-bp){
+      animation: slideUpIn .5s ease-in-out forwards;
+      color: $color-white;
+    }
   }
 
   &__start {
     @extend %btn;
+    left: 30%;
     bottom: 5rem;
     color: $color-btn-primary;
     transition: all .5s ease-in-out;
+    animation: slideUpIn .5s ease-in-out forwards;
   }
 
   &__time {
@@ -29,6 +43,9 @@
     left: 31%;
     display: flex;
     opacity: 0;
+    @media (min-width: $mobileL-bp){
+      position: static;
+    }
     &--input{
       width: 5rem;
       padding: 1rem;
@@ -41,7 +58,7 @@
     &--toggle {
       @extend %toggle;
     }
-  }
+  } // viewGroupQuizz__time
 
 &__random {
   &--toggle {
@@ -54,7 +71,6 @@
 
 %btn {
   position: fixed;
-  left: 30%;
   width: 15rem;
   padding: 1rem 3rem;
   border-radius: 5rem;
@@ -65,6 +81,20 @@
   letter-spacing: .3rem;
   font-weight: bold;
   z-index: 4;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
+  @media (min-width: $mobileL-bp){
+    position: static;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    width: fit-content;
+    padding: 1rem;
+    font-size: 2vw;
+  }
 }
 %toggle{
   display: flex;
@@ -78,4 +108,7 @@
   height: 100%;
   font-weight: bold;
   flex-direction: column;
+  @media (min-width: $mobileL-bp){
+    flex-direction: row;
+  }
 }

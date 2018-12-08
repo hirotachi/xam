@@ -13,7 +13,7 @@ class ShallowCardDesktop extends Component {
     this.setState(() => ({quizzSettings: !this.state.quizzSettings}));
   };
   toggleShowOption = () => {
-    if(this.state.showOptions){
+    if (this.state.showOptions) {
       //slide options on shallow card up and down
       const editBtn = document.getElementsByClassName(`${this.props._id}-edit`)[0];
       const removeBtn = document.getElementsByClassName(`${this.props._id}-remove`)[0];
@@ -29,8 +29,8 @@ class ShallowCardDesktop extends Component {
       const hideOptions = setTimeout(() => {
         this.setState(() => ({showOptions: !this.state.showOptions}));
         clearTimeout(hideOptions);
-      },500)
-    }else {
+      }, 500)
+    } else {
       this.setState(() => ({showOptions: !this.state.showOptions}))
     }
   };
@@ -67,16 +67,17 @@ class ShallowCardDesktop extends Component {
                   slide_up-in
                   ${this.props._id}-start
                   `}
-                        onClick={this.preQuizzSettings}>Start</button>
+                  onClick={this.preQuizzSettings}>Start</button>
               }
             </React.Fragment>
           }
           <div className="shallowCardD__clickSection" onClick={this.props.viewGroup}>
-            <p className="shallowCardD__title" >{this.props.title}</p>
+            <p className="shallowCardD__title">{this.props.title}</p>
           </div>
           {this.state.quizzSettings &&
           <QuizzSettings
-            layout="desktop-dashboard"
+            color={this.props.color}
+            layout="shallowCardQuizzD"
             end={this.preQuizzSettings}
             cards={this.props.cards}
             id={this.props._id}

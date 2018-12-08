@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     overflow-y: scroll;
     position: relative;
+    background-color: $themeD;
   }
 
   &__title{
@@ -24,6 +25,8 @@
     text-align: center;
     @media (min-width: $mobileL-bp){
       position: static;
+      text-align: left;
+      padding: 0 2rem;
     }
   }// viewGroup__title
   &__back{
@@ -67,7 +70,7 @@
     z-index: 1;
     top: 8rem;
     left: 28%;
-  }
+  } // viewGroup__start
   &__list{
     padding-bottom: 5rem;
     width: 100%;
@@ -77,5 +80,65 @@
       flex-wrap: wrap;
       height: 89%;
     }
+  } // viewGroup__list
+
+//  =======================================
+  &__options{
+    height: 3rem;
+    width: 12rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    border-radius: 3rem;
+    display: flex;
+
+    &--showMore{
+      @extend %viewGroupOptions;
+      right: 2rem;
+      top: 2rem;
+      position: absolute;
+    }// vieWGroup__options--showMore
+    &--showLess{
+      @extend %viewGroupOptions;
+      transform: rotate(180deg);
+      &-icon{
+        opacity: 0;
+        height: 2rem;
+        width: 2rem;
+        animation: fadeIn 1s ease-in-out forwards;
+      }
+    } // vieWGroup__options--showLess
+    &--edit{
+      @extend %viewGroupOptions;
+      &-icon{
+        height: 2rem;
+        width: 2rem;
+      }
+    } // vieWGroup__options--edit
+    &--startQuizz{
+      @extend %viewGroupOptions;
+      &-icon{
+        height: 2rem;
+        width: 2rem;
+      }
+    }// vieWGroup__options--startQuizz
+  }// vieWGroup__options
+} // vieWGroup
+
+%viewGroupOptions {
+  background-color: $color-white;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  box-shadow: $btnShadow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 .5rem;
+  cursor: pointer;
+  &-icon{
+    height: 1rem;
+    width: 1rem;
+    fill: $color-black;
   }
 }
