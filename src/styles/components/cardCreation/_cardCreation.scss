@@ -45,7 +45,9 @@
     }
   }// cardCreation__btns
   &__cards{
-    padding: 0 2rem;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
     &--add{
       background-color: $color-white;
       box-shadow: 0 0 .3rem rgba($color-black, .7);

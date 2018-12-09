@@ -1,0 +1,77 @@
+.cardCreation__card{
+  border-radius: .5rem;
+  box-shadow: $btnShadow;
+  position: relative;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &--remove{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    &-icon{
+      height: 2rem;
+      width: 2rem;
+      fill: $color-white;
+    }// cardCreation__card--remove-icon
+  } // cardCreation__card--remove
+  &--section{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 0;
+    transition: all .5s ease-in-out;
+    position: relative;
+    justify-content: center;
+    border-radius: 0 0 .5rem .5rem;
+    background-color: inherit;
+    margin-bottom: 2rem;
+    &-showMore{
+      transition: all .5s ease-in-out;
+      position: absolute;
+      bottom: 0;
+      &-icon{
+        height: 2rem;
+        width: 2rem;
+        fill: $color-white;
+      }
+    }// cardCreation__card--section-showMore
+    &-answer{
+      margin: 2rem 0;
+      color: $color-white;
+      font-weight: bold;
+      &-input{
+        width: 100%;
+        border-radius: .5rem;
+        &:focus{
+          outline: none;
+        }
+      }
+      &-text{
+        width: 80%;
+        overflow: scroll;
+      }
+    }// cardCreation__card--section-answer
+  }// cardCreation__card--section
+  &--question{
+    &-text{
+      color: $color-white;
+      font-weight: bold;
+    }
+  }// cardCreation__card--question
+  &--answer{
+    &-toggle{
+      display: flex;
+      justify-content: flex-end;
+      margin: auto 1rem 1rem auto;
+    }
+    &-text{
+      font-size: 1.3rem;
+      color: $color-white;
+      font-weight: bold;
+      margin-right: .5rem;
+    }
+  }// cardCreation__card--answer
+}// cardCreation__card

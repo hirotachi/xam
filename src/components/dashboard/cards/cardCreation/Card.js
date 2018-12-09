@@ -18,6 +18,11 @@ class Card extends Component {
     showAnswerSection: false
   };
 
+  componentWillUnmount() {
+    clearTimeout(this.hideAnswerCreation);
+    clearTimeout(this.showAnswerSection);
+  }
+
   //=======================================
   handleQuestionChange = (e) => {
     const question = e.target.value;
@@ -70,63 +75,86 @@ class Card extends Component {
   };
   //===========================================
   toggleShowAnswerSection = () => {
-    this.setState(() => ({showAnswerSection: !this.state.showAnswerSection}))
+    const answerSection = document.getElementsByClassName(this.state.id)[0];
+    const answerSectionIcon = document.getElementsByClassName(`${this.state.id}-icon`)[0];
+    if(answerSection && !this.state.showAnswerSection){
+      answerSection.style.height = "10rem";
+      answerSectionIcon.style.transform = "rotate(180deg)";
+      this.showAnswerSection = setTimeout(() => {
+        this.setState(() => ({showAnswerSection: !this.state.showAnswerSection}));
+      }, 500);
+    }else {
+      answerSection.style.height = "0";
+      answerSectionIcon.style.transform = "rotate(0deg)";
+        this.setState(() => ({showAnswerSection: !this.state.showAnswerSection}));
+    }
   };
   //===========================================
 
   render() {
     return (
-      <div style={{backgroundColor: this.props.selectedColor}}>
-        {this.state.edit ?
-          <textarea
-            autoFocus={true}
-            onBlur={this.handleQuestionBlur}
-            value={this.state.question}
-            onChange={this.handleQuestionChange}
-            placeholder="Question"
-          />
-          :
-          <p onClick={this.handleQuestionFocus}>{this.state.question}</p>
-        }
-        <div>
-          <p>with answer</p>
-          <label htmlFor={`${this.state.id}`} className={`switch`}>
-            <input
-              checked={this.state.withAnswer} id={this.state.id}
-              type="checkbox" onChange={this.handleAddAnswer}/>
-            <span className={`slider`}/>
-          </label>
+      <React.Fragment>
+        <div className="cardCreation__card" style={{backgroundColor: this.props.selectedColor}}>
+          {this.state.edit ?
+            <textarea
+              className="cardCreation__card--question-input"
+              autoFocus={true}
+              onBlur={this.handleQuestionBlur}
+              value={this.state.question}
+              onChange={this.handleQuestionChange}
+              placeholder="Question"
+            />
+            :
+            <p className="cardCreation__card--question-text"
+               onClick={this.handleQuestionFocus}>{this.state.question}</p>
+          }
+          <div className="cardCreation__card--answer-toggle">
+            <p className="cardCreation__card--answer-text">answer</p>
+            <label htmlFor={`${this.state.id}`} className={`switch`}>
+              <input
+                checked={this.state.withAnswer} id={this.state.id}
+                type="checkbox" onChange={this.handleAddAnswer}/>
+              <span className={`slider`}/>
+            </label>
+          </div>
+
+
+          <span className="cardCreation__card--remove" onClick={this.handleRemoveCard}>
+          <CloseIcon style="cardCreation__card--remove-icon"/>
+        </span>
         </div>
         <React.Fragment>
           {this.state.withAnswer &&
-          <div>
-            <span onClick={this.toggleShowAnswerSection}><DropDownIcon/></span>
+          <div style={{backgroundColor: this.props.selectedColor}}
+            className={`cardCreation__card--section ${this.state.id}`}>
+            <span className={`cardCreation__card--section-showMore ${this.state.id}-icon`}
+                  onClick={this.toggleShowAnswerSection}>
+              <DropDownIcon style="cardCreation__card--section-showMore-icon"/>
+            </span>
             {
               this.state.showAnswerSection &&
-                <div>
-                  {this.state.editAnswer ?
-                    <textarea
-                      autoFocus={true}
-                      placeholder="Answer"
-                      value={this.state.answer}
-                      onChange={this.handleAnswerChange}
-                      onBlur={this.handleAnswerBlur}
-                    /> :
-                    <p onClick={this.handleFocusAnswer}>{this.state.answer}</p>
-                  }
-                </div>
+              <div className="cardCreation__card--section-answer">
+                {this.state.editAnswer ?
+                  <textarea
+                    className="cardCreation__card--section-answer-input"
+                    autoFocus={true}
+                    placeholder="Answer"
+                    value={this.state.answer}
+                    onChange={this.handleAnswerChange}
+                    onBlur={this.handleAnswerBlur}
+                  /> :
+                  <p className="cardCreation__card--section-answer-text"
+                     onClick={this.handleFocusAnswer}>
+                    {this.state.answer}
+                  </p>
+                }
+              </div>
             }
           </div>
           }
         </React.Fragment>
+      </React.Fragment>
 
-        <span onClick={this.handleRemoveCard}><CloseIcon/></span>
-        {this.props.last &&
-        <Responsive query={{minWidth: 480}}>
-          <button onClick={this.handleAddCard}>add Card</button>
-        </Responsive>
-        }
-      </div>
     );
   }
 }
