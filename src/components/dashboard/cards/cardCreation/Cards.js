@@ -23,7 +23,9 @@ class Cards extends Component {
   render() {
     return (
       <div className="cardCreation__cards">
-        <button className="cardCreation__cards--add" onClick={this.handleAddCard}><AddIcon/></button>
+        <button className="cardCreation__cards--add" onClick={this.handleAddCard}>
+          <AddIcon style="cardCreation__cards--add-icon"/>
+        </button>
         {this.props.currentCards.map((card, index) =>
           <Card
             key={shortid()}

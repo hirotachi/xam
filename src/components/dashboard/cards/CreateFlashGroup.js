@@ -23,7 +23,6 @@ class CreateFlashGroup extends Component {
   componentDidMount() {
     const appBg = document.querySelector(".app-bg");
     appBg.style.background = "#16191c";
-    console.log(appBg);
   }
 
   componentWillUnmount() {

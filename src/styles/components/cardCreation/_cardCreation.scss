@@ -47,7 +47,29 @@
   &__cards{
     padding: 0 2rem;
     &--add{
-
+      background-color: $color-white;
+      box-shadow: 0 0 .3rem rgba($color-black, .7);
+      border: none;
+      position: fixed;
+      bottom: 2rem;
+      left: 37.25%;
+      width: 25%;
+      height: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5rem;
+      opacity: 0;
+      animation: slideUpIn .5s ease-in-out forwards;
+      @media (min-width: $mobileL-bp){
+        width: 10%;
+        height: 4rem;
+        left: 50%;
+      }
+      &-icon{
+        height: 2rem;
+        width: 2rem;
+      }
     }
   } // cardCreation__cards
 } // cardCreation
