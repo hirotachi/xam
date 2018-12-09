@@ -53,7 +53,7 @@ class ShallowCardMobile extends Component{
               </div>
               {this.state.quizzSettings &&
               <QuizzSettings
-                layout="mobile-dashboard"
+                layout="shallowCardQuizzM"
                 end={this.preQuizzSettings}
                 cards={this.props.cards}
                 id={this.props._id}
