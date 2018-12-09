@@ -12,6 +12,7 @@ import {
 import Cards from "./cardCreation/Cards";
 import { clearCurrentCards } from "../../../actions/cards";
 import ColorPicker from "../ColorPicker/ColorPicker";
+import {PencilDesktopIcon} from "../../icons/icons";
 
 class CreateFlashGroup extends Component {
   state = {
@@ -19,9 +20,16 @@ class CreateFlashGroup extends Component {
     id: "",
     edit: false
   };
+  componentDidMount() {
+    const appBg = document.querySelector(".app-bg");
+    appBg.style.background = "#16191c";
+    console.log(appBg);
+  }
 
   componentWillUnmount() {
     this.props.dispatch(clearCurrentCards());
+    const appBg = document.querySelector(".app-bg");
+    appBg.style = "";
   };
 
 
@@ -78,11 +86,16 @@ class CreateFlashGroup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cardCreation">
+        <div className="cardCreation__btns">
+          <button className="cardCreation__btns--cancel" onClick={this.handleCancel}>Cancel</button>
+          <button className="cardCreation__btns--save" onClick={this.handleSave}>save</button>
+        </div>
 
         {
           this.state.edit ?
             <input
+              className="cardCreation__title--input"
               autoFocus={true}
               style={{ display: "block" }}
               type="text"
@@ -90,13 +103,14 @@ class CreateFlashGroup extends Component {
               onChange={this.handleTitleChange}
               onBlur={this.endTitleEdit}
             /> :
-            <div>
-              <h2>{this.props.group.title}</h2>
-              <button onClick={this.startTitleEdit}>Edit</button>
+            <div className="cardCreation__title">
+              <h2 className="cardCreation__title--text">{this.props.group.title}</h2>
+              <span className="cardCreation__title--edit" onClick={this.startTitleEdit}>
+                <PencilDesktopIcon style="cardCreation__title--edit-icon"/>
+              </span>
             </div>
         }
-        <button onClick={this.handleCancel}>Cancel</button>
-        <button onClick={this.handleSave}>save</button>
+
         <ColorPicker _id={this.props.group._id} savedColor={this.props.group.color}/>
         <Cards id={this.props.group._id} />
       </div>

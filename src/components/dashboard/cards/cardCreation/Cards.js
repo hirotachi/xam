@@ -4,6 +4,7 @@ import groupSelector from "../../../../selectors/groupSelector";
 import Card from "./Card";
 import { addCard, setCards } from "../../../../actions/cards";
 import shortid from "shortid";
+import {AddIcon} from "../../../icons/icons";
 
 
 class Cards extends Component {
@@ -21,8 +22,8 @@ class Cards extends Component {
   };
   render() {
     return (
-      <div>
-        <button onClick={this.handleAddCard}>add</button>
+      <div className="cardCreation__cards">
+        <button className="cardCreation__cards--add" onClick={this.handleAddCard}><AddIcon/></button>
         {this.props.currentCards.map((card, index) =>
           <Card
             key={shortid()}

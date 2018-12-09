@@ -88,12 +88,15 @@ class Card extends Component {
           :
           <p onClick={this.handleQuestionFocus}>{this.state.question}</p>
         }
-        <label>
-          <input
-            checked={this.state.withAnswer} id={this.state.id}
-            type="checkbox" onChange={this.handleAddAnswer}/>
-          with answer
-        </label>
+        <div>
+          <p>with answer</p>
+          <label htmlFor={`${this.state.id}`} className={`switch`}>
+            <input
+              checked={this.state.withAnswer} id={this.state.id}
+              type="checkbox" onChange={this.handleAddAnswer}/>
+            <span className={`slider`}/>
+          </label>
+        </div>
         <React.Fragment>
           {this.state.withAnswer &&
           <div>

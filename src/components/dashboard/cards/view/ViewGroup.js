@@ -22,7 +22,7 @@ class ViewGroup extends Component {
 
     window.addEventListener("resize", this.applyNavBg);
   }
-  applyNavBg = () => {
+   applyNavBg = () => {
     //apply group style on mobile layout
     const appBg = document.querySelector(".app-bg");
     const nav = document.querySelector(".nav");
