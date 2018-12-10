@@ -93,7 +93,7 @@ class Card extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="cardCreation__container">
         <div className="cardCreation__card" style={{backgroundColor: this.props.selectedColor}}>
           {this.state.edit ?
             <textarea
@@ -143,17 +143,17 @@ class Card extends Component {
                     onChange={this.handleAnswerChange}
                     onBlur={this.handleAnswerBlur}
                   /> :
-                  <p className="cardCreation__card--section-answer-text"
+                  <div className="cardCreation__card--section-answer-text"
                      onClick={this.handleFocusAnswer}>
                     {this.state.answer}
-                  </p>
+                  </div>
                 }
               </div>
             }
           </div>
           }
         </React.Fragment>
-      </React.Fragment>
+      </div>
 
     );
   }

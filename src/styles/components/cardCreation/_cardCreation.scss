@@ -1,4 +1,5 @@
 .cardCreation{
+  height: 100vh;
   &__title{
     position: relative;
     margin: 1rem 0;
@@ -45,14 +46,29 @@
     }
   }// cardCreation__btns
   &__cards{
-    padding: 0 4rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding-bottom: 15rem;
+    margin-top: 2rem;
+    height: 69vh;
+    overflow: auto;
+    @media (min-width: $tablet-bp){
+      padding-bottom: 10rem;
+      height: 83vh;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
+      padding-bottom: 7rem;
+      height: 85vh;
+      grid-template-columns: repeat(2, 1fr);
+    }
     &--add{
       background-color: $color-white;
       box-shadow: 0 0 .3rem rgba($color-black, .7);
       border: none;
       position: fixed;
+      z-index: 3;
       bottom: 2rem;
       left: 37.25%;
       width: 25%;
@@ -63,6 +79,9 @@
       border-radius: 5rem;
       opacity: 0;
       animation: slideUpIn .5s ease-in-out forwards;
+      &:focus{
+        outline: none;
+      }
       @media (min-width: $mobileL-bp){
         width: 10%;
         height: 4rem;
@@ -74,6 +93,9 @@
       }
     }
   } // cardCreation__cards
+  &__container {
+    padding: 0 1rem;
+  }
 } // cardCreation
 
 %cardCreationBtns {
@@ -87,4 +109,7 @@
   background: transparent;
   border: none;
   text-shadow: 0 .2rem .5rem rgba($color-black, .5);
+  &:focus{
+    outline: none;
+  }
 }

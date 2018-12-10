@@ -21,14 +21,23 @@ class CreateFlashGroup extends Component {
     edit: false
   };
   componentDidMount() {
-    const appBg = document.querySelector(".app-bg");
-    appBg.style.background = "#16191c";
+    this.changeBgColor();
+  window.addEventListener("resize", this.changeBgColor);
   }
+
 
   componentWillUnmount() {
     this.props.dispatch(clearCurrentCards());
+    window.removeEventListener("resize", this.changeBgColor);
+  };
+
+  changeBgColor = () => {
     const appBg = document.querySelector(".app-bg");
-    appBg.style = "";
+    if(screen.width <= 480){
+      appBg.style.background = "#16191c";
+    }else {
+      appBg.style = "";
+    }
   };
 
 

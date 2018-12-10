@@ -25,5 +25,9 @@
       height: 100vh;
       overflow-y: scroll;
     }
+    @media (min-width: $tablet-bp){
+      height: 100vh;
+      overflow-y: scroll;
+    }
   }
 }
