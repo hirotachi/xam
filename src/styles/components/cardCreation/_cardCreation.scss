@@ -1,5 +1,5 @@
 .cardCreation{
-  height: 100vh;
+  height: fit-content;
   &__title{
     position: relative;
     margin: 1rem 0;
@@ -49,19 +49,22 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1rem;
-    padding-bottom: 15rem;
+    padding-bottom: 10rem;
     margin-top: 2rem;
-    height: 69vh;
+    height: 75vh;
     overflow: auto;
-    @media (min-width: $tablet-bp){
+    @media (min-width: $desktop-bp){
       padding-bottom: 10rem;
       height: 83vh;
       grid-template-columns: repeat(3, 1fr);
     }
     @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
       padding-bottom: 7rem;
-      height: 85vh;
+      height: 87.5vh;
       grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: $tablet-bp) and (max-width: $desktop-bp){
+      height: 90.5vh;
     }
     &--add{
       background-color: $color-white;
@@ -79,6 +82,7 @@
       border-radius: 5rem;
       opacity: 0;
       animation: slideUpIn .5s ease-in-out forwards;
+      cursor: pointer;
       &:focus{
         outline: none;
       }
@@ -109,6 +113,7 @@
   background: transparent;
   border: none;
   text-shadow: 0 .2rem .5rem rgba($color-black, .5);
+  cursor: pointer;
   &:focus{
     outline: none;
   }

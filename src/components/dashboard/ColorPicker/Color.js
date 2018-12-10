@@ -8,9 +8,8 @@ class Color extends Component{
   };
   render() {
     return (
-      <div onClick={this.handleSelectColor}
-        style={{padding: "1rem", backgroundColor: this.props.color, display: "inline-block",
-        borderRadius: "50%"}}>
+      <div className="colorPicker__color" onClick={this.handleSelectColor}
+        style={{ backgroundColor: this.props.color}}>
       </div>
     );
   }

@@ -1,0 +1,19 @@
+.colorPicker {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  justify-self: flex-start;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  &__container{
+    display: flex;
+    padding: 0 1rem;
+    justify-content: space-between;
+  }
+  &__color{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

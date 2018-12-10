@@ -24,13 +24,21 @@ class ColorPicker extends Component {
   };
 
   toggleColorList = () => {
+    //restyle color pickers main button
+    const colorPickerBtn = document.querySelector(".colorPicker");
+    if(!this.state.show){
+      colorPickerBtn.style.borderRadius = "0";
+    }else {
+      colorPickerBtn.style.borderRadius = "50%";
+    }
+    console.log(colorPickerBtn)
     this.setState(() => ({show: !this.state.show}))
   };
 
   render() {
     return (
-      <React.Fragment>
-        <div onClick={this.toggleColorList} className="color-picker" style={{
+      <div className="colorPicker__container">
+        <div onClick={this.toggleColorList} className="colorPicker" style={{
           backgroundColor: this.props.colors.selectedColor, padding: "1rem"
         }}/>
         {
@@ -39,7 +47,7 @@ class ColorPicker extends Component {
             <Color key={shortId()} index={index} color={color}/>
           )
         }
-      </React.Fragment>
+      </div>
     );
   }
 }
