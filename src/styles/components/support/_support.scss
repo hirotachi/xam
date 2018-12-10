@@ -1,0 +1,98 @@
+.support{
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  @media (min-width: $mobileL-bp){
+    padding: 0 10rem;
+  }
+  &__container{
+    display: flex;
+    position: relative;
+  }
+  &__bg{
+    background-color: $themeD;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    z-index: -1;
+    left: 0;
+  }
+  &__title{
+    text-transform: capitalize;
+    color: $color-white;
+    letter-spacing: .2rem;
+    text-align: center;
+    margin-bottom: 7rem;
+    @media (min-width: $mobileL-bp){
+      margin-top: 5rem;
+    }
+    @media (min-width: $mobileL-bp) and (max-width: $mobileVL-bp) and (orientation: landscape){
+      margin: 1rem 0;
+    }
+  }
+  &__form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    @media (min-width: $mobileL-bp) and (max-width: $mobileVL-bp) and (orientation: landscape){
+      margin: 0;
+    }
+    textarea{
+      min-height: 10rem;
+    }
+    &--field{
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-bottom: 1px solid $color-white;
+      background-color: rgba($color-light-grey, .1);
+      color: $color-white;
+      &:focus{
+        outline: none;
+      }
+      &::placeholder{
+        color: $color-white;
+        letter-spacing: .2rem;
+        font-size: 1.3rem;
+      }
+    }
+    &--btn{
+      margin: 0 auto;
+      margin-top: 5rem;
+      padding: 1rem;
+      width: 100%;
+      box-shadow: -.3rem 0 .3rem rgba($color-black, .8);
+      color: $themeD;
+      text-transform: uppercase;
+      letter-spacing: .2rem;
+      position: relative;
+      border: 1px solid $color-white;
+      background-color: $color-white;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      @media (min-width: $mobileL-bp){
+        width: 50%;
+      }
+      @media (min-width: $tablet-bp){
+        background-color: $themeD;
+        color: $color-white;
+      }
+      @media (min-width: $mobileL-bp) and (max-width: $mobileVL-bp) and (orientation: landscape){
+        margin-top: .5rem;
+      }
+      &:hover{
+        @media (min-width: $tablet-bp){
+          background-color: $color-white;
+          color: $themeD;
+        }
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import SearchDesktop from "../../Navigation/search/SearchDesktop";
-import {AddIcon, LogoutIcon, MenuIcon, SupportIcon} from "../../icons/icons";
+import {AddIcon, LoginIcon, LogoutIcon, MenuIcon, SignUpIcon, SupportIcon} from "../../icons/icons";
 import {requestLogout} from "../../../actions/auth/auth";
 import {NavLink} from "react-router-dom";
 import {setRef} from "../../../actions/support";
@@ -68,12 +68,26 @@ class ControlsDesktop extends Component {
               {
                 this.props.auth.auth ?
                 <React.Fragment>
-                  <NavLink to="/dashboard">Dashboard</NavLink>
-                  <button onClick={this.handleLogout}><LogoutIcon/><span>Logout</span></button>
+                  <button className="controlsD__btn">
+                    <MenuIcon style="controlsD__btn--icon"/>
+                    <span>Dashboard</span>
+                  </button>
+                  <button className="controlsD__logout"
+                          onClick={this.handleLogout}>
+                    <LogoutIcon style="controlsD__logout--icon"/><span>Logout</span>
+                  </button>
                 </React.Fragment> :
-                  <div>
-                    <button onClick={this.handleRequestSignUp}>signup</button>
-                    <button onClick={this.handleRequestLogin}>login</button>
+                  <div className="controlsD__support--btns">
+                    <button className="controlsD__support--signup"
+                            onClick={this.handleRequestSignUp}>
+                      <SignUpIcon style="controlsD__support--signup-icon"/>
+                      <span>sign up</span>
+                    </button>
+                    <button className="controlsD__support--login"
+                      onClick={this.handleRequestLogin}>
+                      <LoginIcon style="controlsD__support--login-icon"/>
+                      <span>login</span>
+                    </button>
                   </div>
               }
               <div>
