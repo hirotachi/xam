@@ -31,7 +31,6 @@ class ColorPicker extends Component {
     }else {
       colorPickerBtn.style.borderRadius = "50%";
     }
-    console.log(colorPickerBtn)
     this.setState(() => ({show: !this.state.show}))
   };
 

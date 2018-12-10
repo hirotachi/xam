@@ -32,11 +32,10 @@ class QuestionTimer extends Component {
 
   render() {
     return (
-      <div>
-        <p>
+      <div className="quizz__timer">
+        <p className="quizz__timer--time">
           {this.state.minutes.toString().length === 1 && <span>0</span>}{this.state.minutes}:
           {this.state.seconds.toString().length === 1 && <span>0</span>}{this.state.seconds}
-
         </p>
       </div>
     );

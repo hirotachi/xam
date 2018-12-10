@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { increaseCountAndPercent, resetCount, startSetStartPercent } from "../../actions/quizz";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {increaseCountAndPercent, resetCount, startSetStartPercent} from "../../actions/quizz";
 import QuestionBar from "./QuestionBar";
 
 class QuestionCount extends Component {
@@ -24,8 +24,8 @@ class QuestionCount extends Component {
 
   render() {
     return (
-      <div>
-        Questions count is : {`${this.props.count}/${this.props.cards.length}`}
+      <div className="quizz__count">
+        <p className="quizz__count--text"> Questions {`${this.props.count}/${this.props.cards.length}`}</p>
         <QuestionBar percent={this.props.currentPercent}/>
       </div>
     );

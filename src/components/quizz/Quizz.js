@@ -94,14 +94,20 @@ class Quizz extends Component {
   render() {
     return (
       <div className="quizz">
-        <p className="quizz__logo">XAM</p>
-        <button className="quizz__exit" onClick={this.handleExit}>exit</button>
+        <div className="quizz__nav">
+          <p className="quizz__logo">XAM</p>
+          <span className="quizz__exit" onClick={this.handleExit}>exit</span>
+        </div>
+
         {
           this.props.group && this.props.groups.length > 0 &&
           <div className="quizz__group">
             <h2 className="quizz__group--title">{this.props.group.title}</h2>
-            <QuestionCount cards={this.props.group.cards} />
-            {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
+            <div className="quizz__extras">
+              <QuestionCount cards={this.props.group.cards} />
+              {this.props.quizzSettings.timer.enabled && <QuestionTimer />}
+            </div>
+
             <div className="quizz__section">
               <p className="quizz__section--question">
                 {!!this.state.currentCard && this.state.currentCard.question}
@@ -112,19 +118,24 @@ class Quizz extends Component {
               }
 
             </div>
-            {this.state.currentCard.withAnswer && !this.state.answer
-            && <button className="quizz__control" onClick={this.handleShow}>show answer</button>}
-            {this.state.cards.length !== 0 &&
-              <div>
+            <div className="quizz__controls">
+              {this.state.currentCard.withAnswer && !this.state.answer
+              && <span className="quizz__controls--btn quizz__controls--btn-showAnswer"
+                       onClick={this.handleShow}>show answer</span>}
+              {this.state.cards.length !== 0 &&
+              <React.Fragment>
                 {this.state.skip && this.state.currentCard.withAnswer ?
-                  <button className="quizz__control" onClick={this.handleSkip}>Skip</button> :
-                  <button className="quizz__control" onClick={this.handlePickNext}>Next</button>}
-              </div>
-            }
-            {this.state.cards.length === 0 &&
-            <button className="quizz__control" onClick={this.handleExit}>done</button>
-            }
-
+                  <span className="quizz__controls--btn quizz__controls--btn-skip"
+                        onClick={this.handleSkip}>Skip</span> :
+                  <span className="quizz__controls--btn quizz__controls--btn-next"
+                        onClick={this.handlePickNext}>Next</span>}
+              </React.Fragment>
+              }
+              {this.state.cards.length === 0 &&
+              <span className="quizz__controls--btn quizz__controls--btn-done"
+                    onClick={this.handleExit}>done</span>
+              }
+            </div>
           </div>
         }
       </div>
