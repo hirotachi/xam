@@ -1,6 +1,6 @@
 export default (orientation) => {
   const screenWidth = screen.width;
-  const browserInfo = clientInformation.appVersion;
+  const browserInfo = navigator.userAgent;
   const { angle, type } = screen.orientation;
   //==========================================
   const mobileCheck = browserInfo.toLowerCase().includes("mobile");
