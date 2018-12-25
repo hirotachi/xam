@@ -16,6 +16,7 @@
     }
   } // dashboard__platform
   &__groups{
+    align-content: flex-start;
     @media(min-width: $mobileL-bp){
       display: grid;
       grid-template-columns: 1fr;

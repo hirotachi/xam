@@ -54,6 +54,7 @@
     margin-top: 2rem;
     height: 75vh;
     overflow: auto;
+    align-content: flex-start;
     @media (min-width: $desktop-bp){
       padding-bottom: 10rem;
       height: 83vh;
