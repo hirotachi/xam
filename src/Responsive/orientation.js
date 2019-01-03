@@ -53,9 +53,5 @@
 // };
 
 export default (orientation) => {
-  window.addEventListener("orientationchange", () => handleChange(orientation));
-}
-
-const handleChange = (orientation) => {
   return window.matchMedia(`(orientation: ${orientation})`).matches;
-};
+}
