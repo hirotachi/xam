@@ -24,7 +24,7 @@
     }
     @media (min-width: $mobileL-bp) and (max-width: $mobileVL-bp) and (orientation: landscape){
       height: 100vh;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
     @media (min-width: $mobileL-bp) and (max-width: $tablet-bp){
       grid-template-columns: repeat(2, 1fr);
@@ -32,7 +32,7 @@
     @media (min-width: $tablet-bp){
       grid-template-columns: repeat(3, 1fr);
       height: 100vh;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 }
