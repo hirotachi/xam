@@ -13,6 +13,7 @@ supportApi.js
 .env.test
 .env.development
 /server/data/*
+/graphqlServer/prisma/docker-compose.yml
 
 # dependencies
 /node_modules
