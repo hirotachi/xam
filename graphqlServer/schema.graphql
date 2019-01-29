@@ -1,0 +1,99 @@
+type Query {
+  users(query: String): [User!]!
+  groups(query: String): [Group!]!
+  cards(query: String): [Card!]!
+}
+type Mutation {
+  createUser(data: CreateUserInput): User!
+  updateUser(id: ID!, data: UpdateUserInput): User!
+  deleteUser(id: ID!): User!
+  createGroup(data: CreateGroupInput): Group!
+  updateGroup(id: ID!, data: updateGroupInput): Group!
+  deleteGroup(id: ID!): Group!
+  createCard(data: createCardInput): Card!
+  updateCard(id: ID!, data: updateCardInput): Card!
+  deleteCard(id: ID!): Card!
+}
+
+type Subscription{
+  group(groupId: ID!): GroupSubscriptionPayload!
+  card(group: ID!): CardSubscriptionPayload!
+}
+
+input CreateUserInput{
+  username: String!
+  email: String!
+}
+input UpdateUserInput{
+  username: String
+  email: String
+}
+
+input CreateGroupInput{
+  name: String!
+  color: String!
+  owner: ID!
+}
+input updateGroupInput{
+  name: String
+  color: String
+}
+
+input createCardInput{
+  group: ID!
+  question: String!
+  answer: String
+}
+input updateCardInput{
+  question: String
+  answer: String
+}
+
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  groups: [Group!]!
+}
+
+type Group {
+  id: ID!
+  name: String!
+  color: String!
+  owner: User!
+  cards: [Card!]!
+}
+
+type Card {
+  id: ID!
+  question: String
+  answer: String
+  group: Group!
+}
+
+
+
+
+
+enum MutationType{
+  CREATED
+  DELETED
+  UPDATED
+}
+
+type UserSubscriptionPayload{
+  mutation: MutationType!
+  node: User
+}
+
+
+type GroupSubscriptionPayload{
+  mutation: MutationType!
+  node: Group
+}
+
+type CardSubscriptionPayload{
+  mutation: MutationType!
+  node: Card
+}

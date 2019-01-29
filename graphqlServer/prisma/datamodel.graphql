@@ -1,0 +1,21 @@
+type User {
+  id: ID! @unique
+  username: String! @unique
+  email: String! @unique
+  groups: [Group!]! @relation(name: "GroupToUser", onDelete: CASCADE)
+}
+
+type Group{
+  id: ID! @unique
+  name: String
+  color: String!
+  owner: User! @relation(name: "GroupToUser", onDelete: SET_NULL)
+  cards: [Card!]! @relation(name: "CardToGroup", onDelete: CASCADE)
+}
+
+type Card{
+  id: ID! @unique
+  question: String!
+  answer: String
+  group: Group! @relation(name: "CardToGroup", onDelete: SET_NULL)
+}

@@ -1,9 +1,6 @@
 {
   "name": "Xam",
   "version": "1.0.0",
-  "engines": {
-    "yarn": "1.12.3"
-  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,12 +9,16 @@
     "dev-server": "webpack-dev-server --host 0.0.0.0",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/index.js",
-    "heroku-postbuild": "yarn run build:prod"
+    "heroku-postbuild": "yarn run build:prod",
+    "dev": "nodemon -e graphql,js graphqlServer/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-boost": "^0.1.27",
+    "apollo-server": "^2.3.2",
+    "apollo-server-express": "^2.3.3",
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -33,6 +34,9 @@
     "enzyme-to-json": "^3.3.4",
     "express": "^4.16.4",
     "global": "^4.3.2",
+    "graphql": "^14.1.1",
+    "graphql-import": "^0.7.1",
+    "graphql-tag": "^2.10.1",
     "jest": "^23.6.0",
     "jwt-simple": "^0.5.5",
     "kleur": "^3.0.0",
@@ -41,10 +45,13 @@
     "moment": "^2.22.2",
     "mongoose": "^5.3.13",
     "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
     "normalize.css": "^8.0.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "prisma-binding": "^2.3.0",
+    "prisma-client-lib": "^1.25.3",
     "raf": "^3.4.1",
     "react": "^16.5.2",
     "react-addons-shallow-compare": "^15.6.2",

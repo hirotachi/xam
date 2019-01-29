@@ -5,6 +5,8 @@ import { setCurrentGroup } from "./currentGroup";
 import { setCards } from "./cards";
 import { startCreationControls } from "./controls";
 
+import "./newCardGroups";
+
 const localhost = process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/";
 
 //add initial group for new users ===========================================

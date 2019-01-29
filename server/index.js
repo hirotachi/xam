@@ -9,7 +9,7 @@ const router = require("./router");
 const cors = require("cors");
 
 const databaseUrl = process.env.DATABASE_URL || require("../database").url;
-mongoose.connect(databaseUrl, {useNewUrlParser: true, useCreateIndex: true});
+mongoose.connect(databaseUrl, { useNewUrlParser: true, useCreateIndex: true });
 const publicPath = path.join(__dirname, "..", "public");
 const port = process.env.PORT || 3000;
 

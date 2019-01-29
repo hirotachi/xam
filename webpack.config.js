@@ -4,10 +4,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
-if(process.env.NODE_ENV === "test"){
-require("dotenv").config({path: ".env.test"});
-}else if (process.env.NODE_ENV === "development"){
-  require("dotenv").config({path: ".env.development"});
+if (process.env.NODE_ENV === "test") {
+  require("dotenv").config({ path: ".env.test" });
+} else if (process.env.NODE_ENV === "development") {
+  require("dotenv").config({ path: ".env.development" });
 }
 
 module.exports = (env) => {
@@ -71,6 +71,7 @@ module.exports = (env) => {
         "process.env.API_KEY": JSON.stringify(process.env.API_KEY),
         "process.env.DOMAIN": JSON.stringify(process.env.DOMAIN),
         "process.env.SUPPORT_EMAIL": JSON.stringify(process.env.SUPPORT_EMAIL),
+        "process.env.HOST": JSON.stringify(process.env.HOST)
       })
     ],
     devtool: isProduction ? "source-map" : "inline-source-map",
